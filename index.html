@@ -1,129 +1,115 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Üçler Gül Kuyumculuk | Canlı Fiyatlar</title>
-    <style>
-        :root {
-            --bg-gradient: linear-gradient(135deg, #004d40 0%, #00bfa5 100%);
-            --glass: rgba(255, 255, 255, 0.1);
-        }
-        body {
-            margin: 0;
-            padding: 20px;
-            font-family: 'Poppins', sans-serif;
-            background: var(--bg-gradient);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            color: white;
-        }
-        .container {
-            width: 100%;
-            max-width: 600px;
-            background: var(--glass);
-            backdrop-filter: blur(15px);
-            border-radius: 30px;
-            padding: 30px;
-            border: 1px solid rgba(255,255,255,0.2);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-        }
-        header { text-align: center; margin-bottom: 30px; }
-        header h1 { margin: 0; font-size: 24px; letter-spacing: 2px; }
-        header p { opacity: 0.7; font-size: 14px; }
+<meta charset="UTF-8">
+<title>Üçler Gül Kuyumculuk | Canlı Altın</title>
 
-        .price-card {
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 15px;
-            padding: 15px 20px;
-            margin-bottom: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: transform 0.3s;
-        }
-        .price-card:hover { transform: scale(1.02); background: rgba(0, 0, 0, 0.3); }
-        .gold-name { font-weight: 600; font-size: 18px; }
-        .gold-value { font-family: 'Monaco', monospace; font-size: 20px; color: #ccff00; }
-        
-        .update-bar {
-            text-align: center;
-            font-size: 12px;
-            margin-top: 20px;
-            opacity: 0.5;
-        }
-    </style>
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body{
+  min-height:100vh;
+  background: linear-gradient(135deg,#0b3d2e,#00c853);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+}
+
+.box{
+  width:320px;
+  background:rgba(255,255,255,0.15);
+  backdrop-filter: blur(12px);
+  padding:25px;
+  border-radius:18px;
+  text-align:center;
+  box-shadow:0 20px 40px rgba(0,0,0,0.35);
+}
+
+h1{
+  font-size:24px;
+  font-weight:700;
+}
+
+.subtitle{
+  font-size:13px;
+  opacity:.8;
+  margin-bottom:20px;
+}
+
+.price{
+  font-size:36px;
+  font-weight:700;
+  margin:15px 0;
+}
+
+.custom{
+  font-size:15px;
+  opacity:.9;
+}
+
+.time{
+  margin-top:15px;
+  font-size:12px;
+  opacity:.7;
+}
+</style>
 </head>
+
 <body>
 
-<div class="container">
-    <header>
-        <h1>ÜÇLER GÜL KUYUMCULUK</h1>
-        <p>Anlık Altın Piyasası Verileri</p>
-    </header>
+<div class="box">
+  <h1>Üçler Gül Kuyumculuk</h1>
+  <div class="subtitle">Canlı Gram Altın Fiyatı</div>
 
-    <div id="prices-container">
-        <div class="price-card">Yükleniyor...</div>
-    </div>
+  <div class="price" id="gram">Yükleniyor...</div>
+  <div class="custom" id="satisfiyat"></div>
 
-    <div class="update-bar">
-        Son Güncelleme: <span id="time">-</span>
-    </div>
+  <div class="time">Son Güncelleme: <span id="time">-</span></div>
 </div>
 
 <script>
-    // KAR MARJI AYARLARI (TL CİNSİNDEN)
-    const MARGINS = {
-        "Gram Altın": 45,
-        "Çeyrek Altın": 75,
-        "Yarım Altın": 150,
-        "Tam Altın": 300,
-        "22 Ayar Bilezik": 40
-    };
+// 🔴 BURAYA KENDİ API KEY'İNİ YAZ
+const API_KEY = "API_KEY_BURAYA";
 
-    // Veriyi çekmek için proxy kullanıyoruz (API Key gerektirmez)
-    async function updatePrices() {
-        try {
-            // Not: Tarayıcı üzerinden doğrudan çekim için ücretsiz bir döviz/altın verisi simülasyonu 
-            // Profesyonel kullanımda bu kısım backend veya ücretsiz bir proxy (allorigins vb.) ile beslenir.
-            const response = await fetch('https://www.goldapi.io/api/XAU/USD/20230617');
-            const data = await response.json();
-            
-            // Gerçek altın verisi yerine piyasa kurundan hesaplama simülasyonu (Örnektir)
-            const ons = 2030; // Ons altın varsayılan
-            const dolar = data.rates.TRY;
-            const gramHas = (ons / 31.10) * dolar;
+// Kuyumcu kârı (₺)
+const KUYUMCU_KARI = 30;
 
-            const items = [
-                { name: "Gram Altın", price: gramHas },
-                { name: "Çeyrek Altın", price: gramHas * 1.64 },
-                { name: "Yarım Altın", price: gramHas * 3.28 },
-                { name: "Tam Altın", price: gramHas * 6.56 },
-                { name: "22 Ayar Bilezik", price: gramHas * 0.916 }
-            ];
+async function getir(){
+  try{
+    const res = await fetch(
+      `https://api.metalpriceapi.com/v1/latest?api_key=${API_KEY}&base=XAU&currencies=TRY`
+    );
+    const data = await res.json();
 
-            const container = document.getElementById('prices-container');
-            container.innerHTML = '';
+    // 1 ons = 31.1035 gram
+    const onsFiyat = data.rates.TRY;
+    const gram = onsFiyat / 31.1035;
 
-            items.forEach(item => {
-                const finalPrice = item.price + (MARGINS[item.name] || 0);
-                container.innerHTML += `
-                    <div class="price-card">
-                        <span class="gold-name">${item.name}</span>
-                        <span class="gold-value">${finalPrice.toLocaleString('tr-TR', {maximumFractionDigits: 2})} ₺</span>
-                    </div>
-                `;
-            });
+    const gramYuvarla = gram.toFixed(2);
+    const satis = (gram + KUYUMCU_KARI).toFixed(2);
 
-            document.getElementById('time').innerText = new Date().toLocaleTimeString();
-        } catch (err) {
-            console.error("Veri çekilemedi.");
-        }
-    }
+    document.getElementById("gram").innerText = gramYuvarla + " ₺";
+    document.getElementById("satisfiyat").innerText =
+      "Satış Fiyatı: " + satis + " ₺";
 
-    setInterval(updatePrices, 30000); // 30 saniyede bir güncelle
-    updatePrices();
+    document.getElementById("time").innerText =
+      new Date().toLocaleTimeString("tr-TR");
+
+  }catch(e){
+    document.getElementById("gram").innerText = "Veri alınamadı";
+  }
+}
+
+getir();
+// 60 saniyede bir güncelle
+setInterval(getir,60000);
 </script>
+
 </body>
 </html>
