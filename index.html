@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Üçler Gül Kuyumculuk - Canlı Altın Fiyatları</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(180deg, #0a1f1a 0%, #0d2922 50%, #0a1f1a 100%);
+            color: #fff;
+        }
+
+        /* Kayan Yazı Banner */
+        .ticker-wrapper {
+            background: #0a1612;
+            overflow: hidden;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(0, 212, 180, 0.2);
+        }
+
+        .ticker {
+            display: inline-block;
+            white-space: nowrap;
+            animation: ticker 40s linear infinite;
+        }
+
+        .ticker-text {
+            display: inline-block;
+            padding: 0 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #ffffff;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        @keyframes ticker {
+            0% { transform: translateX(100vw); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 30px 20px;
+            border-bottom: 1px solid rgba(0, 210, 180, 0.2);
+            margin-bottom: 30px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .logo-img {
+            height: 70px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .logo-img svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 4px;
+        }
+
+        h1 span {
+            color: #00d4b4;
+        }
+
+        .subtitle {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.9rem;
+            margin-top: 5px;
+            font-weight: 400;
+            letter-spacing: 2px;
+        }
+
+        /* Live indicator */
+        .live-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+            padding: 8px 20px;
+            background: rgba(0, 212, 180, 0.1);
+            border: 1px solid rgba(0, 212, 180, 0.3);
+            border-radius: 30px;
+        }
+
+        .live-dot {
+            width: 10px;
+            height: 10px;
+            background: #00d4b4;
+            border-radius: 50%;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(0, 212, 180, 0.7); }
+            50% { opacity: 0.8; box-shadow: 0 0 0 8px rgba(0, 212, 180, 0); }
+        }
+
+        .live-text {
+            color: #00d4b4;
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        .update-time {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.8rem;
+        }
+
+        /* Main Grid */
+        .prices-wrapper {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        /* Price Panel */
+        .price-panel {
+            background: linear-gradient(180deg, rgba(13, 41, 34, 0.9) 0%, rgba(10, 31, 26, 0.95) 100%);
+            border: 1px solid rgba(0, 212, 180, 0.2);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .panel-header {
+            background: linear-gradient(90deg, rgba(0, 212, 180, 0.15) 0%, transparent 100%);
+            padding: 20px 25px;
+            border-bottom: 1px solid rgba(0, 212, 180, 0.2);
+        }
+
+        .panel-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 2px;
+        }
+
+        .panel-body {
+            padding: 10px 0;
+        }
+
+        /* Table */
+        .price-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .price-table thead {
+            background: rgba(0, 212, 180, 0.05);
+        }
+
+        .price-table th {
+            padding: 15px 25px;
+            text-align: right;
+            color: rgba(255,255,255,0.5);
+            font-weight: 500;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        .price-table th:first-child {
+            text-align: left;
+        }
+
+        .price-table td {
+            padding: 14px 25px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .price-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .price-table tbody tr {
+            transition: background 0.2s ease;
+        }
+
+        .price-table tbody tr:hover {
+            background: rgba(0, 212, 180, 0.05);
+        }
+
+        .item-name {
+            color: #00d4b4;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .price-buy, .price-sell {
+            text-align: right;
+            font-weight: 500;
+            font-size: 0.95rem;
+            font-variant-numeric: tabular-nums;
+            position: relative;
+        }
+
+        .price-buy {
+            color: rgba(255,255,255,0.85);
+        }
+
+        .price-sell {
+            color: #fff;
+        }
+
+        /* Fiyat değişim göstergeleri */
+        .price-up {
+            background: linear-gradient(90deg, transparent, rgba(34, 197, 94, 0.3));
+            color: #22c55e !important;
+        }
+
+        .price-down {
+            background: linear-gradient(90deg, transparent, rgba(239, 68, 68, 0.3));
+            color: #ef4444 !important;
+        }
+
+        .price-up::after {
+            content: '▲';
+            margin-left: 8px;
+            font-size: 0.7rem;
+            color: #22c55e;
+        }
+
+        .price-down::after {
+            content: '▼';
+            margin-left: 8px;
+            font-size: 0.7rem;
+            color: #ef4444;
+        }
+
+        .flash-green {
+            animation: flashGreen 0.5s ease;
+        }
+
+        .flash-red {
+            animation: flashRed 0.5s ease;
+        }
+
+        @keyframes flashGreen {
+            0%, 100% { background: transparent; }
+            50% { background: rgba(34, 197, 94, 0.4); }
+        }
+
+        @keyframes flashRed {
+            0%, 100% { background: transparent; }
+            50% { background: rgba(239, 68, 68, 0.4); }
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(0, 212, 180, 0.2);
+        }
+
+        .footer-brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #00d4b4;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+        }
+
+        .footer-info {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.85rem;
+        }
+
+        .contact-row {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+        }
+
+        .contact-item i {
+            color: #00d4b4;
+        }
+
+        /* Bottom Bar */
+        .bottom-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #00d4b4, #00a896, #00d4b4);
+            background-size: 200% 100%;
+            animation: shimmer 2s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 1200px) {
+            .prices-wrapper {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .price-panel {
+                border-radius: 15px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            header {
+                padding: 20px 15px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+                letter-spacing: 2px;
+            }
+
+            .logo-icon {
+                width: 50px;
+                height: 50px;
+            }
+
+            .logo-icon i {
+                font-size: 22px;
+            }
+
+            .panel-header {
+                padding: 15px 20px;
+            }
+
+            .panel-title {
+                font-size: 1.1rem;
+            }
+
+            .price-table th,
+            .price-table td {
+                padding: 12px 15px;
+                font-size: 0.85rem;
+            }
+
+            .item-name {
+                font-size: 0.85rem;
+            }
+
+            .contact-row {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            footer {
+                padding: 30px 15px;
+                margin-bottom: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.2rem;
+            }
+
+            .subtitle {
+                font-size: 0.75rem;
+            }
+
+            .price-table th,
+            .price-table td {
+                padding: 10px 12px;
+                font-size: 0.8rem;
+            }
+
+            .panel-title {
+                font-size: 1rem;
+            }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0a1f1a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #00d4b4;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Kayan Yazı Banner -->
+    <div class="ticker-wrapper">
+        <div class="ticker">
+            <span class="ticker-text">! FİYATLARIMIZ BİLGİLENDİRME AMACLIDIR. ! 911 71 71 – ÜÇLER MÜCEVHERAT KUYUMCULUK SANAYİ GIDA VE İTHALAT ANONİM ŞİRKETİ –</span>
+            <span class="ticker-text">! FİYATLARIMIZ BİLGİLENDİRME AMACLIDIR. ! 911 71 71 – ÜÇLER MÜCEVHERAT KUYUMCULUK SANAYİ GIDA VE İTHALAT ANONİM ŞİRKETİ –</span>
+             <span class="ticker-text">! FİYATLARIMIZ BİLGİLENDİRME AMACLIDIR. ! 911 71 71 – ÜÇLER MÜCEVHERAT KUYUMCULUK SANAYİ GIDA VE İTHALAT ANONİM ŞİRKETİ –</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <!-- Logo PNG - logo.png dosyasını aynı klasöre koy -->
+                <img src="c:\Users\karak\Downloads\Adsız tasarım (5).png" alt="Üçler Gül Kuyumculuk Logo" class="logo-img">
+                <div>
+                    <h1>ÜÇLER <span>GÜL</span> KUYUMCULUK</h1>
+                    <p class="subtitle">GÜVENİLİR ALIŞVERİŞİN ADRESİ</p>
+                </div>
+            </div>
+            
+            <div class="live-indicator">
+                <div class="live-dot"></div>
+                <span class="live-text">CANLI</span>
+                <span class="update-time" id="updateTime">--:--:--</span>
+            </div>
+        </header>
+
+        <div class="prices-wrapper">
+            <!-- Döviz Gişe -->
+            <div class="price-panel">
+                <div class="panel-header">
+                    <h2 class="panel-title">DÖVİZ GİŞE</h2>
+                </div>
+                <div class="panel-body">
+                    <table class="price-table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Alış</th>
+                                <th>Satış</th>
+                            </tr>
+                        </thead>
+                        <tbody id="dovizTable">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Altın Gişe -->
+            <div class="price-panel">
+                <div class="panel-header">
+                    <h2 class="panel-title">ALTIN GİŞE</h2>
+                </div>
+                <div class="panel-body">
+                    <table class="price-table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Alış</th>
+                                <th>Satış</th>
+                            </tr>
+                        </thead>
+                        <tbody id="altinTable">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Goldbar Gişe -->
+            <div class="price-panel">
+                <div class="panel-header">
+                    <h2 class="panel-title">GOLDBAR GİŞE</h2>
+                </div>
+                <div class="panel-body">
+                    <table class="price-table">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Alış</th>
+                                <th>Satış</th>
+                            </tr>
+                        </thead>
+                        <tbody id="goldbarTable">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-brand">ÜÇLER GÜL KUYUMCULUK</div>
+            <p class="footer-info">Tüm fiyatlar anlık piyasa verilerine göre güncellenmektedir.</p>
+            
+            <div class="contact-row">
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Adres bilgisi</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>0xxx xxx xx xx</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-clock"></i>
+                    <span>09:00 - 20:00</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <div class="bottom-bar"></div>
+
+    <script>
+        // ============================================
+        // API KEY - BURAYA KENDİ API KEY'İNİ YAZ
+        // ============================================
+        const API_KEY = '1Dzu7XltcUQYjvqyqhjWgw:64M5Z5f8NVwPSSKtt1nUmB';
+
+        // ============================================
+        // MARKUP - FİYATLARA EKLENECEK KAR MARJI (TL)
+        // ============================================
+        const MARKUP = {
+            doviz: 0,      // Dövize ekleme
+            altin: 81,     // Altına ekleme
+            goldbar: 100   // Goldbara ekleme
+        };
+
+        // Veri tutucular
+        let dovizData = [];
+        let altinData = [];
+        let goldbarData = [];
+
+        // Önceki fiyatları sakla (değişim karşılaştırması için)
+        let prevDovizData = {};
+        let prevAltinData = {};
+        let prevGoldbarData = {};
+
+        // API'den döviz verilerini çek
+        async function fetchDoviz() {
+            try {
+                const response = await fetch('https://api.collectapi.com/economy/allCurrency', {
+                    method: 'GET',
+                    headers: {
+                        'content-type': 'application/json',
+                        'authorization': `apikey ${API_KEY}`
+                    }
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.success && data.result) {
+                        dovizData = [];
+                        const currencies = ['USD', 'EUR', 'GBP', 'CHF', 'AUD', 'CAD', 'SAR', 'JPY'];
+                        
+                        data.result.forEach(item => {
+                            if (currencies.includes(item.code)) {
+                                dovizData.push({
+                                    name: `${item.code}/TL`,
+                                    buy: parseFloat(item.buying) + MARKUP.doviz,
+                                    sell: parseFloat(item.selling) + MARKUP.doviz
+                                });
+                            }
+                        });
+                        
+                        // Sırala
+                        dovizData.sort((a, b) => currencies.indexOf(a.name.split('/')[0]) - currencies.indexOf(b.name.split('/')[0]));
+                        populateTable('dovizTable', dovizData);
+                        console.log('✅ Döviz verileri güncellendi:', dovizData);
+                    }
+                }
+            } catch (error) {
+                console.error('❌ Döviz API hatası:', error);
+            }
+        }
+
+        // API'den altın verilerini çek
+        async function fetchAltin() {
+            try {
+                const response = await fetch('https://api.collectapi.com/economy/goldPrice', {
+                    method: 'GET',
+                    headers: {
+                        'content-type': 'application/json',
+                        'authorization': `apikey ${API_KEY}`
+                    }
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.success && data.result) {
+                        altinData = [];
+                        
+                        // İstenen altın türleri ve sırası
+                        const altinMap = {
+                            'has altın': 'Has Altın',
+                            'gram altın': 'Gram Altın',
+                            '22 ayar bilezik': '22 Ayar Bilezik',
+                            'çeyrek altın': 'Y.Çeyrek / ₺',
+                            'yarım altın': 'Y.Yarım / ₺',
+                            'tam altın': 'Y.Teklik / ₺',
+                            'cumhuriyet altını': 'Cumhuriyet',
+                            'gremse altın': 'Y.Gremse / ₺',
+                            'ata altın': 'Y.Atalira / ₺',
+                            'beşli altın': 'Y.AtaBeşli / ₺'
+                        };
+
+                        const addedNames = new Set();
+                        
+                        data.result.forEach(item => {
+                            const itemName = item.name.toLowerCase();
+                            
+                            for (const [key, displayName] of Object.entries(altinMap)) {
+                                if (itemName.includes(key) && !addedNames.has(displayName)) {
+                                    altinData.push({
+                                        name: displayName,
+                                        buy: parseFloat(item.buying) + MARKUP.altin,
+                                        sell: parseFloat(item.selling) + MARKUP.altin
+                                    });
+                                    addedNames.add(displayName);
+                                    break;
+                                }
+                            }
+                        });
+                        
+                        populateTable('altinTable', altinData);
+                        console.log('✅ Altın verileri güncellendi:', altinData);
+                    }
+                }
+            } catch (error) {
+                console.error('❌ Altın API hatası:', error);
+            }
+        }
+
+        // Goldbar fiyatlarını hesapla (gram altın fiyatından)
+        function calculateGoldbar() {
+            // Has altın veya Gram altın fiyatını bul
+            const gramAltin = altinData.find(item => item.name === 'Gram Altın' || item.name === 'Has Altın');
+            if (gramAltin) {
+                const gramBuy = gramAltin.buy - MARKUP.altin; // Markup'sız fiyat
+                const gramSell = gramAltin.sell - MARKUP.altin;
+                
+                goldbarData = [
+                    { name: '1 GR 24 AYAR', buy: gramBuy * 1, sell: gramSell * 1 + MARKUP.goldbar },
+                    { name: '5 GR 24 AYAR', buy: gramBuy * 5, sell: gramSell * 5 + MARKUP.goldbar },
+                    { name: '10 GR 24 AYAR', buy: gramBuy * 10, sell: gramSell * 10 + MARKUP.goldbar },
+                    { name: '20 GR 24 AYAR', buy: gramBuy * 20, sell: gramSell * 20 + MARKUP.goldbar },
+                    { name: '50 GR 24 AYAR', buy: gramBuy * 50, sell: gramSell * 50 + MARKUP.goldbar },
+                    { name: '100 GR 24 AYAR', buy: gramBuy * 100, sell: gramSell * 100 + MARKUP.goldbar }
+                ];
+                
+                populateTable('goldbarTable', goldbarData);
+                console.log('✅ Goldbar verileri hesaplandı:', goldbarData);
+            }
+        }
+
+        // Tüm verileri çek
+        async function fetchAllData() {
+            const liveDot = document.querySelector('.live-dot');
+            const liveText = document.querySelector('.live-text');
+            
+            liveDot.style.background = '#ffaa00'; // Yükleniyor
+            liveText.textContent = 'GÜNCELLENİYOR...';
+            
+            try {
+                await Promise.all([fetchDoviz(), fetchAltin()]);
+                calculateGoldbar();
+                liveDot.style.background = '#00d4b4'; // Başarılı
+                liveText.textContent = 'CANLI';
+                console.log('✅ API Bağlantısı Başarılı!');
+            } catch (error) {
+                liveDot.style.background = '#ff4444'; // Hata
+                liveText.textContent = 'HATA!';
+                console.error('❌ Veri çekme hatası:', error);
+            }
+        }
+
+        // Fiyat formatlama
+        function formatPrice(price) {
+            if (price < 1) {
+                return price.toFixed(4);
+            } else if (price < 100) {
+                return price.toFixed(3);
+            } else {
+                return price.toLocaleString('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            }
+        }
+
+        // Tabloyu doldur (değişim göstergeli)
+        function populateTable(tableId, data) {
+            const tbody = document.getElementById(tableId);
+            
+            // Hangi önceki veriyi kullanacağız
+            let prevData = {};
+            if (tableId === 'dovizTable') prevData = prevDovizData;
+            else if (tableId === 'altinTable') prevData = prevAltinData;
+            else if (tableId === 'goldbarTable') prevData = prevGoldbarData;
+            
+            tbody.innerHTML = '';
+            
+            data.forEach(item => {
+                const row = document.createElement('tr');
+                const prev = prevData[item.name];
+                
+                let buyClass = 'price-buy';
+                let sellClass = 'price-sell';
+                let rowClass = '';
+                
+                if (prev) {
+                    if (item.sell > prev.sell) {
+                        sellClass += ' price-up';
+                        rowClass = 'flash-green';
+                    } else if (item.sell < prev.sell) {
+                        sellClass += ' price-down';
+                        rowClass = 'flash-red';
+                    }
+                    
+                    if (item.buy > prev.buy) {
+                        buyClass += ' price-up';
+                    } else if (item.buy < prev.buy) {
+                        buyClass += ' price-down';
+                    }
+                }
+                
+                row.className = rowClass;
+                row.innerHTML = `
+                    <td class="item-name">${item.name}</td>
+                    <td class="${buyClass}">${formatPrice(item.buy)}</td>
+                    <td class="${sellClass}">${formatPrice(item.sell)}</td>
+                `;
+                tbody.appendChild(row);
+            });
+            
+            // Mevcut veriyi önceki olarak sakla
+            const newPrev = {};
+            data.forEach(item => {
+                newPrev[item.name] = { buy: item.buy, sell: item.sell };
+            });
+            
+            if (tableId === 'dovizTable') prevDovizData = newPrev;
+            else if (tableId === 'altinTable') prevAltinData = newPrev;
+            else if (tableId === 'goldbarTable') prevGoldbarData = newPrev;
+        }
+
+        // Güncelleme zamanını göster
+        function updateTime() {
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString('tr-TR', { 
+                hour: '2-digit', 
+                minute: '2-digit', 
+                second: '2-digit' 
+            });
+            document.getElementById('updateTime').textContent = timeStr;
+        }
+
+        // Sayfa yüklendiğinde
+        document.addEventListener('DOMContentLoaded', () => {
+            // İlk veri çekimi
+            fetchAllData();
+            updateTime();
+            
+            // Her saniye zamanı güncelle
+            setInterval(updateTime, 1000);
+            
+            // Her 3 saniyede bir verileri güncelle
+            setInterval(fetchAllData, 300000);
+        });
+    </script>
+</body>
+</html>
