@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ürün Detayı | Üçler Gül Kuyumculuk</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+        tailwind.config={
+            theme:{
+                extend:{
+                    colors:{
+                        primary:'#919ea4',
+                        secondary:'#D4AF37',
+                        accent:'#3a5ba0',
+                        dark:'#1a1a1a',
+                        'light-gray': '#F9FAFB'
+                    },
+                    fontFamily: {
+                        pacifico: ['Pacifico', 'cursive'],
+                        inter: ['Inter', 'sans-serif'],
+                        montserrat: ['Montserrat', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 20px rgba(0, 0, 0, 0.05)',
+                        'hover': '0 10px 25px rgba(0, 0, 0, 0.08)',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Libraries -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f1f1; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 4px; }
+        .gallery-thumb.active { border-color: #919ea4; opacity: 1; }
+        
+        /* Zoom Styles */
+        .zoom-container {
+            overflow: hidden;
+            position: relative;
+            cursor: crosshair;
+        }
+        .zoom-img {
+            transition: transform 0.1s ease-out;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .zoom-container:hover .zoom-img {
+            transform: scale(2); 
+        }
+
+        /* Tab Animations */
+        .tab-content { display: none; animation: fadeIn 0.4s ease-in-out; }
+        .tab-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .tab-btn.active { border-bottom-color: #1a1a1a; color: #1a1a1a; font-weight: 700; }
+    </style>
+</head>
+<body class="bg-gray-50 font-inter text-gray-800" onload="AOS.init()">
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed top-5 right-5 z-[200] transform transition-all duration-300 translate-x-full opacity-0">
+        <div class="bg-white border-l-4 border-secondary shadow-2xl rounded-lg p-4 flex items-center gap-3 min-w-[300px]">
+            <div class="bg-green-100 rounded-full p-2 text-green-600">
+                <i class="ri-check-line text-xl"></i>
+            </div>
+            <div>
+                <h4 class="font-bold text-gray-800 text-sm">Sepet Güncellendi</h4>
+                <p class="text-xs text-gray-500">Ürün başarıyla sepete eklendi.</p>
+            </div>
+        </div>
+    </div>
+
+   <!-- Header -->
+    <nav class="py-4 px-4 md:px-8 border-b shadow-sm sticky top-0 z-50 bg-white/95 backdrop-blur-xl transition-all">
+        <div class="container mx-auto flex items-center justify-between">
+            <a href="ürünler.html" class="flex items-center group">
+                <div class="w-10 h-10 rounded-full bg-light-gray flex items-center justify-center mr-3 group-hover:bg-primary/10 transition-colors">
+                    <i class="ri-arrow-left-line text-xl text-primary group-hover:-translate-x-1 transition-transform"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-xl font-montserrat text-primary font-bold">Üçler Gül</span>
+                    <span class="text-[10px] text-gray-400 font-medium tracking-widest hidden md:block">EST. 1990</span>
+                 </div>
+            </a>
+            
+            <div class="flex items-center gap-6">
+                 <button onclick="window.location.href='favoriler.html'" class="relative group hover:scale-105 transition-transform">
+                    <i class="ri-heart-line text-2xl text-gray-600 group-hover:text-red-500 transition-colors"></i>
+                    <span id="favCount" class="absolute -top-1 -right-2 bg-red-500 text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full opacity-0 shadow-sm border border-white">0</span>
+                </button>
+                <div class="h-6 w-px bg-gray-200"></div>
+                <div class="relative cursor-pointer group hover:scale-105 transition-transform" onclick="toggleCartDrawer()">
+                    <i class="ri-shopping-bag-3-line text-2xl text-gray-600 group-hover:text-primary transition-colors"></i>
+                    <span id="cartCount" class="absolute -top-1 -right-2 bg-primary text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full opacity-0 shadow-sm border border-white">0</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Cart Drawer -->
+    <div id="cartDrawerBackdrop" onclick="toggleCartDrawer()" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[90] hidden transition-opacity opacity-0"></div>
+    <div id="cartDrawer" class="fixed top-0 right-0 h-full w-full max-w-sm bg-white shadow-2xl z-[100] transform translate-x-full transition-transform duration-300 flex flex-col font-inter">
+        <div class="p-5 border-b border-gray-100 flex items-center justify-between bg-gray-50/50">
+            <h2 class="font-bold text-lg text-gray-800 flex items-center gap-2">
+                <i class="ri-shopping-bag-3-line"></i> Sepetim
+            </h2>
+            <button onclick="toggleCartDrawer()" class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-white hover:shadow-sm text-gray-500 hover:text-red-500 transition-all">
+                <i class="ri-close-line text-xl"></i>
+            </button>
+        </div>
+        
+        <div id="cartItemsContainer" class="flex-1 overflow-y-auto p-5 space-y-4">
+            <!-- Items injected via JS -->
+        </div>
+        
+        <div class="p-5 border-t border-gray-100 bg-gray-50/30">
+            <div class="flex justify-between items-center mb-4">
+                <span class="text-gray-500 text-sm">Toplam Tutar</span>
+                <span class="text-xl font-bold text-primary font-montserrat" id="cartTotal">0 ₺</span>
+            </div>
+            <button onclick="alert('Ödeme sayfasına yönlendiriliyorsunuz (Demo)')" class="w-full py-3 bg-dark text-white rounded-xl font-bold hover:bg-black transition-colors shadow-lg shadow-gray-200 flex items-center justify-center gap-2">
+                Sepeti Onayla <i class="ri-arrow-right-line"></i>
+            </button>
+        </div>
+    </div>
+
+
+    <!-- Product Detail Content -->
+    <section class="py-12 min-h-screen">
+        <div class="container mx-auto px-4 md:px-8 max-w-7xl">
+            
+            <!-- Breadcrumb -->
+            <div class="flex items-center text-xs md:text-sm text-gray-400 mb-8 font-medium">
+                <a href="tekvenet.html" class="hover:text-primary transition-colors">Ana Sayfa</a> 
+                <i class="ri-arrow-right-s-line mx-2"></i>
+                <a href="ürünler.html" class="hover:text-primary transition-colors">Koleksiyon</a> 
+                <i class="ri-arrow-right-s-line mx-2"></i>
+                <span id="breadcrumbCategory" class="hover:text-primary transition-colors cursor-pointer text-gray-600">...</span>
+                <i class="ri-arrow-right-s-line mx-2"></i>
+                <span id="breadcrumbTitle" class="text-primary font-semibold truncate max-w-[200px] md:max-w-none">...</span>
+            </div>
+
+            <!-- Loading Spinner -->
+            <div id="loadingState" class="fixed inset-0 bg-white/80 backdrop-blur-sm z-40 flex flex-col items-center justify-center">
+                <div class="w-16 h-16 border-4 border-gray-200 border-t-primary rounded-full animate-spin mb-4"></div>
+                <p class="text-gray-500 font-montserrat animate-pulse">Ürün Detayları Yükleniyor...</p>
+            </div>
+
+            <!-- Main Content -->
+            <div id="productContainer" class="hidden animate-fade-in-up">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 xl:gap-20">
+                    
+                    <!-- LEFT COLUMN: Images (7 cols) -->
+                    <div class="lg:col-span-7 space-y-6">
+                        <!-- Main Image Zoom Container -->
+                        <div class="bg-white rounded-[2rem] shadow-soft aspect-square md:aspect-[4/3] relative group border border-gray-50 zoom-container" onmousemove="zoom(event)" onmouseleave="resetZoom()">
+                            <img id="mainImg" src="" class="zoom-img p-12">
+                            
+                            <!-- Badges -->
+                            <div class="absolute top-6 left-6 flex flex-col gap-3" id="badges-container"></div>
+                            
+                            <!-- Zoom Hint -->
+                            <div class="absolute bottom-6 right-6 w-10 h-10 bg-white/90 backdrop-blur rounded-full flex items-center justify-center shadow-sm text-gray-400 pointer-events-none">
+                                <i class="ri-search-2-line"></i>
+                            </div>
+                        </div>
+
+                        <!-- Thumbnails (Mockup for Visuals) -->
+                        <div class="flex gap-4 overflow-x-auto pb-2 custom-scrollbar">
+                           <button class="gallery-thumb active w-20 h-20 md:w-24 md:h-24 rounded-xl border-2 border-transparent bg-white p-2 flex-shrink-0 cursor-pointer hover:border-gray-300 transition-all opacity-60">
+                               <img id="thumb1" src="" class="w-full h-full object-contain">
+                           </button>
+                           <!-- Mock Thumbnails (Using same img for demo) -->
+                           <button class="gallery-thumb w-20 h-20 md:w-24 md:h-24 rounded-xl border-2 border-transparent bg-white p-2 flex-shrink-0 cursor-pointer hover:border-gray-300 transition-all opacity-60" onclick="swapImage(this)">
+                               <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=150&q=80" class="w-full h-full object-contain">
+                           </button>
+                           <button class="gallery-thumb w-20 h-20 md:w-24 md:h-24 rounded-xl border-2 border-transparent bg-white p-2 flex-shrink-0 cursor-pointer hover:border-gray-300 transition-all opacity-60" onclick="swapImage(this)">
+                               <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=150&q=80" class="w-full h-full object-contain">
+                           </button>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT COLUMN: Details (5 cols) -->
+                    <div class="lg:col-span-5 flex flex-col">
+                        <div class="sticky top-28">
+                             <!-- Brand/Category -->
+                            <div class="mb-4 flex items-center justify-between">
+                                <span class="text-secondary font-bold text-xs uppercase tracking-[0.2em] border border-secondary/20 px-3 py-1 rounded-full bg-secondary/5" id="prodCategory">KATEGORİ</span>
+                                
+                                <!-- Rating Mockup -->
+                                <button onclick="scrollToReviews()" class="flex items-center gap-1 hover:bg-gray-50 rounded px-2 py-1 transition-colors">
+                                    <i class="ri-star-fill text-yellow-400 text-sm"></i>
+                                    <span class="text-sm font-bold text-gray-800" id="ratingAvg">4.9</span>
+                                    <span class="text-xs text-gray-400 underline ml-1" id="reviewCountTxt">(124 Değerlendirme)</span>
+                                </button>
+                            </div>
+                            
+                            <h1 class="text-3xl md:text-5xl font-montserrat font-bold text-gray-900 mb-6 leading-tight" id="prodTitle">Ürün Adı</h1>
+                            
+                            <!-- Price Block -->
+                            <div class="flex items-end gap-3 mb-8 bg-gray-50/50 p-4 rounded-2xl w-fit">
+                                <div class="text-4xl font-bold text-gray-900" id="prodPrice">0 ₺</div>
+                                <div class="text-lg text-gray-400 line-through mb-1 decoration-red-400 decoration-2" id="oldPrice">0 ₺</div>
+                            </div>
+
+                            <!-- Highlights -->
+                            <div class="grid grid-cols-2 gap-3 mb-8">
+                                <div class="flex items-center gap-3 p-3 rounded-xl border border-gray-100 bg-white/50">
+                                    <div class="w-8 h-8 rounded-full bg-blue-50 text-blue-500 flex items-center justify-center"><i class="ri-shield-check-line"></i></div>
+                                    <div class="text-xs font-medium text-gray-600">Sertifikalı<br>Orijinal Ürün</div>
+                                </div>
+                                <div class="flex items-center gap-3 p-3 rounded-xl border border-gray-100 bg-white/50">
+                                    <div class="w-8 h-8 rounded-full bg-green-50 text-green-500 flex items-center justify-center"><i class="ri-truck-line"></i></div>
+                                    <div class="text-xs font-medium text-gray-600">Aynı Gün<br>Ücretsiz Kargo</div>
+                                </div>
+                            </div>
+
+                            <!-- Description -->
+                            <p class="text-gray-600 leading-relaxed mb-8 text-sm md:text-base border-l-4 border-gray-200 pl-4 italic">
+                                "Üçler Gül Kuyumculuk atölyelerinin 35 yıllık tecrübesiyle, usta ellerde şekillenen bu özel parça, zarafetinizi tamamlamak için tasarlandı."
+                            </p>
+
+                            <!-- Option Selector -->
+                             <div class="mb-8 p-4 bg-gray-50 rounded-xl border border-gray-100">
+                                <div class="flex justify-between items-center mb-3">
+                                    <label class="text-xs font-bold text-gray-900 uppercase tracking-wider">Ölçü Seçiniz</label>
+                                    <button class="text-xs text-secondary font-bold underline hover:text-primary transition-colors" onclick="openSizeChart()">Ölçü Tablosu</button>
+                                </div>
+                                <div class="flex gap-3">
+                                    <button class="w-10 h-10 rounded-lg border-2 border-white shadow-sm ring-1 ring-gray-200 hover:ring-gray-900 hover:bg-white flex items-center justify-center font-bold text-gray-600 transition-all focus:ring-2 focus:ring-black focus:bg-gray-800 focus:text-white">12</button>
+                                    <button class="w-10 h-10 rounded-lg border-2 border-white shadow-sm ring-1 ring-gray-200 hover:ring-gray-900 hover:bg-white flex items-center justify-center font-bold text-gray-600 transition-all focus:ring-2 focus:ring-black focus:bg-gray-800 focus:text-white">14</button>
+                                    <button class="w-10 h-10 rounded-lg border-2 border-white shadow-sm ring-1 ring-gray-200 hover:ring-gray-900 hover:bg-white flex items-center justify-center font-bold text-gray-600 transition-all focus:ring-2 focus:ring-black focus:bg-gray-800 focus:text-white">16</button>
+                                    <button class="w-10 h-10 rounded-lg border-2 border-white shadow-sm ring-1 ring-gray-200 hover:ring-gray-900 hover:bg-white flex items-center justify-center font-bold text-gray-600 transition-all focus:ring-2 focus:ring-black focus:bg-gray-800 focus:text-white">18</button>
+                                </div>
+                            </div>
+                            
+                            <!-- Action Buttons -->
+                            <div class="flex gap-4 mt-auto">
+                                <button onclick="addToCart(this)" class="group relative flex-1 bg-gray-900 text-white text-lg font-bold py-5 rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all overflow-hidden">
+                                    <span class="relative z-10 flex items-center justify-center gap-3">
+                                        <i class="ri-shopping-bag-fill text-xl"></i> Sepete Ekle
+                                    </span>
+                                    <div class="absolute inset-0 bg-gradient-to-r from-gray-800 to-black opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                                </button>
+                                <button onclick="toggleFav()" id="favBtn" class="w-20 rounded-2xl border-2 border-gray-100 flex items-center justify-center text-gray-400 hover:text-red-500 hover:border-red-100 hover:bg-red-50 transition-all">
+                                    <i class="ri-heart-3-line text-2xl transition-transform active:scale-75"></i>
+                                </button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Tabs Section -->
+                <div class="mt-20 border-t border-gray-100 pt-16">
+                    <div class="flex flex-wrap gap-8 mb-8 border-b border-gray-200" id="tabTabs">
+                        <button onclick="switchTab('ozellik')" class="tab-btn active pb-4 border-b-2 border-transparent text-gray-500 hover:text-gray-900 font-medium px-2 transition-colors" data-ref="ozellik">Ürün Özellikleri</button>
+                        <button onclick="switchTab('taksit')" class="tab-btn pb-4 border-b-2 border-transparent text-gray-500 hover:text-gray-900 font-medium px-2 transition-colors" data-ref="taksit">Taksit Seçenekleri</button>
+                        <button onclick="switchTab('yorumlar')" class="tab-btn pb-4 border-b-2 border-transparent text-gray-500 hover:text-gray-900 font-medium px-2 transition-colors" data-ref="yorumlar">Müşteri Yorumları <span class="bg-gray-100 text-gray-600 text-[10px] px-2 py-0.5 rounded-full ml-1" id="tabReviewCount">0</span></button>
+                        <button onclick="switchTab('teslimat')" class="tab-btn pb-4 border-b-2 border-transparent text-gray-500 hover:text-gray-900 font-medium px-2 transition-colors" data-ref="teslimat">Teslimat & İade</button>
+                    </div>
+                    
+                    <div class="prose max-w-none text-gray-500 text-sm min-h-[300px]">
+                        
+                        <!-- TAB: Özellikler -->
+                        <div id="tab-ozellik" class="tab-content active">
+                            <div class="grid md:grid-cols-2 gap-12">
+                                <div>
+                                    <h3 class="font-bold text-gray-900 mb-6 text-lg">Teknik Özellikler</h3>
+                                    <ul class="space-y-4">
+                                        <li class="flex justify-between border-b border-gray-50 pb-3"><span>Materyal:</span> <span class="font-bold text-gray-800" id="detailMat">Altın</span></li>
+                                        <li class="flex justify-between border-b border-gray-50 pb-3"><span>Ayar:</span> <span class="font-bold text-gray-800">14 Ayar (585)</span></li>
+                                        <li class="flex justify-between border-b border-gray-50 pb-3"><span>Renk:</span> <span class="font-bold text-gray-800">Sarı / Beyaz</span></li>
+                                        <li class="flex justify-between border-b border-gray-50 pb-3"><span>Üretim:</span> <span class="font-bold text-gray-800">El İşçiliği</span></li>
+                                        <li class="flex justify-between border-b border-gray-50 pb-3"><span>Garanti:</span> <span class="font-bold text-gray-800">2 Yıl Bakım Garantili</span></li>
+                                    </ul>
+                                </div>
+                                <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100">
+                                    <h3 class="font-bold text-gray-900 mb-4 text-lg">Kullanım Kılavuzu</h3>
+                                    <p class="mb-4">Satın aldığınız mücevheri uzun yıllar ilk günkü ışıltısıyla kullanabilmeniz için aşağıdaki hususlara dikkat etmenizi öneririz:</p>
+                                    <ul class="list-disc pl-5 space-y-2 marker:text-primary">
+                                        <li>Parfüm, saç spreyi ve deodorant gibi kozmetik ürünleri mücevherinizden önce uygulayınız.</li>
+                                        <li>Deniz, havuz ve kaplıca sularından uzak tutunuz.</li>
+                                        <li>Temizlik yaparken kimyasal maddelerden koruyunuz.</li>
+                                        <li>Kullanmadığınız zamanlarda orijinal kutusunda saklayınız.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- TAB: Taksit -->
+                        <div id="tab-taksit" class="tab-content">
+                            <div class="bg-white rounded-xl border border-gray-200 overflow-hidden">
+                                <table class="w-full text-sm text-left">
+                                    <thead class="bg-gray-50 text-gray-700 font-bold uppercase text-xs">
+                                        <tr>
+                                            <th class="px-6 py-4">Banka / Kart</th>
+                                            <th class="px-6 py-4">Taksit Sayısı</th>
+                                            <th class="px-6 py-4">Aylık Ödeme</th>
+                                            <th class="px-6 py-4 text-right">Toplam Tutar</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-gray-100" id="installmentTable">
+                                        <!-- JS Generated -->
+                                    </tbody>
+                                </table>
+                            </div>
+                            <p class="mt-4 text-xs text-gray-400">* Yasal düzenlemeler gereği kuyum alışverişlerinde taksit sayıları bankalara göre değişiklik gösterebilir.</p>
+                        </div>
+
+                        <!-- TAB: Yorumlar -->
+                        <div id="tab-yorumlar" class="tab-content">
+                            <div class="flex flex-col md:flex-row gap-12">
+                                <!-- Summary -->
+                                <div class="w-full md:w-1/3 bg-gray-50 p-6 rounded-2xl h-fit">
+                                    <div class="text-center mb-6">
+                                        <div class="text-5xl font-bold text-gray-900 mb-2">4.9</div>
+                                        <div class="flex justify-center text-yellow-400 text-lg mb-2">
+                                            <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i>
+                                        </div>
+                                        <div class="text-sm text-gray-500">Genel Müşteri Memnuniyeti</div>
+                                    </div>
+                                    <div class="space-y-2">
+                                        <div class="flex items-center gap-2 text-xs">
+                                            <span class="w-3">5</span> <i class="ri-star-fill text-yellow-400"></i>
+                                            <div class="flex-1 h-2 bg-gray-200 rounded-full overflow-hidden"><div class="h-full bg-yellow-400 w-[90%]"></div></div>
+                                            <span class="text-gray-400">%90</span>
+                                        </div>
+                                        <div class="flex items-center gap-2 text-xs">
+                                            <span class="w-3">4</span> <i class="ri-star-fill text-yellow-400"></i>
+                                            <div class="flex-1 h-2 bg-gray-200 rounded-full overflow-hidden"><div class="h-full bg-yellow-400 w-[8%]"></div></div>
+                                            <span class="text-gray-400">%8</span>
+                                        </div>
+                                        <div class="flex items-center gap-2 text-xs">
+                                            <span class="w-3">3</span> <i class="ri-star-fill text-yellow-400"></i>
+                                            <div class="flex-1 h-2 bg-gray-200 rounded-full overflow-hidden"><div class="h-full bg-yellow-400 w-[2%]"></div></div>
+                                            <span class="text-gray-400">%2</span>
+                                        </div>
+                                    </div>
+                                    <button class="w-full mt-6 bg-white border border-gray-300 text-gray-700 font-bold py-3 rounded-xl hover:bg-gray-50 transition-colors">
+                                        Değerlendirme Yaz
+                                    </button>
+                                </div>
+                                
+                                <!-- Reviews List -->
+                                <div class="w-full md:w-2/3 space-y-6" id="reviewsContainer">
+                                    <!-- Populated by JS -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- TAB: Teslimat -->
+                        <div id="tab-teslimat" class="tab-content">
+                            <div class="space-y-6">
+                                <div class="flex gap-4">
+                                     <div class="w-12 h-12 rounded-full bg-green-50 flex items-center justify-center text-green-600 flex-shrink-0">
+                                         <i class="ri-truck-fast-line text-2xl"></i>
+                                     </div>
+                                     <div>
+                                         <h4 class="font-bold text-gray-900 text-lg">Ücretsiz ve Sigortalı Kargo</h4>
+                                         <p>Tüm siparişleriniz Loomis Güvenlik Hizmetleri güvencesi ile sigortalı olarak adresinize teslim edilir. Kargoda yaşanabilecek kayıp/çalıntı durumlarında sorumluluk firmamıza aittir.</p>
+                                     </div>
+                                </div>
+                                <div class="flex gap-4">
+                                     <div class="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 flex-shrink-0">
+                                         <i class="ri-exchange-funds-line text-2xl"></i>
+                                     </div>
+                                     <div>
+                                         <h4 class="font-bold text-gray-900 text-lg">14 Gün İade Hakkı</h4>
+                                         <p>Satın aldığınız ürünü, kullanılmamış olması şartıyla 14 gün içerisinde iade edebilir veya değişim yapabilirsiniz. (Özel üretim ve kişiselleştirilmiş ürünler hariçtir).</p>
+                                     </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Related Products Section -->
+                <div class="mt-24 mb-12">
+                     <h2 class="font-pacifico text-3xl text-primary mb-8 text-center relative">
+                        <span class="bg-gray-50 px-4 relative z-10">Bunu Beğenenler Ayrıca İnceledi</span>
+                        <div class="absolute top-1/2 left-0 w-full h-px bg-gray-200 z-0 opacity-50"></div>
+                     </h2>
+                     
+                     <div class="grid grid-cols-2 md:grid-cols-4 gap-6" id="related-grid">
+                         <!-- JS will populate this -->
+                     </div>
+                </div>
+
+            </div>
+
+            <!-- Error State -->
+            <div id="errorState" class="hidden min-h-[50vh] flex flex-col items-center justify-center">
+                <div class="w-20 h-20 bg-red-50 rounded-full flex items-center justify-center mb-4">
+                     <i class="ri-error-warning-line text-4xl text-red-400"></i>
+                </div>
+                <h2 class="text-3xl font-bold text-gray-800 mb-2 font-montserrat">Ürün Bulunamadı</h2>
+                <p class="text-gray-500 mb-6">Aradığınız ürün yayından kaldırılmış veya link hatalı olabilir.</p>
+                <a href="ürünler.html" class="bg-primary text-white px-8 py-3 rounded-xl font-bold hover:bg-gray-700 transition-colors shadow-lg">
+                    Koleksiyona Dön
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer Simple -->
+    <footer class="bg-white border-t border-gray-100 py-8 text-center text-sm text-gray-400">
+        <p>&copy; 2026 Üçler Gül Kuyumculuk. Tüm Hakları Saklıdır.</p>
+    </footer>
+
+    <!-- Size Chart Modal -->
+    <div id="sizeChartModal" class="fixed inset-0 z-[60] hidden transition-opacity duration-300" role="dialog" aria-modal="true">
+        <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSizeChart()"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] max-w-lg bg-white rounded-3xl shadow-2xl overflow-hidden transform transition-all scale-100 opacity-100 flex flex-col max-h-[85vh]">
+            <!-- Header -->
+            <div class="px-6 py-5 border-b border-gray-100 flex items-center justify-between bg-white sticky top-0 z-10">
+                <h3 class="font-montserrat font-bold text-gray-900 text-lg flex items-center gap-2">
+                    <i class="ri-ruler-2-line text-secondary"></i> Yüzük Ölçü Rehberi
+                </h3>
+                <button onclick="closeSizeChart()" class="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center text-gray-500 hover:text-red-500 hover:bg-red-50 transition-colors">
+                    <i class="ri-close-line text-xl"></i>
+                </button>
+            </div>
+            <!-- Content -->
+            <div class="p-6 overflow-y-auto custom-scrollbar">
+                 <img src="https://img.aydinlatma.org/images/yuzuk-olcusu-nasil-alinir.jpg" onerror="this.src='https://placehold.co/600x400?text=Ölçü+Tablosu'" alt="Yüzük Ölçü Tablosu" class="w-full rounded-xl border border-gray-100 shadow-sm mb-6">
+                 
+                 <div class="space-y-4">
+                    <div class="bg-blue-50 p-4 rounded-xl flex gap-4 items-start">
+                        <div class="w-6 h-6 rounded-full bg-blue-100 text-blue-600 flex-shrink-0 flex items-center justify-center font-bold text-xs">1</div>
+                        <div>
+                            <h4 class="font-bold text-gray-900 text-sm">Yöntem 1: Çap Ölçme (En Sağlıklı)</h4>
+                            <p class="text-xs text-gray-600 mt-1 leading-relaxed">Mevcut bir yüzüğünüzü elinize alın ve iç çapını (metal kısmını dahil etmeden) bir cetvel yardımıyla ölçün. Çıkan milimetre değeri tablodaki yüzük ölçüsüne denk gelir.</p>
+                        </div>
+                    </div>
+                    <div class="bg-purple-50 p-4 rounded-xl flex gap-4 items-start">
+                        <div class="w-6 h-6 rounded-full bg-purple-100 text-purple-600 flex-shrink-0 flex items-center justify-center font-bold text-xs">2</div>
+                        <div>
+                            <h4 class="font-bold text-gray-900 text-sm">Yöntem 2: Çevre Ölçme</h4>
+                            <p class="text-xs text-gray-600 mt-1 leading-relaxed">Parmağınıza bir ip sarın ve birleştiği yeri işaretleyin. İpi düz bir zemine koyup ölçün. Bu değer çevre uzunluğudur.</p>
+                        </div>
+                    </div>
+                 </div>
+                 
+                 <div class="mt-6 text-center">
+                    <p class="text-[10px] text-gray-400 italic">Not: Emin olamadığınız durumlarda en yakın kuyumcuda ölçüm yaptırmanız önerilir.</p>
+                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Logic -->
+    <script>
+        let currentProduct = null;
+        let allProducts = [];
+        
+        window.onload = () => {
+             const urlParams = new URLSearchParams(window.location.search);
+             const id = urlParams.get('id');
+             
+             // Immediate load attempt, no fake delay
+             if(id) {
+                 loadProduct(id);
+             } else {
+                 // Fallback if no ID (for dev viewing)
+                 loadMockProduct();
+             }
+             updateBadges();
+        };
+
+        function loadMockProduct() {
+             const mock = {
+                id: 999,
+                title: "Örnek Altın Yüzük Modeli (Demo)",
+                category: "Yüzük",
+                material: "Altın (14K)",
+                price: 12500,
+                image: "https://images.unsplash.com/photo-1605100804763-ebea24016149?w=500&q=80",
+                isNew: true,
+                isRecommended: true,
+                reviews: []
+             };
+             renderProduct(mock);
+        }
+
+        function loadProduct(id) {
+            try {
+                // Read from shared storage
+                let raw = localStorage.getItem('products_v2');
+                
+                // Fallback if localStorage empty (Development safety)
+                if(!raw) {
+                    console.log("No local data found, using mock.");
+                    initData(); // Ensure global initData is available or just mock
+                    loadMockProduct();
+                    return;
+                }
+                
+                allProducts = JSON.parse(raw);
+                currentProduct = allProducts.find(p => p.id == id);
+                
+                if(currentProduct) {
+                    renderProduct(currentProduct);
+                    renderRelated();
+                    renderInstallments(currentProduct.price);
+                    renderReviews(currentProduct);
+                    updateBadges();
+                } else {
+                     // ID not found
+                    loadMockProduct();
+                }
+            } catch(e) {
+                console.error(e);
+                loadMockProduct();
+            }
+        }
+
+        function renderProduct(p) {
+            document.getElementById('loadingState').classList.add('hidden');
+            document.getElementById('productContainer').classList.remove('hidden');
+            
+            // Set Title & Breadcrumbs
+            document.title = `${p.title} | Üçler Gül`;
+            document.getElementById('breadcrumbCategory').innerText = p.category;
+            document.getElementById('breadcrumbTitle').innerText = p.title;
+
+            // Images
+            document.getElementById('mainImg').src = p.image;
+            document.getElementById('thumb1').src = p.image;
+            
+            // Text Content
+            document.getElementById('prodCategory').innerText = p.category;
+            document.getElementById('prodTitle').innerText = p.title;
+            document.getElementById('prodPrice').innerText = `${p.price.toLocaleString('tr-TR')} ₺`;
+            document.getElementById('oldPrice').innerText = `${(p.price * 1.35).toLocaleString('tr-TR', {maximumFractionDigits:0})} ₺`;
+            
+            document.getElementById('detailMat').innerText = p.material;
+
+            const rCount = p.reviews ? p.reviews.length : 0;
+            document.getElementById('reviewCountTxt').innerText = `(${rCount} Değerlendirme)`;
+            document.getElementById('tabReviewCount').innerText = rCount;
+
+            // Badges
+            let badgesHTML = '';
+            if(p.isNew) badgesHTML += '<span class="bg-blue-600 text-white text-[10px] uppercase font-bold px-3 py-1 rounded shadow-md tracking-wider">YENİ SEZON</span>';
+            if(p.isRecommended) badgesHTML += '<span class="bg-secondary text-white text-[10px] uppercase font-bold px-3 py-1 rounded shadow-md tracking-wider">ONERILEN</span>';
+            document.getElementById('badges-container').innerHTML = badgesHTML;
+
+            checkFavStatus(p.id);
+        }
+
+        // --- TABS LOGIC ---
+        function switchTab(ref) {
+            // Buttons
+            document.querySelectorAll('.tab-btn').forEach(b => {
+                b.classList.remove('active', 'border-gray-900', 'text-gray-900', 'font-bold');
+                b.classList.add('border-transparent');
+                if(b.dataset.ref === ref) {
+                    b.classList.add('active', 'border-gray-900', 'text-gray-900', 'font-bold');
+                    b.classList.remove('border-transparent');
+                }
+            });
+
+            // Content
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.getElementById(`tab-${ref}`).classList.add('active');
+        }
+
+        function scrollToReviews() {
+            switchTab('yorumlar');
+            document.getElementById('tabTabs').scrollIntoView({behavior: 'smooth'});
+        }
+
+        // --- INSTALLMENTS ---
+        function renderInstallments(price) {
+            const banks = [
+                {name: "World", color: "bg-purple-100 text-purple-700"},
+                {name: "Bonus", color: "bg-green-100 text-green-700"},
+                {name: "Maximum", color: "bg-pink-100 text-pink-700"},
+                {name: "Axess", color: "bg-yellow-100 text-yellow-700"},
+            ];
+
+            const tbody = document.getElementById('installmentTable');
+            let html = '';
+            
+            banks.forEach(bank => {
+                // 3 Taksit
+                html += `
+                <tr class="hover:bg-gray-50 border-b border-gray-50/50">
+                    <td class="px-6 py-4 flex items-center gap-2"><span class="px-2 py-1 rounded text-xs font-bold ${bank.color}">${bank.name}</span></td>
+                    <td class="px-6 py-4">3 Taksit</td>
+                    <td class="px-6 py-4 font-medium">${(price/3).toLocaleString('tr-TR', {maximumFractionDigits:2})} ₺</td>
+                    <td class="px-6 py-4 text-right font-bold">${price.toLocaleString('tr-TR')} ₺</td>
+                </tr>`;
+                // 6 Taksit (Vade farkı %5 mockup)
+                const p6 = price * 1.05;
+                html += `
+                <tr class="hover:bg-gray-50 border-b border-gray-100">
+                    <td class="px-6 py-4 flex items-center gap-2"><span class="px-2 py-1 rounded text-xs font-bold ${bank.color}">${bank.name}</span></td>
+                    <td class="px-6 py-4">6 Taksit</td>
+                    <td class="px-6 py-4 font-medium text-gray-400">${(p6/6).toLocaleString('tr-TR', {maximumFractionDigits:2})} ₺</td>
+                    <td class="px-6 py-4 text-right font-bold text-gray-400">${p6.toLocaleString('tr-TR', {maximumFractionDigits:2})} ₺</td>
+                </tr>`;
+            });
+            tbody.innerHTML = html;
+        }
+
+        // --- REVIEWS ---
+        function renderReviews(p) {
+            const container = document.getElementById('reviewsContainer');
+            if(!p.reviews || p.reviews.length === 0) {
+                container.innerHTML = `
+                    <div class="flex flex-col items-center justify-center h-full py-10 text-gray-400 bg-gray-50 rounded-2xl border border-dashed border-gray-200">
+                        <i class="ri-chat-1-line text-4xl mb-2"></i>
+                        <p>Henüz yorum yapılmamış.</p>
+                    </div>`;
+                return;
+            }
+
+            container.innerHTML = p.reviews.map(r => `
+                <div class="border-b border-gray-100 pb-6 last:border-0">
+                    <div class="flex items-center justify-between mb-2">
+                        <div class="flex items-center gap-2">
+                            <div class="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold">
+                                ${r.user.charAt(0)}
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-gray-900 text-sm">${r.user}</h5>
+                                <div class="flex text-yellow-400 text-xs">
+                                     ${Array(r.star).fill('<i class="ri-star-fill"></i>').join('')}
+                                     ${Array(5-r.star).fill('<i class="ri-star-line text-gray-200"></i>').join('')}
+                                </div>
+                            </div>
+                        </div>
+                        <span class="text-xs text-gray-400 bg-white border border-gray-100 px-2 py-1 rounded">${r.date}</span>
+                    </div>
+                    <p class="text-gray-600 text-sm leading-relaxed pl-12 bg-gray-50/50 p-2 rounded-lg">${r.text}</p>
+                </div>
+            `).join('');
+        }
+
+        // --- ZOOM LOGIC ---
+        function zoom(e) {
+            const zoomer = e.currentTarget;
+            const img = zoomer.querySelector('img');
+            
+            // Get dimensions
+            const offsetX = e.offsetX;
+            const offsetY = e.offsetY;
+            const x = offsetX/zoomer.offsetWidth * 100;
+            const y = offsetY/zoomer.offsetHeight * 100;
+
+            img.style.transformOrigin = `${x}% ${y}%`;
+        }
+
+        function resetZoom() {
+            // Optional: reset logic if desired, CSS handles scale reset
+        }
+
+        function swapImage(btn) {
+            const main = document.getElementById('mainImg');
+            const newSrc = btn.querySelector('img').src;
+            
+            main.parentElement.classList.add('opacity-50');
+            setTimeout(() => {
+                main.src = newSrc;
+                main.parentElement.classList.remove('opacity-50');
+            }, 100);
+
+            document.querySelectorAll('.gallery-thumb').forEach(t => t.classList.remove('active', 'border-gray-400', 'opacity-100'));
+            document.querySelectorAll('.gallery-thumb').forEach(t => t.classList.add('opacity-60'));
+            
+            btn.classList.add('active', 'opacity-100');
+            btn.classList.remove('opacity-60', 'border-transparent');
+        }
+
+        // --- CART DRAWER LOGIC ---
+        
+        function addToCart(btn) {
+            if(!currentProduct) return;
+            
+            const originalHTML = btn.innerHTML;
+            
+            // Animation
+            btn.innerHTML = '<i class="ri-loader-4-line animate-spin text-xl"></i> Ekleniyor...';
+            
+            setTimeout(() => {
+                let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+                cart.push(currentProduct);
+                localStorage.setItem('cart', JSON.stringify(cart));
+                updateBadges();
+                
+                // Show notification
+                document.getElementById('toast').classList.remove('translate-x-full', 'opacity-0');
+                setTimeout(() => document.getElementById('toast').classList.add('translate-x-full', 'opacity-0'), 3000);
+                
+                // Reset Button
+                btn.innerHTML = originalHTML;
+
+                // Open Drawer
+                toggleCartDrawer();
+            }, 600);
+        }
+
+        function toggleCartDrawer() {
+            const drawer = document.getElementById('cartDrawer');
+            const backdrop = document.getElementById('cartDrawerBackdrop');
+            const isHidden = drawer.classList.contains('translate-x-full');
+            
+            if(isHidden) {
+                renderCartDrawer();
+                drawer.classList.remove('translate-x-full');
+                backdrop.classList.remove('hidden');
+                setTimeout(() => backdrop.classList.remove('opacity-0'), 10);
+                document.body.style.overflow = 'hidden';
+            } else {
+                drawer.classList.add('translate-x-full');
+                backdrop.classList.add('opacity-0');
+                setTimeout(() => backdrop.classList.add('hidden'), 300);
+                document.body.style.overflow = '';
+            }
+        }
+
+        function renderCartDrawer() {
+            let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            const container = document.getElementById('cartItemsContainer');
+            const totalEl = document.getElementById('cartTotal');
+
+            if(cart.length === 0) {
+                container.innerHTML = `
+                    <div class="h-full flex flex-col items-center justify-center text-gray-400">
+                        <i class="ri-shopping-cart-2-line text-4xl mb-4 opacity-20"></i>
+                        <p class="text-sm font-medium">Sepetinizde ürün bulunmuyor.</p>
+                        <a href="ürünler.html" class="mt-4 text-primary text-sm underline">Alışverişe Başla</a>
+                    </div>`;
+                totalEl.innerText = "0 ₺";
+                return;
+            }
+
+            let total = 0;
+            container.innerHTML = cart.map((item, index) => {
+                total += item.price;
+                return `
+                    <div class="flex gap-3 bg-white p-3 rounded-xl border border-gray-100 shadow-sm animate-fade-in-up">
+                        <img src="${item.image}" class="w-16 h-16 rounded-lg object-cover bg-gray-50 border border-gray-100">
+                        <div class="flex-1 min-w-0 flex flex-col justify-center">
+                            <h4 class="font-bold text-sm text-gray-800 truncate">${item.title}</h4>
+                            <p class="text-xs text-gray-400">${item.category}</p>
+                            <p class="text-sm font-bold text-secondary mt-1">${item.price.toLocaleString('tr-TR')} ₺</p>
+                        </div>
+                        <button onclick="removeFromCart(${index})" class="text-gray-300 hover:text-red-500 transition-colors px-2">
+                            <i class="ri-delete-bin-line"></i>
+                        </button>
+                    </div>
+                `;
+            }).join('');
+
+            totalEl.innerText = total.toLocaleString('tr-TR') + " ₺";
+        }
+
+        function removeFromCart(index) {
+            let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            renderCartDrawer();
+            updateBadges();
+        }
+
+        // --- SHARED ---
+        function toggleFav() {
+            if(!currentProduct) return;
+            let favs = JSON.parse(localStorage.getItem('favorites') || '[]');
+            const idx = favs.findIndex(f => f.id == currentProduct.id);
+            const btn = document.getElementById('favBtn');
+            const icon = btn.querySelector('i');
+
+            if(idx > -1) {
+                favs.splice(idx, 1);
+                btn.classList.remove('border-red-500', 'text-red-500', 'bg-red-50');
+                btn.classList.add('text-gray-400');
+                icon.classList.replace('ri-heart-3-fill', 'ri-heart-3-line');
+            } else {
+                favs.push(currentProduct);
+                btn.classList.add('border-red-500', 'text-red-500', 'bg-red-50');
+                btn.classList.remove('text-gray-400');
+                icon.classList.replace('ri-heart-3-line', 'ri-heart-3-fill');
+            }
+            localStorage.setItem('favorites', JSON.stringify(favs));
+            updateBadges();
+        }
+
+        function checkFavStatus(id) {
+            const favs = JSON.parse(localStorage.getItem('favorites') || '[]');
+            const exists = favs.find(f => f.id == id);
+            if(exists) {
+                const btn = document.getElementById('favBtn');
+                const icon = btn.querySelector('i');
+                btn.classList.add('border-red-500', 'text-red-500', 'bg-red-50');
+                btn.classList.remove('text-gray-400');
+                icon.classList.replace('ri-heart-3-line', 'ri-heart-3-fill');
+            }
+        }
+
+        function updateBadges() {
+            const f = JSON.parse(localStorage.getItem('favorites') || '[]').length;
+            const c = JSON.parse(localStorage.getItem('cart') || '[]').length;
+            
+            const fCount = document.getElementById('favCount');
+            const cCount = document.getElementById('cartCount');
+            
+            if(fCount) {
+                fCount.innerText = f;
+                fCount.classList.toggle('opacity-0', f === 0);
+            }
+            if(cCount) {
+                cCount.innerText = c;
+                cCount.classList.toggle('opacity-0', c === 0);
+            }
+        }
+
+        function renderRelated() {
+            // Pick 4 random products excluding current
+            const others = allProducts.filter(x => x.id !== currentProduct.id);
+            const shuffled = others.sort(() => 0.5 - Math.random()).slice(0, 4);
+            
+            const grid = document.getElementById('related-grid');
+            grid.innerHTML = shuffled.map(item => `
+                <a href="urun-detay.html?id=${item.id}" class="group block  bg-white rounded-xl p-3 hover:shadow-hover transition-all border border-transparent hover:border-gray-100">
+                    <div class="aspect-square bg-gray-50 rounded-lg mb-3 overflow-hidden p-2 relative">
+                         <div class="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors z-10"></div>
+                        <img src="${item.image}" class="w-full h-full object-contain mix-blend-multiply group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <h3 class="font-montserrat font-bold text-xs md:text-sm text-gray-800 truncate mb-1 group-hover:text-primary transition-colors">${item.title}</h3>
+                    <div class="text-sm font-bold text-primary">${item.price.toLocaleString('tr-TR')} ₺</div>
+                </a>
+            `).join('');
+        }
+
+        // --- MODALS ---
+        function openSizeChart() {
+            document.getElementById('sizeChartModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSizeChart() {
+            document.getElementById('sizeChartModal').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        function showError() {
+            document.getElementById('loadingState').classList.add('hidden');
+            document.getElementById('errorState').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>

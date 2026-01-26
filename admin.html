@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yönetici Paneli | Üçler Gül</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="c:/Users/karak/Downloads/Adsız tasarım (5).png" />
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+        tailwind.config={
+            theme:{
+                extend:{
+                    colors:{ primary:'#919ea4', secondary:'#D4AF37', dark:'#1a1a1a' },
+                    fontFamily: { inter: ['Inter', 'sans-serif'], montserrat: ['Montserrat', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-100 font-inter text-gray-800">
+
+    <!-- Login Overlay -->
+    <div id="loginOverlay" class="fixed inset-0 z-[100] bg-gray-900 flex items-center justify-center transition-opacity duration-500">
+        <div class="bg-white p-8 rounded-2xl shadow-2xl w-full max-w-sm text-center transform transition-transform duration-500 hover:scale-105">
+            <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="ri-lock-2-line text-3xl text-gray-500"></i>
+            </div>
+            <h2 class="text-2xl font-bold text-gray-800 mb-2">Yönetici Paneli</h2>
+            <p class="text-sm text-gray-500 mb-6">Erişim için güvenlik anahtarını giriniz.</p>
+            <form onsubmit="checkLogin(event)">
+                <input type="password" id="adminPass" placeholder="••••••" class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all mb-4 text-center tracking-widest text-lg" required>
+                <button type="submit" class="w-full bg-secondary hover:bg-yellow-600 text-white font-bold py-3 rounded-lg transition-colors shadow-lg shadow-secondary/20 flex items-center justify-center gap-2">
+                    <i class="ri-login-circle-line"></i> Giriş Yap
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function checkLogin(e) {
+            e.preventDefault();
+            const pass = document.getElementById('adminPass').value;
+            // Demo password: "admin"
+            if(pass === 'admin' || pass === '1234') {
+                const overlay = document.getElementById('loginOverlay');
+                overlay.classList.add('opacity-0');
+                setTimeout(() => overlay.classList.add('hidden'), 500);
+            } else {
+                const input = document.getElementById('adminPass');
+                input.classList.add('border-red-500', 'animate-pulse');
+                setTimeout(() => input.classList.remove('border-red-500', 'animate-pulse'), 1000);
+                input.value = '';
+                input.placeholder = 'Hatalı Şifre!';
+            }
+        }
+    </script>
+
+    <div class="flex h-screen overflow-hidden">
+        
+        <!-- Sidebar -->
+        <aside class="w-64 bg-dark text-white flex flex-col">
+            <div class="p-6 flex items-center gap-3 border-b border-gray-800">
+                <i class="ri-dashboard-line text-secondary text-xl"></i>
+                <span class="font-bold text-lg tracking-wide">Üçler Gül Panel</span>
+            </div>
+            <nav class="flex-1 p-4 space-y-2">
+                <button onclick="switchView('products')" id="nav-products" class="w-full flex items-center gap-3 px-4 py-3 bg-gray-800 rounded-lg text-secondary font-medium transition-all">
+                    <i class="ri-store-2-line"></i> Ürün Yönetimi
+                </button>
+                <button onclick="switchView('orders')" id="nav-orders" class="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-800 rounded-lg text-gray-400 font-medium transition-all">
+                    <i class="ri-shopping-bag-3-line"></i> Siparişler
+                </button>
+                <button onclick="switchView('reviews')" id="nav-reviews" class="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-800 rounded-lg text-gray-400 font-medium transition-all">
+                    <i class="ri-chat-smile-2-line"></i> Değerlendirmeler
+                </button>
+            </nav>
+            <div class="p-4 border-t border-gray-800">
+                <a href="ürünler.html" class="flex items-center gap-2 text-gray-400 hover:text-white transition-colors text-sm">
+                    <i class="ri-logout-box-line"></i> Siteye Dön
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 overflow-y-auto bg-gray-50 p-8">
+            
+            <!-- Products View -->
+            <div id="view-products">
+                <header class="flex justify-between items-center mb-8">
+                    <div>
+                        <h1 class="text-2xl font-bold text-gray-800">Ürün Listesi</h1>
+                        <p class="text-sm text-gray-500">Mağazadaki tüm ürünleri buradan yönetebilirsiniz.</p>
+                    </div>
+                    <button onclick="openModal()" class="bg-secondary hover:bg-yellow-600 text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center gap-2">
+                        <i class="ri-add-line"></i> Yeni Ürün Ekle
+                    </button>
+                </header>
+
+                <!-- Stats -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <div class="text-gray-500 text-sm font-medium mb-1">Toplam Ürün</div>
+                        <div class="text-3xl font-bold text-gray-800" id="totalCount">0</div>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <div class="text-gray-500 text-sm font-medium mb-1">Önerilen Ürünler</div>
+                        <div class="text-3xl font-bold text-secondary" id="recCount">0</div>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <div class="text-gray-500 text-sm font-medium mb-1">Yeni Sezon</div>
+                        <div class="text-3xl font-bold text-blue-500" id="newCount">0</div>
+                    </div>
+                </div>
+
+                <!-- Table -->
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left">
+                            <thead class="bg-gray-50 border-b border-gray-200 text-gray-500 text-xs uppercase tracking-wider font-semibold">
+                                <tr>
+                                    <th class="p-4">Görsel</th>
+                                    <th class="p-4">Ürün Adı</th>
+                                    <th class="p-4">Kategori</th>
+                                    <th class="p-4">Durum</th>
+                                    <th class="p-4 text-right">İşlemler</th>
+                                </tr>
+                            </thead>
+                            <tbody id="productTableBody" class="divide-y divide-gray-100 text-sm text-gray-700">
+                                <!-- JS Injection -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Orders View -->
+            <div id="view-orders" class="hidden">
+                 <header class="flex justify-between items-center mb-8">
+                    <div>
+                        <h1 class="text-2xl font-bold text-gray-800">Siparişler</h1>
+                        <p class="text-sm text-gray-500">Son gelen siparişleri buradan takip edebilirsiniz.</p>
+                    </div>
+                </header>
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-8 text-center">
+                    <div class="max-w-md mx-auto">
+                        <i class="ri-shopping-cart-2-line text-6xl text-gray-200 mb-4 block"></i>
+                        <h3 class="text-lg font-bold text-gray-800 mb-2">Henüz Sipariş Yok</h3>
+                        <p class="text-sm text-gray-500">Sistemde henüz aktif sipariş bulunmamaktadır. Sipariş geldiğinde burada listelenecektir.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reviews View -->
+            <div id="view-reviews" class="hidden">
+                 <header class="flex justify-between items-center mb-8">
+                    <div>
+                        <h1 class="text-2xl font-bold text-gray-800">Ürün Değerlendirmeleri</h1>
+                        <p class="text-sm text-gray-500">Müşterilerden gelen yorumları ve puanları yönetin.</p>
+                    </div>
+                </header>
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                     <table class="w-full text-left">
+                        <thead class="bg-gray-50 border-b border-gray-200 text-gray-500 text-xs uppercase tracking-wider font-semibold">
+                            <tr>
+                                <th class="p-4">Ürün</th>
+                                <th class="p-4">Kullanıcı</th>
+                                <th class="p-4">Puan</th>
+                                <th class="p-4 w-1/3">Yorum</th>
+                                <th class="p-4">Tarih</th>
+                                <th class="p-4 text-right">İşlem</th>
+                            </tr>
+                        </thead>
+                        <tbody id="reviewsTableBody" class="divide-y divide-gray-100 text-sm text-gray-700">
+                            <!-- JS Injection -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Edit/Add Modal -->
+    <div id="productModal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" onclick="closeModal()"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-lg bg-white rounded-xl shadow-2xl p-6">
+            <h2 id="modalTitle" class="text-xl font-bold mb-6">Ürün Düzenle</h2>
+            <form id="productForm" onsubmit="saveProduct(event)">
+                <input type="hidden" id="prodId">
+                
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Ürün Başlığı</label>
+                        <input type="text" id="prodTitle" required class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:border-secondary focus:ring-1 focus:ring-secondary outline-none">
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Kategori</label>
+                            <select id="prodCat" class="w-full border border-gray-300 rounded px-3 py-2 text-sm outline-none">
+                                <option>Yüzük</option><option>Kolye</option><option>Küpe</option><option>Bileklik</option><option>Alyans</option><option>Set</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Materyal</label>
+                            <select id="prodMat" class="w-full border border-gray-300 rounded px-3 py-2 text-sm outline-none">
+                                <option>Altın (14K)</option><option>Altın (22K)</option><option>Pırlanta</option><option>Gümüş</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Görsel URL</label>
+                        <input type="url" id="prodImg" required class="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:border-secondary outline-none">
+                    </div>
+
+                    <div class="flex gap-6 pt-2">
+                        <label class="flex items-center gap-2 cursor-pointer">
+                            <input type="checkbox" id="prodRec" class="w-4 h-4 text-secondary rounded">
+                            <span class="text-sm">Önerilen Ürün</span>
+                        </label>
+                        <label class="flex items-center gap-2 cursor-pointer">
+                            <input type="checkbox" id="prodNew" class="w-4 h-4 text-blue-500 rounded">
+                            <span class="text-sm">Yeni Sezon</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="flex justify-end gap-3 mt-8">
+                    <button type="button" onclick="closeModal()" class="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded text-sm font-medium">İptal</button>
+                    <button type="submit" class="px-6 py-2 bg-secondary hover:bg-yellow-600 text-white rounded text-sm font-medium shadow-lg shadow-secondary/30">Kaydet</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let products = [];
+        
+        window.onload = () => {
+            loadData();
+        };
+
+        function switchView(viewName) {
+            // Hide all
+            document.getElementById('view-products').classList.add('hidden');
+            document.getElementById('view-orders').classList.add('hidden');
+            document.getElementById('view-reviews').classList.add('hidden');
+            
+            // Reset nav styles
+            const inactiveClass = 'w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-800 rounded-lg text-gray-400 font-medium transition-all';
+            document.getElementById('nav-products').className = inactiveClass;
+            document.getElementById('nav-orders').className = inactiveClass;
+            document.getElementById('nav-reviews').className = inactiveClass;
+
+            // Show selected
+            document.getElementById(`view-${viewName}`).classList.remove('hidden');
+            
+            // Active nav style
+            const activeClass = 'w-full flex items-center gap-3 px-4 py-3 bg-gray-800 rounded-lg text-secondary font-medium transition-all';
+            document.getElementById(`nav-${viewName}`).className = activeClass;
+
+            if(viewName === 'reviews') renderReviews();
+        }
+
+        function loadData() {
+            try {
+                products = JSON.parse(localStorage.getItem('products_v2')) || [];
+            } catch(e) {
+                console.error("Data load error", e);
+                products = [];
+            }
+            renderTable();
+            updateStats();
+            renderReviews(); // Initial load if on reviews tab, or pre-load
+        }
+
+        function renderReviews() {
+            const tbody = document.getElementById('reviewsTableBody');
+            let html = '';
+            
+            products.forEach(p => {
+                if(p.reviews && p.reviews.length > 0) {
+                    p.reviews.forEach((r, idx) => {
+                        html += `
+                            <tr class="hover:bg-gray-50 group transition-colors">
+                                <td class="p-4">
+                                    <div class="flex items-center gap-3">
+                                        <img src="${p.image}" class="w-10 h-10 rounded object-cover border border-gray-100">
+                                        <span class="font-medium text-xs line-clamp-1 w-24">${p.title}</span>
+                                    </div>
+                                </td>
+                                <td class="p-4 font-medium text-gray-900">${r.user}</td>
+                                <td class="p-4">
+                                    <div class="flex text-yellow-400 text-xs">
+                                        ${Array(r.star).fill('<i class="ri-star-fill"></i>').join('')}
+                                        ${Array(5-r.star).fill('<i class="ri-star-line text-gray-300"></i>').join('')}
+                                    </div>
+                                </td>
+                                <td class="p-4 text-gray-600 text-xs leading-relaxed italic">"${r.text}"</td>
+                                <td class="p-4 text-gray-400 text-xs">${r.date}</td>
+                                <td class="p-4 text-right">
+                                    <button onclick="deleteReview(${p.id}, ${idx})" class="text-red-500 hover:text-red-700 hover:bg-red-50 p-2 rounded transition-colors" title="Yorumu Sil">
+                                        <i class="ri-delete-bin-line"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        `;
+                    });
+                }
+            });
+
+            if(html === '') {
+                html = '<tr><td colspan="6" class="p-8 text-center text-gray-400">Henüz değerlendirme bulunmuyor.</td></tr>';
+            }
+
+            tbody.innerHTML = html;
+        }
+
+        function deleteReview(prodId, reviewIdx) {
+            if(confirm('Bu yorumu silmek istediğinize emin misiniz?')) {
+                const prod = products.find(p => p.id === prodId);
+                if(prod && prod.reviews) {
+                    prod.reviews.splice(reviewIdx, 1);
+                    save();
+                    renderReviews(); // Re-render to update indices if needed
+                }
+            }
+        }
+
+        function updateStats() {
+            document.getElementById('totalCount').innerText = products.length;
+            document.getElementById('recCount').innerText = products.filter(p => p.isRecommended).length;
+            document.getElementById('newCount').innerText = products.filter(p => p.isNew).length;
+        }
+
+        function renderTable() {
+            const tbody = document.getElementById('productTableBody');
+            tbody.innerHTML = products.map(p => `
+                <tr class="hover:bg-gray-50 group transition-colors">
+                    <td class="p-4">
+                        <img src="${p.image}" class="w-12 h-12 rounded object-cover border border-gray-200">
+                    </td>
+                    <td class="p-4 font-medium text-gray-900">${p.title}</td>
+                    <td class="p-4">
+                        <span class="px-2 py-1 bg-gray-100 rounded text-xs text-gray-600 font-semibold">${p.category}</span>
+                    </td>
+                    <td class="p-4">
+                        <div class="flex gap-2">
+                            ${p.isRecommended ? '<span class="w-2 h-2 rounded-full bg-secondary" title="Önerilen"></span>' : ''}
+                            ${p.isNew ? '<span class="w-2 h-2 rounded-full bg-blue-500" title="Yeni"></span>' : ''}
+                        </div>
+                    </td>
+                    <td class="p-4 text-right">
+                        <button onclick="editProduct(${p.id})" class="text-blue-600 hover:text-blue-800 mr-3 text-sm font-medium">Düzenle</button>
+                        <button onclick="deleteProduct(${p.id})" class="text-red-500 hover:text-red-700 text-sm font-medium">Sil</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function deleteProduct(id) {
+            if(confirm('Bu ürünü silmek istediğinize emin misiniz?')) {
+                products = products.filter(p => p.id !== id);
+                save();
+            }
+        }
+
+        function openModal(id = null) {
+            const modal = document.getElementById('productModal');
+            const title = document.getElementById('modalTitle');
+            const form = document.getElementById('productForm');
+
+            modal.classList.remove('hidden');
+            
+            if(id) {
+                // Edit
+                const p = products.find(x => x.id === id);
+                title.innerText = 'Ürün Düzenle';
+                document.getElementById('prodId').value = p.id;
+                document.getElementById('prodTitle').value = p.title;
+                document.getElementById('prodCat').value = p.category;
+                document.getElementById('prodMat').value = p.material;
+                document.getElementById('prodImg').value = p.image;
+                document.getElementById('prodRec').checked = p.isRecommended;
+                document.getElementById('prodNew').checked = p.isNew;
+            } else {
+                // New
+                title.innerText = 'Yeni Ürün Ekle';
+                form.reset();
+                document.getElementById('prodId').value = '';
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('productModal').classList.add('hidden');
+        }
+
+        function editProduct(id) {
+            openModal(id);
+        }
+
+        function saveProduct(e) {
+            e.preventDefault();
+            const id = document.getElementById('prodId').value;
+            const newProd = {
+                id: id ? parseInt(id) : Date.now(),
+                title: document.getElementById('prodTitle').value,
+                category: document.getElementById('prodCat').value,
+                material: document.getElementById('prodMat').value,
+                image: document.getElementById('prodImg').value,
+                isRecommended: document.getElementById('prodRec').checked,
+                isNew: document.getElementById('prodNew').checked,
+                reviews: [], // Preserve old reviews if editing? For simplicity now we reset or keep logic needs complexity.
+                price: Math.floor(Math.random() * 5000) + 1000 // Mock price
+            };
+
+            if(id) {
+                const idx = products.findIndex(p => p.id == id);
+                // Preserve reviews safely
+                newProd.reviews = (products[idx] && Array.isArray(products[idx].reviews)) ? products[idx].reviews : [];
+                products[idx] = newProd;
+            } else {
+                newProd.reviews = []; // Ensure new products have empty array
+                products.unshift(newProd); // Add to top
+            }
+
+            save();
+            closeModal();
+        }
+
+        function save() {
+            localStorage.setItem('products_v2', JSON.stringify(products));
+            loadData();
+        }
+    </script>
+</body>
+</html>

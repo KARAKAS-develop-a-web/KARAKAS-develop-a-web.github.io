@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mağazalarımız | ÜÇLER GÜL</title>
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="c:\Users\karak\Downloads\Adsız tasarım (5).png" />
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>
+tailwind.config={
+  theme:{
+    extend:{
+      colors:{
+        primary:'#333333', // Daha koyu, sofistike gri
+        secondary:'#D4AF37', 
+        accent:'#1a1a1a', // Siyah tonları
+        surface: '#f9f9f9'
+      },
+      borderRadius:{
+        'none':'0px','sm':'2px',DEFAULT:'4px','md':'6px','lg':'8px','xl':'12px','2xl':'16px','3xl':'20px','full':'9999px','button':'0px' // Keskin hatlar (button: 0px)
+      },
+      fontFamily: {
+        pacifico: ['Pacifico', 'cursive'],
+        inter: ['Inter', 'sans-serif'],
+        poppins: ['Poppins', 'sans-serif'],
+        montserrat: ['Montserrat', 'sans-serif'],
+      },
+      boxShadow: {
+        'luxury': '0 4px 20px -2px rgba(0, 0, 0, 0.05)', // Daha hafif gölge
+        'luxury-hover': '0 10px 25px -5px rgba(0, 0, 0, 0.1)',
+      }
+    }
+  }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body {
+  font-family: 'Inter', sans-serif;
+}
+input:focus, button:focus {
+  outline: none;
+}
+</style>
+</head>
+<body class="bg-surface" onload="AOS.init({duration: 1000, once: true})">
+
+<!-- Header & Navigation -->
+<header class="bg-white text-gray-600 border-b border-gray-200">
+  <div class="flex items-center justify-between px-4 py-1 topbar-small" style="font-size:12px;">
+    <div class="flex items-center">
+      <div class="w-4 h-4 flex items-center justify-center mr-1 text-secondary">
+        <i class="ri-map-pin-line text-xs"></i>
+      </div>
+      <span>Gökçek, 250.Cd. No: 15/c,Sincan/Ankara--- / ---Ulubatlı Hasan, Mehmet Akif Ersoy Cd.,Sincan/Ankara</span>
+    </div>
+    <div class="flex items-center">
+      <i class="ri-phone-line mr-2 text-secondary"></i>
+      <span class="mr-2">+90 312 123 45 67</span>
+    </div>
+  </div>
+</header>
+<nav id="main-navbar" class="py-4 px-4 md:px-8 border-b shadow-sm sticky top-0 z-50 transition-all duration-300 bg-white/95 backdrop-blur-md">
+  <div class="container mx-auto flex items-center justify-between">
+    <!-- Logo ve slogan solda -->
+    <div class="flex items-center flex-shrink-0 mr-8">
+      <a href="index.html" class="flex items-center">
+        <div class="flex items-center justify-center" style="height:48px;">
+          <img id="navbar-logo" src="c:\Users\karak\Downloads\Adsız tasarım (5).png" alt="Üçler Gül Logo" style="height:100%; width:auto; max-height:48px; max-width:120px; object-fit:contain; display:block;" class="mr-2 transition-all duration-300" />
+        </div>
+        <span id="navbar-title" class="text-3xl font-montserrat text-primary font-semibold tracking-tight transition-all duration-300">Üçler Gül</span>
+        <span style="font-family: 'Pacifico', cursive; font-size: 1rem; margin-left: 12px;" class="text-primary align-middle hidden md:inline-block">
+          Yüzünüz hep <span style="color:#D4AF37;">gül</span>sün diye
+        </span>
+      </a>
+    </div>
+
+    <!-- Menü ortada -->
+    <div class="flex-1 flex justify-center hidden md:flex">
+      <div class="flex space-x-8">
+        <a href="index.html" class="nav-item text-gray-700 hover:text-primary font-medium p-2">Ana Sayfa</a>
+        <a href="hakkimizda.html" class="nav-item text-gray-700 hover:text-primary font-medium p-2">Hakkımızda</a>
+        <a href="ürünler.html" class="nav-item text-gray-700 hover:text-primary font-medium p-2">Ürünler</a>
+        <a href="magazalarimiz.html" class="nav-item text-primary border-b-2 border-primary font-medium p-2">Mağazalarımız</a>
+        <a href="index.html#footer-contact" class="nav-item text-gray-700 hover:text-primary font-medium p-2">İletişim</a>
+      </div>
+    </div>
+    
+    <!-- Sağda ikonlar -->
+    <div class="flex items-center nav-icons space-x-4">
+      <button onclick="window.location.href='tekvenet.html'" class="relative hover:text-primary transition-colors hover:scale-110 transform group" title="Giriş Yap / Üye Ol">
+        <i class="ri-user-line text-2xl"></i>
+      </button>
+      <button onclick="window.location.href='favoriler.html'" class="relative hover:text-primary transition-colors hover:scale-110 transform group" title="Favoriler">
+        <i class="ri-heart-line text-2xl"></i>
+      </button>
+      <div class="relative group cursor-pointer hover:scale-110 transform transition-transform" onclick="window.location.href='tekvenet.html'" title="Sepet">
+        <i class="ri-shopping-bag-line text-2xl hover:text-primary transition-colors"></i>
+      </div>
+      <!-- Mobile Menu Button -->
+      <button onclick="toggleMobileMenu()" class="md:hidden text-2xl text-primary focus:outline-none">
+        <i class="ri-menu-line"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu Overlay -->
+  <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-white border-t border-gray-100 shadow-lg py-4 px-4 flex-col gap-4 animate-fade-in-down">
+      <a href="tekvenet.html" class="text-gray-700 hover:text-primary font-medium py-2 border-b border-gray-50 block">Ana Sayfa</a>
+      <a href="hakkimizda.html" class="text-gray-700 hover:text-primary font-medium py-2 border-b border-gray-50 block">Hakkımızda</a>
+      <a href="ürünler.html" class="text-gray-700 hover:text-primary font-medium py-2 border-b border-gray-50 block">Ürünler</a>
+      <a href="magazalarimiz.html" class="text-primary font-medium py-2 border-b border-gray-50 block">Mağazalarımız</a>
+      <a href="tekvenet.html#footer-contact" class="text-gray-700 hover:text-primary font-medium py-2 block">İletişim</a>
+  </div>
+</nav>
+
+<script>
+function toggleMobileMenu() {
+    const menu = document.getElementById('mobile-menu');
+    menu.classList.toggle('hidden');
+    menu.classList.toggle('flex');
+}
+</script>
+
+<!-- Page Header -->
+<div class="relative bg-gray-900 text-white min-h-[40vh] flex items-center justify-center overflow-hidden">
+  <!-- Dynamic Background with Zoom Effect -->
+  <div class="absolute inset-0 z-0">
+    <div class="absolute inset-0 bg-black/50 z-10"></div>
+    <img src="https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?q=80&w=2670&auto=format&fit=crop" class="w-full h-full object-cover transform scale-105" alt="Background">
+  </div>
+  
+  <div class="absolute inset-0 z-0 opacity-20 pointer-events-none" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+
+  <!-- Content -->
+  <div class="container mx-auto px-4 relative z-20 text-center" data-aos="fade-up">
+      <div class="w-16 h-1 bg-secondary mx-auto mb-6"></div>
+      <h1 class="text-4xl md:text-5xl font-bold font-montserrat tracking-wider uppercase mb-4 text-white drop-shadow-lg">Mağazalarımız</h1>
+      <p class="text-gray-200 text-lg font-light tracking-wide max-w-xl mx-auto">
+          Zarafetin adresi Üçler Gül Kuyumculuk'a davetlisiniz.
+      </p>
+  </div>
+</div>
+
+<!-- Stores Section -->
+<section class="py-24" id="stores-list">
+    <div class="container mx-auto px-4 md:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            
+            <!-- Store 1: Sincan Merkez -->
+            <div class="bg-white rounded-3xl overflow-hidden shadow-xl group border border-gray-100 hover:border-secondary/30 transition-all duration-500 hover:-translate-y-2" data-aos="fade-right">
+                <div class="relative w-full h-[350px]">
+                    <img src="c:\Users\karak\Downloads\XXXL_Nero_AI_Image_Upscaler_Photo_Face (1).jpeg" 
+                         alt="Sincan Merkez Şube" 
+                         class="w-full h-full object-cover object-[center_30%] transition-transform duration-700 group-hover:scale-105">
+                    <div class="absolute top-4 left-4 bg-primary text-white py-1 px-4 text-sm font-bold uppercase tracking-wider rounded-full shadow-lg">Merkez Şube</div>
+                </div>
+                <div class="p-8">
+                    <h2 class="text-2xl font-bold font-montserrat text-gray-900 mb-4 flex items-center gap-2">
+                        <i class="ri-store-2-fill text-secondary"></i>
+                        Gökçek Şubesi
+                    </h2>
+                    <div class="space-y-4 text-gray-600">
+                        <div class="flex items-start gap-3">
+                            <div class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center shrink-0 text-primary mt-1"><i class="ri-map-pin-line"></i></div>
+                            <p class="leading-relaxed">Gökçek, 250.Cd. No: 15/c, <br>Sincan / Ankara</p>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center shrink-0 text-primary"><i class="ri-phone-line"></i></div>
+                            <p>+90 312 123 45 67</p>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center shrink-0 text-primary"><i class="ri-time-line"></i></div>
+                            <p>09:00 - 19:00 (Haftanın Her Günü)</p>
+                        </div>
+                    </div>
+                </div>
+                 <!-- Map Embed Placeholder (Full Width in card) -->
+                 <div class="h-48 bg-gray-200 w-full relative group-hover:opacity-90 transition-opacity">
+                    <!-- Replace src with actual Maps Embed URL -->
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3057.0481237117024!2d32.56884587583008!3d39.985029881801246!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14d331b43cd1a543%3A0xecd558957f4c9416!2s%C3%9C%C3%A7ler%20G%C3%BCl%20Kuyumculuk%20-%20Alt%C4%B1n%20Alyans%2C%20Bilezik%2C%20Kolye%2C%20Bileklik%2C%20Gerdanl%C4%B1k%20Sincan%20Eryaman%20Etimesgut!5e0!3m2!1str!2str!4v1768384969531!5m2!1str!2str" 
+                            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                     <div class="absolute bottom-4 right-4">
+                        <a href="https://maps.google.com" target="_blank" class="bg-white text-primary px-4 py-2 rounded-lg text-sm font-bold shadow-lg hover:bg-secondary hover:text-white transition-colors flex items-center gap-2">
+                           Yol Tarifi Al <i class="ri-direction-fill"></i>
+                        </a>
+                     </div>
+                 </div>
+            </div>
+
+            <!-- Store 2: Ulubatlı Hasan -->
+            <div class="bg-white rounded-3xl overflow-hidden shadow-xl group border border-gray-100 hover:border-secondary/30 transition-all duration-500 hover:-translate-y-2" data-aos="fade-left">
+                <div class="relative w-full h-[350px]">
+                    <img src="c:\Users\karak\Downloads\Adsız tasarım (6) (1).png" 
+                         alt="Ulubatlı Hasan Şube" 
+                         class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                     <div class="absolute top-4 left-4 bg-secondary text-white py-1 px-4 text-sm font-bold uppercase tracking-wider rounded-full shadow-lg">Şube</div>
+                </div>
+                <div class="p-8">
+                    <h2 class="text-2xl font-bold font-montserrat text-gray-900 mb-4 flex items-center gap-2">
+                        <i class="ri-store-3-fill text-secondary"></i>
+                        Ulubatlı Hasan Şubesi
+                    </h2>
+                    <div class="space-y-4 text-gray-600">
+                        <div class="flex items-start gap-3">
+                            <div class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center shrink-0 text-primary mt-1"><i class="ri-map-pin-line"></i></div>
+                            <p class="leading-relaxed">Ulubatlı Hasan, Mehmet Akif Ersoy Cd., <br>Sincan / Ankara</p>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center shrink-0 text-primary"><i class="ri-phone-line"></i></div>
+                            <p>+90 312 987 65 43</p>
+                        </div>
+                         <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center shrink-0 text-primary"><i class="ri-time-line"></i></div>
+                            <p>09:00 - 19:00 (Haftanın Her Günü)</p>
+                        </div>
+                    </div>
+                </div>
+                 <!-- Map Embed Placeholder -->
+                 <div class="h-48 bg-gray-200 w-full relative group-hover:opacity-90 transition-opacity">
+                    <!-- Replace src with actual Maps Embed URL -->
+                   <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3056.738636542562!2d32.586347475830486!3d39.991945781384004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14d330f158178b4b%3A0xb42fcba1c27b6850!2zw5zDp2xlciBLdXl1bWN1c3U!5e0!3m2!1str!2str!4v1768385101394!5m2!1str!2str" 
+                            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                     <div class="absolute bottom-4 right-4">
+                        <a href="https://maps.google.com" target="_blank" class="bg-white text-primary px-4 py-2 rounded-lg text-sm font-bold shadow-lg hover:bg-secondary hover:text-white transition-colors flex items-center gap-2">
+                           Yol Tarifi Al <i class="ri-direction-fill"></i>
+                        </a>
+                     </div>
+                 </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-gray-900 text-white py-16">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div class="space-y-4">
+        <div class="flex items-center space-x-2">
+          <img src="c:\Users\karak\Desktop\image-removebg-preview.png" alt="Üçler Gül Logo" class="h-10 w-auto" />
+          <span class="font-['Pacifico'] text-2xl" style="color:#919ea4;">Üçler Gül</span>
+        </div>
+        <p class="text-gray-400">
+          25 yıldır lüks mücevher sektöründe güvenilir adres. Kalite ve zarafeti bir araya getiren özel tasarımlar.
+        </p>
+        <div class="flex space-x-4">
+          <div class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition-colors cursor-pointer">
+            <i class="ri-facebook-fill"></i>
+          </div>
+          <div class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition-colors cursor-pointer">
+            <i class="ri-instagram-line"></i>
+          </div>
+          <div class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition-colors cursor-pointer">
+            <i class="ri-twitter-fill"></i>
+          </div>
+        </div>
+      </div>
+       <div>
+        <h3 class="text-lg font-semibold mb-4">Hızlı Menü</h3>
+        <ul class="space-y-2 text-gray-400">
+          <li><a href="tekvenet.html" class="hover:text-primary transition-colors">Ana Sayfa</a></li>
+          <li><a href="hakkimizda.html" class="hover:text-primary transition-colors">Hakkımızda</a></li>
+          <li><a href="ürünler.html" class="hover:text-primary transition-colors">Ürünler</a></li>
+          <li><a href="magazalarimiz.html" class="hover:text-primary transition-colors">Mağazalarımız</a></li>
+          <li><a href="tekvenet.html?section=footer-contact" class="hover:text-primary transition-colors">İletişim</a></li>
+        </ul>
+      </div>
+    
+      <div>
+        <h3 class="text-lg font-semibold mb-4">Hizmetler</h3>
+        <ul class="space-y-2 text-gray-400">
+        <li><a href="#" class="hover:text-primary transition-colors">Özel Tasarım</a></li>
+        <li><a href="#" class="hover:text-primary transition-colors">Onarım Hizmeti</a></li>
+        <li><a href="#" class="hover:text-primary transition-colors">Değerlendirme</a></li>
+        <li><a href="#" class="hover:text-primary transition-colors">Sigorta</a></li>
+        <li><a href="#" class="hover:text-primary transition-colors">Garanti</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-lg font-semibold mb-4">İletişim Merkez</h3>
+        <ul class="space-y-2 text-gray-400">
+          <li class="flex items-center space-x-2">
+          <div class="w-4 h-4 flex items-center justify-center">
+          <i class="ri-map-pin-line"></i>
+          </div>
+          <span>Gökçek, 250.Cd. No: 15/c,Sincan/Ankara </span>
+          </li>
+          <li class="flex items-center space-x-2">
+          <div class="w-4 h-4 flex items-center justify-center">
+          <i class="ri-phone-line"></i>
+          </div>
+          <span>+90 551 098 49 17</span>
+          </li>
+          <li class="flex items-center space-x-2">
+          <div class="w-4 h-4 flex items-center justify-center">
+          <i class="ri-mail-line"></i>
+          </div>
+          <span>info@uclergukuyumculuk.com</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+    <p>&copy; 2025 ÜÇLER GÜL. Tüm hakları saklıdır.</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

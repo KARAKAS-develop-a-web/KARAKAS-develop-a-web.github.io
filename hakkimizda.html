@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Üçler Gül Kuyumculuk - Ankara'da 20+ yıllık deneyim, güven ve zarafet ile hizmetinizdeyiz.">
+    <meta name="theme-color" content="#919ea4">
+    <title>Hakkımızda | Üçler Gül Kuyumculuk</title>
+    <link rel="icon" type="image/png" href="c:/Users/karak/Downloads/Adsız tasarım (5).png" />
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+        tailwind.config={
+            theme:{
+                extend:{
+                    colors:{
+                        primary:'#919ea4',
+                        secondary:'#D4AF37',
+                        accent:'#3a5ba0',
+                        dark:'#1a1a1a',
+                    },
+                    borderRadius:{
+                        'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'
+                    },
+                    fontFamily: {
+                        pacifico: ['Pacifico', 'cursive'],
+                        inter: ['Inter', 'sans-serif'],
+                        poppins: ['Poppins', 'sans-serif'],
+                        montserrat: ['Montserrat', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'premium': '0 10px 30px rgba(145, 158, 164, 0.15)',
+                        'premium-hover': '0 20px 40px rgba(145, 158, 164, 0.2)',
+                        'glow': '0 0 20px rgba(212, 175, 55, 0.3)',
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+</head>
+<body class="bg-white font-inter text-gray-800" onload="AOS.init({duration: 1000, once: true})">
+    <!-- Header & Navigation -->
+    <header class="bg-primary text-white">
+        <div class="flex items-center justify-between px-4 py-1 topbar-small font-inter tracking-wide">
+            <div class="flex items-center">
+                <i class="ri-map-pin-line text-xs mr-1"></i>
+                <span class="text-xs md:text-sm">Gökçek, 250.Cd. No: 15/c,Sincan/Ankara</span>
+            </div>
+            <a href="tel:+903121234567" class="flex items-center cursor-pointer hover:text-secondary transition-colors text-xs md:text-sm">
+                <i class="ri-phone-line mr-2"></i>
+                <span>+90 312 123 45 67</span>
+            </a>
+        </div>
+    </header>
+
+    <nav class="py-4 px-4 md:px-8 border-b shadow-sm sticky top-0 z-50 transition-all duration-300 bg-white/90 backdrop-blur-xl">
+        <div class="container mx-auto flex items-center justify-between">
+            <!-- Logo -->
+            <a href="tekvenet.html" class="flex items-center group">
+                <img src="c:/Users/karak/Downloads/Adsız tasarım (5).png" alt="Logo" class="h-10 md:h-12 w-auto mr-3 transition-transform group-hover:scale-105" />
+                <div class="flex flex-col">
+                    <span class="text-xl md:text-2xl font-montserrat text-primary font-bold tracking-tight">Üçler Gül</span>
+                    <span class="font-pacifico text-xs text-primary hidden md:block">Yüzünüz hep <span class="text-secondary">gül</span>sün diye</span>
+                </div>
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="tekvenet.html" class="text-gray-600 hover:text-primary font-medium transition-colors">Ana Sayfa</a>
+                <a href="hakkimizda.html" class="text-primary border-b-2 border-primary font-medium">Hakkımızda</a>
+                <a href="ürünler.html" class="text-gray-600 hover:text-primary font-medium transition-colors">Ürünler</a>
+                <a href="#" class="text-gray-600 hover:text-primary font-medium transition-colors">Mağazalarımız</a>
+                <a href="#" class="text-gray-600 hover:text-primary font-medium transition-colors">İletişim</a>
+            </div>
+
+            <!-- Icons -->
+            <div class="flex items-center gap-4">
+                <button onclick="window.location.href='favoriler.html'" class="relative hover:text-primary transition-colors hover:scale-110 transform" title="Favoriler">
+                    <i class="ri-heart-line text-2xl"></i>
+                    <span id="favCount" class="absolute -top-2 -right-2 bg-secondary text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full opacity-0 transition-opacity">0</span>
+                </button>
+                <div class="relative group cursor-pointer" onclick="toggleCartDrawer()">
+                    <i class="ri-shopping-bag-line text-2xl hover:text-primary transition-colors"></i>
+                    <span id="cartCount" class="absolute -top-2 -right-2 bg-primary text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full opacity-0 transition-opacity">0</span>
+                </div>
+                <!-- Mobile Menu Button -->
+                <button onclick="toggleMobileMenu()" class="md:hidden text-2xl text-primary focus:outline-none">
+                    <i class="ri-menu-line"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-white border-t border-gray-100 shadow-lg py-4 px-4 flex-col gap-4 animate-fade-in-down">
+            <a href="tekvenet.html" class="text-gray-700 hover:text-primary font-medium py-2 border-b border-gray-50 block">Ana Sayfa</a>
+            <a href="hakkimizda.html" class="text-primary font-medium py-2 border-b border-gray-50 block">Hakkımızda</a>
+            <a href="ürünler.html" class="text-gray-700 hover:text-primary font-medium py-2 border-b border-gray-50 block">Ürünler</a>
+            <a href="magazalarimiz.html" class="text-gray-700 hover:text-primary font-medium py-2 border-b border-gray-50 block">Mağazalarımız</a>
+            <a href="iletisim.html" class="text-gray-700 hover:text-primary font-medium py-2 block">İletişim</a>
+        </div>
+    </nav>
+
+    <script>
+    function toggleMobileMenu() {
+        const menu = document.getElementById('mobile-menu');
+        menu.classList.toggle('hidden');
+        menu.classList.toggle('flex');
+    }
+    </script>
+
+<!-- Cart Drawer -->
+<div id="cartDrawerBackdrop" onclick="toggleCartDrawer()" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[90] hidden transition-opacity opacity-0"></div>
+<div id="cartDrawer" class="fixed top-0 right-0 h-full w-full max-w-sm bg-white shadow-2xl z-[100] transform translate-x-full transition-transform duration-300 flex flex-col font-inter">
+    <div class="p-5 border-b border-gray-100 flex items-center justify-between bg-gray-50/50">
+        <h2 class="font-bold text-lg text-gray-800 flex items-center gap-2">
+            <i class="ri-shopping-bag-3-line"></i> Sepetim
+        </h2>
+        <button onclick="toggleCartDrawer()" class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-white hover:shadow-sm text-gray-500 hover:text-red-500 transition-all">
+            <i class="ri-close-line text-xl"></i>
+        </button>
+    </div>
+    
+    <div id="cartItemsContainer" class="flex-1 overflow-y-auto p-5 space-y-4">
+        <!-- Items injected via JS -->
+    </div>
+    
+    <div class="p-5 border-t border-gray-100 bg-gray-50/30">
+        <div class="flex justify-between items-center mb-4">
+            <span class="text-gray-500 text-sm">Toplam Tutar</span>
+            <span class="text-xl font-bold text-primary font-montserrat" id="cartTotal">0 ₺</span>
+        </div>
+        <button onclick="checkout()" class="w-full py-3 bg-gray-900 text-white rounded-xl font-bold hover:bg-black transition-colors shadow-lg shadow-gray-200 flex items-center justify-center gap-2">
+            Sepeti Onayla <i class="ri-arrow-right-line"></i>
+        </button>
+    </div>
+</div>
+
+<!-- Toast -->
+<div id="toast" class="fixed top-5 right-5 z-[200] transform transition-all duration-300 translate-x-full opacity-0">
+    <div class="bg-white border-l-4 border-secondary shadow-2xl rounded-lg p-4 flex items-center gap-3">
+        <div class="bg-green-100 rounded-full p-2 text-green-600"><i class="ri-check-line"></i></div>
+        <div class="text-sm"><span class="font-bold block">Bilgi</span><span id="toastMsg"></span></div>
+    </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+       updateBadges(); 
+  });
+
+  function updateBadges() {
+      const favsRaw = localStorage.getItem('favorites');
+      const cartRaw = localStorage.getItem('cart');
+      const favs = favsRaw ? JSON.parse(favsRaw) : [];
+      const cart = cartRaw ? JSON.parse(cartRaw) : [];
+      
+      const favCount = document.getElementById('favCount');
+      const cartCount = document.getElementById('cartCount');
+      
+      if(favCount) {
+          favCount.innerText = favs.length;
+          favCount.classList.toggle('opacity-0', favs.length === 0);
+      }
+      if(cartCount) {
+          cartCount.innerText = cart.length;
+          cartCount.classList.toggle('opacity-0', cart.length === 0);
+      }
+  }
+
+  function toggleCartDrawer() {
+      const drawer = document.getElementById('cartDrawer');
+      const backdrop = document.getElementById('cartDrawerBackdrop');
+      const isHidden = drawer.classList.contains('translate-x-full');
+      
+      if(isHidden) {
+          renderCartDrawer();
+          drawer.classList.remove('translate-x-full');
+          backdrop.classList.remove('hidden');
+          setTimeout(() => backdrop.classList.remove('opacity-0'), 10);
+          document.body.style.overflow = 'hidden';
+      } else {
+          drawer.classList.add('translate-x-full');
+          backdrop.classList.add('opacity-0');
+          setTimeout(() => backdrop.classList.add('hidden'), 300);
+          document.body.style.overflow = '';
+      }
+  }
+
+  function renderCartDrawer() {
+      let cart = [];
+      try { cart = JSON.parse(localStorage.getItem('cart')) || []; } catch(e){ cart = []; }
+
+      const container = document.getElementById('cartItemsContainer');
+      const totalEl = document.getElementById('cartTotal');
+
+      if(cart.length === 0) {
+          container.innerHTML = `
+              <div class="h-full flex flex-col items-center justify-center text-gray-400">
+                  <i class="ri-shopping-cart-line text-4xl mb-4 opacity-30"></i>
+                  <p class="text-sm font-medium">Sepetiniz boş</p>
+                  <a href="ürünler.html" class="mt-4 text-xs text-secondary underline hover:text-yellow-600">Alışverişe Başla</a>
+              </div>`;
+          totalEl.innerText = "0 ₺";
+          return;
+      }
+
+      let total = 0;
+      container.innerHTML = cart.map((item, index) => {
+          const price = item.price || 0;
+          total += price;
+          return `
+              <div class="flex gap-3 bg-white p-3 rounded-xl border border-gray-100 shadow-sm">
+                  <img src="${item.image}" class="w-16 h-16 rounded-lg object-cover bg-gray-50 border border-gray-100">
+                  <div class="flex-1 min-w-0 flex flex-col justify-center">
+                      <h4 class="font-bold text-sm text-gray-800 truncate">${item.title}</h4>
+                      <p class="text-xs text-gray-400">${item.category || ''}</p>
+                      <p class="text-sm font-bold text-secondary mt-1">${price} ₺</p>
+                  </div>
+                  <button onclick="removeFromCart(${index})" class="text-gray-300 hover:text-red-500 transition-colors px-2">
+                      <i class="ri-delete-bin-line"></i>
+                  </button>
+              </div>
+          `;
+      }).join('');
+
+      totalEl.innerText = total + " ₺";
+  }
+
+  function removeFromCart(index) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cart.splice(index, 1);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      renderCartDrawer();
+      updateBadges();
+  }
+
+  function checkout() {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      if(cart.length === 0) {
+          showToast('Sepetiniz boş!');
+          return;
+      }
+      if(confirm('Sepeti onaylıyor musunuz? (Demo)')) {
+          localStorage.setItem('cart', '[]');
+          renderCartDrawer();
+          updateBadges();
+          toggleCartDrawer();
+          showToast('Siparişiniz alındı!');
+      }
+  }
+
+  function showToast(msg) {
+      const toast = document.getElementById('toast');
+      if(!toast) return;
+      document.getElementById('toastMsg').innerText = msg;
+      toast.classList.remove('translate-x-full', 'opacity-0');
+      setTimeout(() => toast.classList.add('translate-x-full', 'opacity-0'), 2500);
+  }
+</script>
+    <!-- Modern Hero Section - Gradient & Efektler -->
+    <section class="w-full relative overflow-hidden pt-8 pb-12 md:pt-12 md:pb-16" style="min-height: 90vh;">
+        <!-- Arka plan: Çoklu gradient katmanlar -->
+        <div class="absolute inset-0 z-0">
+            <!-- Ana gradient -->
+            <div class="absolute inset-0 bg-gradient-to-br from-primary/20 via-white to-secondary/10"></div>
+            
+            <!-- Dekoratif şekiller - Subtle Blur efektler -->
+            <div class="absolute top-10 left-0 w-80 h-80 bg-gradient-to-br from-primary/8 to-primary/4 rounded-full blur-3xl -translate-x-1/2" style="animation: float 6s ease-in-out infinite;"></div>
+            <div class="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-secondary/6 to-primary/4 rounded-full blur-3xl translate-x-1/3 translate-y-1/3" style="animation: float 8s ease-in-out infinite 1s;"></div>
+            
+            <!-- Animated lines -->
+            <svg class="absolute w-full h-full opacity-5" viewBox="0 0 1200 800" preserveAspectRatio="none">
+                <defs>
+                    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" stroke-width="0.5"/>
+                    </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#grid)" class="text-primary"/>
+            </svg>
+
+            <style>
+                @keyframes float {
+                    0%, 100% { transform: translateY(0px); }
+                    50% { transform: translateY(-20px); }
+                }
+                @keyframes slideInLeft {
+                    from { opacity: 0; transform: translateX(-50px); }
+                    to { opacity: 1; transform: translateX(0); }
+                }
+                @keyframes slideInRight {
+                    from { opacity: 0; transform: translateX(50px); }
+                    to { opacity: 1; transform: translateX(0); }
+                }
+                @keyframes countUp {
+                    from { opacity: 0; transform: scale(0.8); }
+                    to { opacity: 1; transform: scale(1); }
+                }
+                .hero-content {
+                    animation: slideInLeft 0.8s ease-out;
+                }
+            </style>
+        </div>
+
+        <!-- İçerik Container -->
+        <div class="container mx-auto px-4 md:px-8 relative z-10 flex flex-col items-center justify-start pt-8 md:pt-12">
+            <!-- Dekoratif üst badge -->
+            <div class="mb-6" data-aos="zoom-in">
+                <div class="inline-flex items-center gap-2 px-4 py-2 bg-white/40 backdrop-blur-md rounded-full border border-white/50 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                    <span class="inline-block w-2 h-2 bg-secondary rounded-full animate-pulse"></span>
+                    <span class="text-primary font-semibold text-sm tracking-wide">20+ Yıllık Deneyim</span>
+                </div>
+            </div>
+
+            <!-- Ana Başlık -->
+            <h1 class="font-montserrat text-5xl md:text-7xl lg:text-8xl font-light mb-4 tracking-wide leading-tight text-center text-primary hero-content" data-aos="fade-up">
+                <span class="inline-block">Hakkımızda</span>
+            </h1>
+
+            <!-- Alt Başlık -->
+            <div class="max-w-2xl mb-6" data-aos="fade-up" data-aos-delay="100">
+                <h2 class="font-inter text-lg md:text-2xl font-normal text-center tracking-wide mb-3">
+                    <span class="text-secondary font-semibold">Güven</span>, <span class="text-primary font-semibold">zarafet</span> ve <span class="text-accent font-semibold">inovasyon</span>
+                </h2>
+                <div class="h-1 w-16 bg-gradient-to-r from-secondary to-primary mx-auto rounded-full"></div>
+            </div>
+
+            <!-- Açıklayıcı Metin -->
+            <p class="text-gray-700 text-base md:text-lg font-inter font-medium mb-10 max-w-3xl text-center leading-relaxed" data-aos="fade-up" data-aos-delay="150">
+                Ankara'nın kalbinde, sanat ve teknolojinin birleştiği bir mekanda, müşteri memnuniyetini ön planda tutarak hizmetinizdeyiz. Her ürün, her tasarım, her gülümseme sizin için.
+            </p>
+
+            <!-- İstatistikler - Counter Cards -->
+            <div class="grid grid-cols-3 gap-4 md:gap-8 mb-10 w-full max-w-3xl" data-aos="fade-up" data-aos-delay="200">
+                <div class="text-center group cursor-pointer hover:scale-105 transition-transform duration-300">
+                    <div class="relative">
+                        <div class="absolute inset-0 bg-gradient-to-br from-secondary/20 to-primary/10 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <div class="relative text-3xl md:text-5xl font-bold text-secondary mb-2 font-montserrat counter" data-target="20" data-suffix="+">0+</div>
+                        <p class="text-xs md:text-sm text-gray-600 font-inter">Yıllık Hizmet</p>
+                    </div>
+                </div>
+                <div class="text-center group cursor-pointer hover:scale-105 transition-transform duration-300 border-l border-r border-gray-300">
+                    <div class="relative">
+                        <div class="absolute inset-0 bg-gradient-to-br from-secondary/20 to-primary/10 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <div class="relative text-3xl md:text-5xl font-bold text-secondary mb-2 font-montserrat counter" data-target="10000">0</div>
+                        <p class="text-xs md:text-sm text-gray-600 font-inter">Mutlu Müşteri</p>
+                    </div>
+                </div>
+                <div class="text-center group cursor-pointer hover:scale-105 transition-transform duration-300">
+                    <div class="relative">
+                        <div class="absolute inset-0 bg-gradient-to-br from-secondary/20 to-primary/10 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <div class="relative text-3xl md:text-5xl font-bold text-secondary mb-2 font-montserrat counter" data-target="2">0</div>
+                        <p class="text-xs md:text-sm text-gray-600 font-inter">Mağaza</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Özellikler Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-10 w-full" data-aos="fade-up" data-aos-delay="250">
+                <div class="flex flex-col items-center p-3 bg-white/30 backdrop-blur-sm rounded-lg border border-white/40 hover:bg-white/50 hover:border-secondary/30 transition-all duration-300">
+                    <i class="ri-shield-check-line text-secondary text-2xl mb-2"></i>
+                    <span class="text-xs md:text-sm font-semibold text-primary text-center">Güvenilir</span>
+                </div>
+                <div class="flex flex-col items-center p-3 bg-white/30 backdrop-blur-sm rounded-lg border border-white/40 hover:bg-white/50 hover:border-secondary/30 transition-all duration-300">
+                    <i class="ri-star-fill text-secondary text-2xl mb-2"></i>
+                    <span class="text-xs md:text-sm font-semibold text-primary text-center">Premium</span>
+                </div>
+                <div class="flex flex-col items-center p-3 bg-white/30 backdrop-blur-sm rounded-lg border border-white/40 hover:bg-white/50 hover:border-secondary/30 transition-all duration-300">
+                    <i class="ri-team-line text-secondary text-2xl mb-2"></i>
+                    <span class="text-xs md:text-sm font-semibold text-primary text-center">Profesyonel</span>
+                </div>
+                <div class="flex flex-col items-center p-3 bg-white/30 backdrop-blur-sm rounded-lg border border-white/40 hover:bg-white/50 hover:border-secondary/30 transition-all duration-300">
+                    <i class="ri-customer-service-2-line text-secondary text-2xl mb-2"></i>
+                    <span class="text-xs md:text-sm font-semibold text-primary text-center">Destek</span>
+                </div>
+            </div>
+
+            <!-- CTA Butonları -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center mb-10" data-aos="fade-up" data-aos-delay="300">
+                <a href="#" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-secondary to-secondary/80 text-white font-semibold rounded-full hover:from-secondary/90 hover:to-secondary/70 transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1 group">
+                    <span>İletişime Geçin</span>
+                    <i class="ri-arrow-right-line group-hover:translate-x-1 transition-transform duration-300"></i>
+                </a>
+                <a href="#" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/30 backdrop-blur-md text-primary font-semibold rounded-full border border-primary/30 hover:bg-white/50 hover:border-primary/50 transition-all duration-300 shadow-lg group">
+                    <i class="ri-play-circle-line group-hover:scale-110 transition-transform duration-300"></i>
+                    <span>Video Izle</span>
+                </a>
+            </div>
+
+            <!-- Scroll İndikatörü -->
+            <div class="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 animate-bounce" data-aos="fade-up" data-aos-delay="400">
+                <div class="flex flex-col items-center gap-2 cursor-pointer hover:opacity-70 transition-opacity" onclick="document.querySelector('section:nth-of-type(2)').scrollIntoView({behavior: 'smooth'});">
+                    <span class="text-xs md:text-sm text-gray-500 font-inter tracking-wider">KAYDIRIN</span>
+                    <svg class="w-5 h-5 text-secondary animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="animation: bounce 2s infinite;">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Neden Bizi Seçmelisiniz Section -->
+    <section class="py-20 md:py-28 bg-gradient-to-br from-white via-gray-50/50 to-primary/8 relative overflow-hidden">
+        <!-- Dekoratif arka plan -->
+        <div class="absolute top-0 right-0 w-80 h-80 bg-secondary/5 rounded-full blur-3xl -translate-y-1/2"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl translate-y-1/2"></div>
+        
+        <div class="container mx-auto px-4 md:px-8 relative z-10">
+            <div class="text-center mb-16" data-aos="zoom-in">
+                <div class="inline-block px-4 py-2 bg-secondary/15 rounded-full mb-4">
+                    <span class="text-secondary font-bold text-xs tracking-widest uppercase">Neden Bizi Seçin</span>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold text-primary mb-4 font-montserrat tracking-tight">Neden Bizi Seçmelisiniz?</h2>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto font-inter">Sektörde lider konumumuzun altında yatan temel değerleri keşfedin</p>
+                <div class="w-20 h-1 bg-gradient-to-r from-secondary to-primary mx-auto rounded-full mt-6"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="group relative" data-aos="fade-up">
+                    <div class="absolute -inset-0.5 bg-gradient-to-r from-secondary/30 to-primary/30 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                    <div class="relative bg-white/60 backdrop-blur-lg rounded-2xl p-8 border border-white/50 shadow-premium hover:shadow-premium-hover transition-all duration-300 hover:-translate-y-2">
+                        <div class="w-14 h-14 bg-gradient-to-br from-secondary to-primary/60 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                            <i class="ri-shield-check-line text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-primary mb-3 font-montserrat">Güvenilir Hizmet</h3>
+                        <p class="text-gray-700 font-inter text-sm leading-relaxed">20+ yıllık deneyimi ile müşteri güvenini kazanmış, sertifikalı ve güvenilir hizmet sunuyoruz.</p>
+                        <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-secondary to-transparent rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
+                    </div>
+                </div>
+                <div class="group relative" data-aos="fade-up" data-aos-delay="100">
+                    <div class="absolute -inset-0.5 bg-gradient-to-r from-secondary/30 to-primary/30 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                    <div class="relative bg-white/60 backdrop-blur-lg rounded-2xl p-8 border border-white/50 shadow-premium hover:shadow-premium-hover transition-all duration-300 hover:-translate-y-2">
+                        <div class="w-14 h-14 bg-gradient-to-br from-secondary to-primary/60 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                            <i class="ri-gemini-line text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-primary mb-3 font-montserrat">Modern Koleksiyonlar</h3>
+                        <p class="text-gray-700 font-inter text-sm leading-relaxed">En güncel tasarımlar ve seçkin koleksiyonlarla sizin beğeninize uygun ürünler bulunur.</p>
+                        <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-secondary to-transparent rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
+                    </div>
+                </div>
+                <div class="group relative" data-aos="fade-up" data-aos-delay="200">
+                    <div class="absolute -inset-0.5 bg-gradient-to-r from-secondary/30 to-primary/30 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                    <div class="relative bg-white/60 backdrop-blur-lg rounded-2xl p-8 border border-white/50 shadow-premium hover:shadow-premium-hover transition-all duration-300 hover:-translate-y-2">
+                        <div class="w-14 h-14 bg-gradient-to-br from-secondary to-primary/60 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                            <i class="ri-user-heart-line text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-primary mb-3 font-montserrat">Müşteri Memnuniyeti</h3>
+                        <p class="text-gray-700 font-inter text-sm leading-relaxed">Her müşterimiz bizim için önemli, kişiye özel hizmet ve destek sağlıyoruz.</p>
+                        <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-secondary to-transparent rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Değerlerimiz Section -->
+    <section class="py-24 bg-gradient-to-br from-white via-primary/5 to-secondary/5 relative overflow-hidden">
+        <!-- Dekoratif arka plan -->
+        <div class="absolute inset-0 opacity-40">
+            <div class="absolute top-0 left-1/4 w-96 h-96 bg-secondary/10 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 md:px-8 relative z-10">
+            <div class="text-center mb-20" data-aos="zoom-in">
+                <div class="inline-block px-4 py-2 bg-primary/15 rounded-full mb-4">
+                    <span class="text-primary font-bold text-xs tracking-widest uppercase">Değerlerimiz</span>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold text-primary mb-4 font-montserrat tracking-tight">Temel Değerlerimiz</h2>
+                <p class="text-gray-600 font-inter text-lg max-w-2xl mx-auto">Ülkemizde kuyumculuk sektöründe yaşayan, büyüyen ve gelişen değerlerimiz</p>
+                <div class="w-20 h-1 bg-gradient-to-r from-secondary to-primary mx-auto rounded-full mt-6"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="group text-center" data-aos="fade-up">
+                    <div class="bg-gradient-to-br from-secondary to-primary/40 rounded-full w-24 h-24 flex items-center justify-center mx-auto mb-6 shadow-premium group-hover:shadow-glow transition-all duration-300 group-hover:scale-110">
+                        <i class="ri-star-fill text-white text-4xl"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-primary mb-3 font-montserrat">Kalite</h4>
+                    <p class="text-gray-600 font-inter text-sm leading-relaxed">En iyi malzemeleri seçerek en yüksek kaliteyi sunuyoruz</p>
+                </div>
+                <div class="group text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="bg-gradient-to-br from-primary to-secondary/40 rounded-full w-24 h-24 flex items-center justify-center mx-auto mb-6 shadow-premium group-hover:shadow-glow transition-all duration-300 group-hover:scale-110">
+                        <i class="ri-hand-heart-line text-white text-4xl"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-primary mb-3 font-montserrat">Güven</h4>
+                    <p class="text-gray-600 font-inter text-sm leading-relaxed">Müşteri güvenini en önemli değer olarak görüyoruz</p>
+                </div>
+                <div class="group text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="bg-gradient-to-br from-secondary to-accent/40 rounded-full w-24 h-24 flex items-center justify-center mx-auto mb-6 shadow-premium group-hover:shadow-glow transition-all duration-300 group-hover:scale-110">
+                        <i class="ri-lightbulb-flash-line text-white text-4xl"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-primary mb-3 font-montserrat">İnovasyon</h4>
+                    <p class="text-gray-600 font-inter text-sm leading-relaxed">Çağdaş tasarımlarla sektörde yenilikçi oluyoruz</p>
+                </div>
+                <div class="group text-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="bg-gradient-to-br from-primary/60 to-secondary rounded-full w-24 h-24 flex items-center justify-center mx-auto mb-6 shadow-premium group-hover:shadow-glow transition-all duration-300 group-hover:scale-110">
+                        <i class="ri-emotion-smile-line text-white text-4xl"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-primary mb-3 font-montserrat">Memnuniyet</h4>
+                    <p class="text-gray-600 font-inter text-sm leading-relaxed">Müşteri memnuniyeti hedefimizin merkezinde</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ekibimiz Section -->
+    <section class="py-24 bg-gradient-to-r from-white via-primary/5 to-secondary/5 relative overflow-hidden">
+        <!-- Dekoratif arka plan -->
+        <div class="absolute top-0 right-0 w-96 h-96 bg-secondary/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
+        
+        <div class="container mx-auto px-4 md:px-8 flex flex-col md:flex-row-reverse items-center gap-16 relative z-10">
+            <div class="flex-1 flex flex-col items-center" data-aos="fade-left">
+                <div class="relative group w-full max-w-md mx-auto">
+                    <div class="absolute -inset-2 bg-gradient-to-r from-secondary to-primary rounded-3xl blur-xl opacity-60 group-hover:opacity-100 transition duration-500"></div>
+                    <img src="c:\Users\karak\Desktop\Magaza-UCLER-kuyumculu-compressor.png" alt="Ekibimiz" class="relative rounded-3xl shadow-2xl w-full transition-transform duration-500 group-hover:scale-105 border-4 border-white">
+                    <div class="absolute -top-8 -right-8 bg-gradient-to-br from-secondary via-secondary to-primary text-white rounded-full p-6 shadow-2xl text-4xl animate-bounce border-4 border-white">
+                        <i class="ri-team-line"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="flex-1" data-aos="fade-right">
+                <div class="inline-block px-4 py-2 bg-secondary/15 rounded-full mb-4">
+                    <span class="text-secondary font-bold text-xs tracking-widest uppercase">Takımımız</span>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold text-primary mb-4 font-montserrat flex items-center gap-3 tracking-tight">
+                    <span class="text-secondary"><i class="ri-user-smile-line"></i></span> Ekibimiz
+                </h2>
+                <p class="text-lg text-gray-700 mb-8 font-inter leading-relaxed">
+                    Alanında uzman, güler yüzlü ve dinamik bir ekip.<br> Her zaman güvenilir ve samimi hizmet sunmak için çalışırız.
+                </p>
+                <div class="space-y-4">
+                    <div class="group flex items-center gap-4 p-4 bg-white/60 backdrop-blur-lg rounded-xl border border-white/50 hover:border-secondary/30 hover:bg-white/80 transition-all duration-300 shadow-premium hover:shadow-premium-hover">
+                        <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-secondary to-primary rounded-full flex items-center justify-center">
+                            <i class="ri-checkbox-circle-fill text-white text-lg"></i>
+                        </div>
+                        <span class="text-primary font-inter font-medium text-sm md:text-base">Sektörde deneyimli ve eğitimli uzman kadro</span>
+                    </div>
+                    <div class="group flex items-center gap-4 p-4 bg-white/60 backdrop-blur-lg rounded-xl border border-white/50 hover:border-secondary/30 hover:bg-white/80 transition-all duration-300 shadow-premium hover:shadow-premium-hover">
+                        <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-secondary to-primary rounded-full flex items-center justify-center">
+                            <i class="ri-checkbox-circle-fill text-white text-lg"></i>
+                        </div>
+                        <span class="text-primary font-inter font-medium text-sm md:text-base">Sıcak ve kişisel iletişim tarzı</span>
+                    </div>
+                    <div class="group flex items-center gap-4 p-4 bg-white/60 backdrop-blur-lg rounded-xl border border-white/50 hover:border-secondary/30 hover:bg-white/80 transition-all duration-300 shadow-premium hover:shadow-premium-hover">
+                        <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-secondary to-primary rounded-full flex items-center justify-center">
+                            <i class="ri-checkbox-circle-fill text-white text-lg"></i>
+                        </div>
+                        <span class="text-primary font-inter font-medium text-sm md:text-base">Her müşteri için dinamik ve özel yaklaşım</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Başarılarımız Section -->
+    <section class="py-24 bg-gradient-to-br from-white via-gray-50 to-secondary/8 relative overflow-hidden border-t border-gray-100">
+        <!-- Dekoratif arka plan -->
+        <div class="absolute top-0 left-1/4 w-96 h-96 bg-secondary/15 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-primary/15 rounded-full blur-3xl"></div>
+        
+        <div class="container mx-auto px-4 md:px-8 relative z-10">
+            <div class="flex flex-col items-center text-center mb-20" data-aos="zoom-in">
+                <div class="inline-block px-4 py-2 bg-secondary/15 rounded-full mb-4">
+                    <span class="text-secondary font-bold text-xs tracking-widest uppercase">Başarılarımız</span>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold text-primary mb-4 font-montserrat flex items-center gap-3 tracking-tight justify-center">
+                    <span class="text-secondary"><i class="ri-trophy-line"></i></span> Başarılarımız
+                </h2>
+                <p class="text-lg text-gray-600 font-inter leading-relaxed max-w-2xl mx-auto">
+                    Yıllar içinde kazandığımız ödüller ve müşteri memnuniyetiyle sektörde öncü olmanın gururunu yaşıyoruz.
+                </p>
+                <div class="w-20 h-1 bg-gradient-to-r from-secondary to-primary mx-auto rounded-full mt-6"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-5xl mx-auto">
+                <div class="group relative" data-aos="fade-up">
+                    <div class="absolute -inset-0.5 bg-gradient-to-r from-secondary/40 to-primary/30 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                    <div class="relative bg-gradient-to-br from-white/80 to-primary/5 backdrop-blur-sm rounded-2xl shadow-premium hover:shadow-premium-hover p-10 flex flex-col items-center border border-white/50 transition-all duration-300 hover:-translate-y-2">
+                        <div class="w-16 h-16 bg-gradient-to-br from-secondary to-primary/50 rounded-full flex items-center justify-center mb-6 shadow-glow group-hover:scale-110 transition-transform duration-300">
+                            <i class="ri-award-line text-white text-4xl"></i>
+                        </div>
+                        <h3 class="text-3xl font-bold text-secondary mb-3 font-montserrat">5+</h3>
+                        <p class="text-primary font-semibold mb-2 text-lg">Sektör Ödülü</p>
+                        <p class="text-gray-600 font-inter text-sm text-center">Kalite ve güvende kazandığımız sektör ödülleri</p>
+                    </div>
+                </div>
+                <div class="group relative" data-aos="fade-up" data-aos-delay="100">
+                    <div class="absolute -inset-0.5 bg-gradient-to-r from-secondary/40 to-primary/30 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                    <div class="relative bg-gradient-to-br from-white/80 to-secondary/5 backdrop-blur-sm rounded-2xl shadow-premium hover:shadow-premium-hover p-10 flex flex-col items-center border border-white/50 transition-all duration-300 hover:-translate-y-2">
+                        <div class="w-16 h-16 bg-gradient-to-br from-secondary to-primary/50 rounded-full flex items-center justify-center mb-6 shadow-glow group-hover:scale-110 transition-transform duration-300">
+                            <i class="ri-user-star-line text-white text-4xl"></i>
+                        </div>
+                        <h3 class="text-3xl font-bold text-secondary mb-3 font-montserrat">10K+</h3>
+                        <p class="text-primary font-semibold mb-2 text-lg">Mutlu Müşteri</p>
+                        <p class="text-gray-600 font-inter text-sm text-center">Yüksek müşteri memnuniyeti ve sadakati</p>
+                    </div>
+                </div>
+                <div class="group relative" data-aos="fade-up" data-aos-delay="200">
+                    <div class="absolute -inset-0.5 bg-gradient-to-r from-secondary/40 to-primary/30 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                    <div class="relative bg-gradient-to-br from-white/80 to-accent/5 backdrop-blur-sm rounded-2xl shadow-premium hover:shadow-premium-hover p-10 flex flex-col items-center border border-white/50 transition-all duration-300 hover:-translate-y-2">
+                        <div class="w-16 h-16 bg-gradient-to-br from-secondary to-primary/50 rounded-full flex items-center justify-center mb-6 shadow-glow group-hover:scale-110 transition-transform duration-300">
+                            <i class="ri-store-2-line text-white text-4xl"></i>
+                        </div>
+                        <h3 class="text-3xl font-bold text-secondary mb-3 font-montserrat">2</h3>
+                        <p class="text-primary font-semibold mb-2 text-lg">Mağaza</p>
+                        <p class="text-gray-600 font-inter text-sm text-center">Ankara'da iki ayrı lokasyonda hizmet</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- İletişim CTA Section -->
+    <section class="py-20 bg-gradient-to-r from-primary via-secondary/20 to-primary relative overflow-hidden">
+        <!-- Dekoratif arka plan -->
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 md:px-8 text-center relative z-10" data-aos="zoom-in">
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-4 font-montserrat">Bize Ulaşın</h2>
+            <p class="text-white/90 text-lg md:text-xl mb-10 max-w-2xl mx-auto font-inter leading-relaxed">
+                Hakkımız hakkında daha fazla bilgi almak veya sorularınız varsa, lütfen bizimle iletişime geçin. Ekibimiz size yardımcı olmaktan mutlu olacak.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-primary font-semibold rounded-full hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1 group">
+                    <i class="ri-mail-line group-hover:scale-110 transition-transform duration-300"></i> E-posta Gönder
+                </a>
+                <a href="#" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/20 text-white font-semibold rounded-full border border-white hover:bg-white/30 transition-all duration-300 backdrop-blur-sm group">
+                    <i class="ri-phone-line group-hover:scale-110 transition-transform duration-300"></i> Ara
+                </a>
+            </div>
+        </div>
+    </section>
+
+<!-- Footer -->
+<footer class="bg-gray-900 text-white py-16" style="z-index:-5;">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div class="space-y-4">
+        <div class="flex items-center space-x-2">
+          <img src="c:\Users\karak\Desktop\image-removebg-preview.png" alt="Üçler Gül Logo" class="h-10 w-auto" />
+          <span class="font-['Pacifico'] text-2xl" style="color:#919ea4;">Üçler Gül</span>
+        </div>
+        <p class="text-gray-400">
+          25 yıldır lüks mücevher sektöründe güvenilir adres. Kalite ve zarafeti bir araya getiren özel tasarımlar.
+        </p>
+        <div class="flex space-x-4">
+          <div class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition-colors cursor-pointer">
+            <i class="ri-facebook-fill"></i>
+          </div>
+          <div class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition-colors cursor-pointer">
+            <i class="ri-instagram-line"></i>
+          </div>
+          <div class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition-colors cursor-pointer">
+            <i class="ri-twitter-fill"></i>
+          </div>
+        </div>
+      </div>
+      <div>
+<h3 class="text-lg font-semibold mb-4">Kategoriler</h3>
+<ul class="space-y-2 text-gray-400">
+<li><a href="#" class="hover:text-primary transition-colors">Yüzükler</a></li>
+<li><a href="#" class="hover:text-primary transition-colors">Kolyeler</a></li>
+<li><a href="#" class="hover:text-primary transition-colors">Küpeler</a></li>
+<li><a href="#" class="hover:text-primary transition-colors">Bilezikler</a></li>
+<li><a href="#" class="hover:text-primary transition-colors">Özel Tasarım</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-lg font-semibold mb-4">Hizmetler</h3>
+<ul class="space-y-2 text-gray-400">
+<li><a href="#" class="hover:text-primary transition-colors">Özel Tasarım</a></li>
+<li><a href="#" class="hover:text-primary transition-colors">Onarım Hizmeti</a></li>
+<li><a href="#" class="hover:text-primary transition-colors">Değerlendirme</a></li>
+<li><a href="#" class="hover:text-primary transition-colors">Sigorta</a></li>
+<li><a href="#" class="hover:text-primary transition-colors">Garanti</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-lg font-semibold mb-4">İletişim</h3>
+<ul class="space-y-2 text-gray-400">
+<li class="flex items-center space-x-2">
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-map-pin-line"></i>
+</div>
+<span>
+Gökçek, 250.Cd. No: 15/c,Sincan/Ankara </span>
+
+</li>
+<li class="flex items-center space-x-2">
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-phone-line"></i>
+</div>
+<span>+90 551 098 49 17</span>
+</li>
+<li class="flex items-center space-x-2">
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-mail-line"></i>
+</div>
+<span>info@uclergukuyumculuk.com</span>
+</li>
+<li class="flex items-center space-x-2">
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-time-line"></i>
+</div>
+<span>09:00 - 19:00</span>
+</li>
+</ul>
+</div>
+</div>
+<div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+<p>&copy; 2025 ÜÇLER GÜL. Tüm hakları saklıdır.</p>
+<p class="text-sm mt-2">Powered by <span class="text-primary font-semibold">BKtasar</span></p>
+</div>
+</div>
+
+</footer>
+    <script>
+        AOS.init({duration: 1000, once: true});
+
+        // Counter Animation
+        const counters = document.querySelectorAll('.counter');
+        let hasAnimated = false;
+
+        function animateCounters() {
+            if (hasAnimated) return;
+            hasAnimated = true;
+
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                const suffix = counter.getAttribute('data-suffix') || '';
+                const duration = 2000; // 2 saniye
+                const increment = target / (duration / 16); // 60fps
+
+                let current = 0;
+
+                const updateCounter = () => {
+                    current += increment;
+                    
+                    if (current < target) {
+                        if (target === 10000) {
+                            counter.textContent = Math.floor(current).toLocaleString() + suffix;
+                        } else {
+                            counter.textContent = Math.floor(current) + suffix;
+                        }
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        if (target === 10000) {
+                            counter.textContent = target.toLocaleString() + suffix;
+                        } else {
+                            counter.textContent = target + suffix;
+                        }
+                    }
+                };
+
+                updateCounter();
+            });
+        }
+
+        // Intersection Observer - Sayıyıcı görünüşte başlansın
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        const counterSection = document.querySelector('.container');
+        if (counterSection) {
+            observer.observe(counterSection);
+        }
+
+        // Scroll efektleri için smooth behavior
+        document.addEventListener('DOMContentLoaded', () => {
+            // Parallax efekti opsiyonu
+            const heroShapes = document.querySelectorAll('[style*="animation"]');
+            
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                heroShapes.forEach((shape, index) => {
+                    const speed = 0.3 + (index * 0.1);
+                    shape.style.transform = `translateY(${scrolled * speed}px)`;
+                });
+            });
+        });
+    </script>
+</body>
+</html>

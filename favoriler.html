@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favorilerim | Üçler Gül Kuyumculuk</title>
+    <link rel="icon" type="image/png" href="c:/Users/karak/Downloads/Adsız tasarım (5).png" />
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+        tailwind.config={
+            theme:{
+                extend:{
+                    colors:{ primary:'#919ea4', secondary:'#D4AF37', accent:'#3a5ba0', dark:'#1a1a1a' },
+                    fontFamily: { pacifico: ['Pacifico', 'cursive'], inter: ['Inter', 'sans-serif'], montserrat: ['Montserrat', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-50 font-inter text-gray-800">
+
+    <!-- Navbar -->
+    <nav class="py-4 px-4 md:px-8 border-b shadow-sm sticky top-0 z-50 transition-all duration-300 bg-white/90 backdrop-blur-xl">
+        <div class="container mx-auto flex items-center justify-between">
+            <!-- Logo -->
+            <a href="tekvenet.html" class="flex items-center group">
+                <img src="c:/Users/karak/Downloads/Adsız tasarım (5).png" alt="Logo" class="h-10 md:h-12 w-auto mr-3 transition-transform group-hover:scale-105" />
+                <div class="flex flex-col">
+                    <span class="text-xl md:text-2xl font-montserrat text-primary font-bold tracking-tight">Üçler Gül</span>
+                    <span class="font-pacifico text-xs text-primary hidden md:block">Yüzünüz hep <span class="text-secondary">gül</span>sün diye</span>
+                </div>
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="tekvenet.html" class="text-gray-600 hover:text-primary font-medium transition-colors">Ana Sayfa</a>
+                <a href="hakkimizda.html" class="text-gray-600 hover:text-primary font-medium transition-colors">Hakkımızda</a>
+                <a href="ürünler.html" class="text-gray-600 hover:text-primary font-medium transition-colors">Ürünler</a>
+                <a href="#" class="text-gray-600 hover:text-primary font-medium transition-colors">Mağazalarımız</a>
+                <a href="#" class="text-gray-600 hover:text-primary font-medium transition-colors">İletişim</a>
+            </div>
+
+            <!-- Icons -->
+            <div class="flex items-center gap-4">
+                <button onclick="window.location.href='favoriler.html'" class="relative text-primary transition-colors transform scale-110" title="Favoriler">
+                    <i class="ri-heart-fill text-2xl"></i>
+                    <span id="favCount" class="absolute -top-2 -right-2 bg-secondary text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full opacity-0 transition-opacity">0</span>
+                </button>
+                <div class="relative group cursor-pointer hover:scale-110 transform transition-transform" onclick="toggleCartDrawer()" title="Sepet">
+                    <i class="ri-shopping-bag-line text-2xl hover:text-primary transition-colors"></i>
+                    <span id="cartCount" class="absolute -top-2 -right-2 bg-primary text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full opacity-0 transition-opacity">0</span>
+                </div>
+                <!-- Mobile Menu Button -->
+                <button onclick="toggleMobileMenu()" class="md:hidden text-2xl text-primary focus:outline-none">
+                    <i class="ri-menu-line"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-white border-t border-gray-100 shadow-lg py-4 px-4 flex-col gap-4 animate-fade-in-down">
+            <a href="tekvenet.html" class="text-gray-700 hover:text-primary font-medium py-2 border-b border-gray-50 block">Ana Sayfa</a>
+            <a href="hakkimizda.html" class="text-gray-700 hover:text-primary font-medium py-2 border-b border-gray-50 block">Hakkımızda</a>
+            <a href="ürünler.html" class="text-gray-700 hover:text-primary font-medium py-2 border-b border-gray-50 block">Ürünler</a>
+            <a href="magazalarimiz.html" class="text-gray-700 hover:text-primary font-medium py-2 border-b border-gray-50 block">Mağazalarımız</a>
+            <a href="iletisim.html" class="text-gray-700 hover:text-primary font-medium py-2 block">İletişim</a>
+        </div>
+    </nav>
+
+    <script>
+    function toggleMobileMenu() {
+        const menu = document.getElementById('mobile-menu');
+        menu.classList.toggle('hidden');
+        menu.classList.toggle('flex');
+    }
+    </script>
+    
+    <!-- Cart Drawer -->
+    <div id="cartDrawerBackdrop" onclick="toggleCartDrawer()" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[90] hidden transition-opacity opacity-0"></div>
+    <div id="cartDrawer" class="fixed top-0 right-0 h-full w-full max-w-sm bg-white shadow-2xl z-[100] transform translate-x-full transition-transform duration-300 flex flex-col font-inter">
+        <div class="p-5 border-b border-gray-100 flex items-center justify-between bg-gray-50/50">
+            <h2 class="font-bold text-lg text-gray-800 flex items-center gap-2">
+                <i class="ri-shopping-bag-3-line"></i> Sepetim
+            </h2>
+            <button onclick="toggleCartDrawer()" class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-white hover:shadow-sm text-gray-500 hover:text-red-500 transition-all">
+                <i class="ri-close-line text-xl"></i>
+            </button>
+        </div>
+        
+        <div id="cartItemsContainer" class="flex-1 overflow-y-auto p-5 space-y-4">
+            <!-- Items injected via JS -->
+        </div>
+        
+        <div class="p-5 border-t border-gray-100 bg-gray-50/30">
+            <div class="flex justify-between items-center mb-4">
+                <span class="text-gray-500 text-sm">Toplam Tutar</span>
+                <span class="text-xl font-bold text-primary font-montserrat" id="cartTotal">0 ₺</span>
+            </div>
+            <button onclick="checkout()" class="w-full py-3 bg-dark text-white rounded-xl font-bold hover:bg-black transition-colors shadow-lg shadow-gray-200 flex items-center justify-center gap-2">
+                Sepeti Onayla <i class="ri-arrow-right-line"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Content -->
+    <section class="py-12">
+        <div class="container mx-auto px-4 md:px-8">
+            <div id="favGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Injected via JS -->
+            </div>
+            <div id="emptyState" class="hidden text-center py-20">
+                <i class="ri-heart-line text-6xl text-gray-200 mb-4 inline-block"></i>
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Favori Listeniz Boş</h3>
+                <p class="text-gray-500 mb-6">Beğendiğiniz ürünleri kalp ikonuna tıklayarak buraya ekleyebilirsiniz.</p>
+                <a href="ürünler.html" class="bg-primary text-white px-6 py-3 rounded-lg hover:bg-gray-600 transition-colors">Ürünleri Keşfet</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Toast -->
+    <div id="toast" class="fixed top-5 right-5 z-[200] transform transition-all duration-300 translate-x-full opacity-0">
+         <div class="bg-white border-l-4 border-secondary shadow-2xl rounded-lg p-4 flex items-center gap-3">
+            <div class="bg-green-100 rounded-full p-2 text-green-600"><i class="ri-check-line"></i></div>
+            <div class="text-sm"><span class="font-bold block">Bilgi</span><span id="toastMsg"></span></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            renderFavs();
+            updateBadges();
+        });
+
+        function updateBadges() {
+            const favsRaw = localStorage.getItem('favorites');
+            const cartRaw = localStorage.getItem('cart');
+            const favs = favsRaw ? JSON.parse(favsRaw) : [];
+            const cart = cartRaw ? JSON.parse(cartRaw) : [];
+            
+            const favCount = document.getElementById('favCount');
+            const cartCount = document.getElementById('cartCount');
+            
+            if(favCount) {
+                favCount.innerText = favs.length;
+                favCount.classList.toggle('opacity-0', favs.length === 0);
+            }
+            if(cartCount) {
+                cartCount.innerText = cart.length;
+                cartCount.classList.toggle('opacity-0', cart.length === 0);
+            }
+        }
+
+        function toggleCartDrawer() {
+            const drawer = document.getElementById('cartDrawer');
+            const backdrop = document.getElementById('cartDrawerBackdrop');
+            const isHidden = drawer.classList.contains('translate-x-full');
+            
+            if(isHidden) {
+                renderCartDrawer();
+                drawer.classList.remove('translate-x-full');
+                backdrop.classList.remove('hidden');
+                setTimeout(() => backdrop.classList.remove('opacity-0'), 10);
+                document.body.style.overflow = 'hidden';
+            } else {
+                drawer.classList.add('translate-x-full');
+                backdrop.classList.add('opacity-0');
+                setTimeout(() => backdrop.classList.add('hidden'), 300);
+                document.body.style.overflow = '';
+            }
+        }
+
+        function renderCartDrawer() {
+            let cart = [];
+            try { cart = JSON.parse(localStorage.getItem('cart')) || []; } catch(e){ cart = []; }
+
+            const container = document.getElementById('cartItemsContainer');
+            const totalEl = document.getElementById('cartTotal');
+
+            if(cart.length === 0) {
+                container.innerHTML = `
+                    <div class="h-full flex flex-col items-center justify-center text-gray-400">
+                        <i class="ri-shopping-cart-line text-4xl mb-4 opacity-30"></i>
+                        <p class="text-sm font-medium">Sepetiniz boş</p>
+                        <a href="ürünler.html" class="mt-4 text-xs text-secondary underline hover:text-yellow-600">Alışverişe Başla</a>
+                    </div>`;
+                totalEl.innerText = "0 ₺";
+                return;
+            }
+
+            let total = 0;
+            container.innerHTML = cart.map((item, index) => {
+                const price = item.price || 0;
+                total += price;
+                return `
+                    <div class="flex gap-3 bg-white p-3 rounded-xl border border-gray-100 shadow-sm">
+                        <img src="${item.image}" class="w-16 h-16 rounded-lg object-cover bg-gray-50 border border-gray-100">
+                        <div class="flex-1 min-w-0 flex flex-col justify-center">
+                            <h4 class="font-bold text-sm text-gray-800 truncate">${item.title}</h4>
+                            <p class="text-xs text-gray-400">${item.category || ''}</p>
+                            <p class="text-sm font-bold text-secondary mt-1">${price} ₺</p>
+                        </div>
+                        <button onclick="removeFromCart(${index})" class="text-gray-300 hover:text-red-500 transition-colors px-2">
+                            <i class="ri-delete-bin-line"></i>
+                        </button>
+                    </div>
+                `;
+            }).join('');
+
+            totalEl.innerText = total + " ₺";
+        }
+
+        function removeFromCart(index) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            renderCartDrawer();
+            updateBadges();
+        }
+
+        function checkout() {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            if(cart.length === 0) {
+                showToast('Sepetiniz boş!');
+                return;
+            }
+            if(confirm('Sepeti onaylıyor musunuz? (Demo)')) {
+                localStorage.setItem('cart', '[]');
+                renderCartDrawer();
+                updateBadges();
+                toggleCartDrawer();
+                showToast('Siparişiniz alındı!');
+            }
+        }
+
+        function renderFavs() {
+            let favs = [];
+            try {
+                favs = JSON.parse(localStorage.getItem('favorites')) || [];
+            } catch (e) {
+                console.error("Favorites load error", e);
+                favs = [];
+            }
+            const grid = document.getElementById('favGrid');
+            const empty = document.getElementById('emptyState');
+
+            if (favs.length === 0) {
+                grid.innerHTML = '';
+                empty.classList.remove('hidden');
+            } else {
+                empty.classList.add('hidden');
+                grid.innerHTML = favs.map(p => `
+                    <div class="bg-white rounded-xl border border-gray-100 overflow-hidden relative group hover:shadow-lg transition-all" id="card-${p.id}">
+                        <div class="h-64 overflow-hidden relative">
+                            <img src="${p.image}" class="w-full h-full object-cover">
+                            <button onclick="removeFav(${p.id})" class="absolute top-2 right-2 w-8 h-8 bg-white/90 hover:bg-red-50 text-red-500 rounded-full flex items-center justify-center shadow-sm transition-colors" title="Kaldır">
+                                <i class="ri-close-line text-lg"></i>
+                            </button>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-bold text-gray-800 mb-1 line-clamp-1">${p.title}</h3>
+                            <p class="text-xs text-gray-400 mb-3">${p.category}</p>
+                            <button onclick="goToProduct(${p.id})" class="w-full py-2 border border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-colors text-sm">İncele</button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function goToProduct(id) {
+            localStorage.setItem('previewId', id);
+            window.location.href = 'ürünler.html';
+        }
+
+        function removeFav(id) {
+            let favs = [];
+            try {
+                favs = JSON.parse(localStorage.getItem('favorites')) || [];
+            } catch(e) { favs = []; }
+            
+            favs = favs.filter(f => f.id !== id);
+            localStorage.setItem('favorites', JSON.stringify(favs));
+            
+            // Remove with animation
+            const card = document.getElementById(`card-${id}`);
+            if(card) {
+                card.style.opacity = '0';
+                card.style.transform = 'scale(0.9)';
+                setTimeout(() => renderFavs(), 300);
+            } else {
+                renderFavs();
+            }
+            showToast('Favorilerden kaldırıldı');
+        }
+
+        function showToast(msg) {
+            const t = document.getElementById('toast');
+            document.getElementById('toastMsg').innerText = msg;
+            t.classList.remove('translate-x-full', 'opacity-0');
+            setTimeout(() => t.classList.add('translate-x-full', 'opacity-0'), 2000);
+        }
+    </script>
+</body>
+</html>
