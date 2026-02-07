@@ -1,0 +1,2292 @@
+<!DOCTYPE html>
+<html lang="tr" translate="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google" content="notranslate">
+<title>Ana Sayfa |ÜÇLER GÜL  </title>
+<link rel="icon" type="image/png" href="images/Adsız tasarım (5).png" />
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>
+tailwind.config={
+  theme:{
+    extend:{
+      colors:{
+        primary:'#333333', // Daha koyu, sofistike gri
+        secondary:'#D4AF37', 
+        accent:'#1a1a1a', // Siyah tonları
+        surface: '#f9f9f9'
+      },
+      borderRadius:{
+        'none':'0px','sm':'2px',DEFAULT:'4px','md':'6px','lg':'8px','xl':'12px','2xl':'16px','3xl':'20px','full':'9999px','button':'0px' // Keskin hatlar (button: 0px)
+      },
+      fontFamily: {
+        pacifico: ['Pacifico', 'cursive'],
+        inter: ['Inter', 'sans-serif'],
+        poppins: ['Poppins', 'sans-serif'],
+        montserrat: ['Montserrat', 'sans-serif'],
+      },
+      boxShadow: {
+        'luxury': '0 4px 20px -2px rgba(0, 0, 0, 0.05)', // Daha hafif gölge
+        'luxury-hover': '0 10px 25px -5px rgba(0, 0, 0, 0.1)',
+      }
+    }
+  }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body {
+  font-family: 'Inter', sans-serif;
+}
+input:focus, button:focus {
+  outline: none;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* Navbar üstü bar için küçük font */
+.topbar-small {
+  font-size: 12px;
+  letter-spacing: 0.01em;
+}
+/* Navbar marka için özel Pacifico font ve altına ince şık font */
+.brand-pacifico {
+  font-family: 'Pacifico', cursive;
+  font-size: 2rem;
+  line-height: 1;
+  color: #919ea4;
+  font-weight: 400;
+}
+.text-primary { color: #919ea4 !important; }
+.bg-primary { background-color: #919ea4 !important; }
+.border-primary { border-color: #919ea4 !important; }
+.hover\:bg-primary:hover { background-color: #919ea4 !important; }
+.hover\:text-primary:hover { color: #919ea4 !important; }
+.hover\:border-primary:hover { border-color: #919ea4 !important; }
+/* Newsletter için yeni arka plan */
+.bg-accent-gradient {
+  background: linear-gradient(135deg, #3a5ba0 0%, #5e7fcf 100%);
+}
+/* Yumuşak scroll animasyonu */
+html {
+  scroll-behavior: smooth;
+}
+/* Sağdan ve soldan gelme animasyonları */
+.fade-in-left {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in-right {
+  opacity: 0;
+  transform: translateX(50px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Counter için görünürlük sorununu çözen düzenleme */
+.counter {
+  opacity: 1 !important; /* Counter her zaman görünür */
+  transform: none !important; /* Counter animasyonlardan etkilenmez */
+}
+
+/* Navbar item styles */
+.nav-item {
+  position: relative;
+  color: #333;
+  padding: 6px 0;
+  transition: color .25s ease;
+}
+.nav-item:hover {
+  color: #1f2937;
+}
+
+.nav-icons a {
+  color: #666;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border-radius: 8px;
+  transition: all .25s ease;
+}
+.nav-icons a:hover {
+  color: #D4AF37;
+  background: rgba(212,175,55,0.08);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(212,175,55,0.12);
+}
+
+/* Hero buttons: soft gold frame and hover animation */
+.hero-btn {
+  transition: all .4s cubic-bezier(.2,.9,.2,1);
+  position: relative;
+  overflow: hidden;
+  border-radius: 50px; /* Pill shape */
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  border: none;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+.hero-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: left 0.5s ease;
+}
+.hero-btn:hover::before {
+  left: 100%;
+}
+.hero-btn::after {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 50px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .4s ease;
+  background: linear-gradient(135deg, rgba(212,175,55,0.4), rgba(212,175,55,0.1));
+  z-index: -1;
+}
+.hero-btn:hover::after {
+  opacity: 1;
+}
+.hero-btn.secondary {
+  background: rgba(255,255,255,0.95);
+  border: 2px solid rgba(212,175,55,0.3);
+  backdrop-filter: blur(10px);
+}
+.hero-btn.secondary:hover {
+  background: rgba(212,175,55,0.1);
+  border-color: rgba(212,175,55,0.6);
+  color: #333;
+}
+.hero-btn:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 15px 35px rgba(212,175,55,0.25);
+}
+.hero-btn:focus {
+  outline: none;
+}
+
+@media (max-width:768px){
+  /* .nav-icons { display:none; } Removed to show hamburger menu */
+  .nav-item { padding: 10px; }
+}
+
+/* Scrollbarı gizle (Tüm Sayfalar İçin) */
+::-webkit-scrollbar {
+    display: none;
+}
+html {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE, Edge */
+}
+</style>
+</head>
+<body class="bg-white overflow-x-hidden" onload="AOS.init({duration: 1000, once: true})">
+
+<!-- Hoşgeldin Modal - Sayfa açılınca gösterilir -->
+<div id="welcomeModal" class="fixed inset-0 z-[9999] flex items-center justify-center" style="display: flex;">
+    <!-- Soft Arka Plan -->
+    <div class="absolute inset-0 bg-white/70 backdrop-blur-sm" onclick="closeWelcomeModal()"></div>
+    
+    <!-- Modal İçeriği -->
+    <div class="relative z-10 w-full max-w-2xl mx-4 animate-modalSlide">
+        <!-- Premium Kapatma Butonu -->
+        <button onclick="closeWelcomeModal()" class="absolute top-4 right-4 z-20 w-10 h-10 flex items-center justify-center text-gray-400 hover:text-gray-800 transition-all duration-300 group">
+            <svg class="w-8 h-8 transition-transform duration-300 group-hover:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+        </button>
+        
+        <!-- Görsel - Tıklanınca kapatır -->
+        <a href="#" onclick="closeWelcomeModal(); return false;" class="block">
+            <img src="images/em.png" alt="Hoşgeldin" class="w-full h-auto cursor-pointer hover:opacity-95 transition-opacity rounded-xl shadow-2xl">
+        </a>
+    </div>
+</div>
+
+<style>
+@keyframes modalSlideIn {
+    from {
+        transform: translateY(-30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+.animate-modalSlide {
+    animation: modalSlideIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+</style>
+
+<script>
+// Hoşgeldin Modal - Her sayfa açılışında gösterilir
+function closeWelcomeModal() {
+    const modal = document.getElementById('welcomeModal');
+    if(modal) {
+        modal.style.opacity = '0';
+        modal.style.transition = 'opacity 0.3s ease';
+        setTimeout(() => {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }, 300);
+    }
+}
+
+// Sayfa yüklendiginde modal göster
+document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('welcomeModal');
+    if(modal) {
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+});
+</script>
+
+<header class="bg-primary text-white">
+  <div class="flex items-center justify-between px-4 py-1 topbar-small">
+    <div class="flex items-center flex-1 min-w-0 mr-2">
+      <div class="w-4 h-4 flex items-center justify-center mr-1 flex-shrink-0">
+        <i class="ri-map-pin-line text-xs"></i>
+      </div>
+      <span class="truncate block">Gökçek, 250.Cd. No: 15/c,Sincan/Ankara--- / ---Ulubatlı Hasan, Mehmet Akif Ersoy Cd.,Sincan/Ankara</span>
+    </div>
+    <div class="flex items-center flex-shrink-0">
+      <i class="ri-phone-line mr-2"></i>
+      <span class="mr-2">+90 312 123 45 67</span>
+    </div>
+  </div>
+</header>
+
+<nav id="main-navbar" class="py-4 px-4 md:px-8 border-b shadow-sm sticky top-0 z-50 transition-all duration-300 bg-white/95 backdrop-blur-md">
+  <div class="container mx-auto flex items-center justify-between">
+    <div class="flex items-center flex-shrink-0 mr-2 md:mr-8">
+      <a href="tekvenet.html" class="flex items-center">
+        <div class="flex items-center justify-center" style="height:48px;">
+          <img id="navbar-logo" src="images/Adsız tasarım (5).png" alt="Üçler Gül Logo" style="height:100%; width:auto; max-height:48px; max-width:120px; object-fit:contain; display:block;" class="mr-2 transition-all duration-300" />
+        </div>
+        <span id="navbar-title" class="text-xl md:text-3xl font-montserrat text-primary font-semibold tracking-tight transition-all duration-300">Üçler Gül</span>
+        <span style="font-family: 'Pacifico', cursive; font-size: 1rem; margin-left: 12px;" class="text-primary align-middle hidden md:inline-block">
+          Yüzünüz hep <span style="color:#D4AF37;">gül</span>sün diye
+        </span>
+      </a>
+    </div>
+
+    <div class="flex-1 flex justify-center hidden md:flex">
+      <div class="flex space-x-8">
+        <a href="tekvenet.html" class="nav-item text-primary border-b-2 border-primary font-medium">Ana Sayfa</a>
+        <a href="hakkimizda.html" class="nav-item text-gray-700 hover:text-primary font-medium">Hakkımızda</a>
+        <a href="ürünler.html" class="nav-item text-gray-700 hover:text-primary font-medium">Ürünler</a>
+        <a href="magazalarimiz.html" class="nav-item text-gray-700 hover:text-primary font-medium">Mağazalarımız</a>
+        <a href="iletisim.html" class="nav-item text-gray-700 hover:text-primary font-medium">İletişim</a>
+      </div>
+    </div>
+    
+    <div class="flex items-center nav-icons space-x-2 md:space-x-4">
+      <button onclick="toggleAuthModal()" class="relative hover:text-primary transition-colors hover:scale-110 transform group hidden md:block" title="Giriş Yap / Üye Ol">
+        <i class="ri-user-line text-2xl" id="userIconBtn"></i>
+        <span id="loginStatusDot" class="absolute top-0 right-0 w-2.5 h-2.5 bg-gray-300 rounded-full border-2 border-white transition-colors"></span>
+      </button>
+
+      <div class="relative group cursor-pointer hover:scale-110 transform transition-transform hidden md:block" onclick="toggleNotificationDropdown()" title="Mesajlar">
+         <i class="ri-message-3-line text-2xl hover:text-primary transition-colors"></i>
+         <span class="absolute -top-1 -right-1 flex h-3 w-3">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+         </span>
+         <div id="msgDropdown" class="absolute top-full right-0 mt-3 w-72 bg-white shadow-[0_10px_40px_-5px_rgba(0,0,0,0.1)] rounded-xl border border-gray-100 hidden p-0 z-[100] overflow-hidden transform origin-top-right transition-all animate-fade-in-up">
+             <div class="p-3 border-b border-gray-100 bg-gray-50/50 flex justify-between items-center">
+                 <span class="font-bold text-gray-800 text-sm font-montserrat">Bildirimler</span>
+                 <span class="text-[10px] text-secondary font-bold cursor-pointer hover:underline uppercase tracking-wide">Tümünü Sil</span>
+             </div>
+             <div class="max-h-64 overflow-y-auto custom-scrollbar">
+                 <div class="p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-50 transition-colors group/item">
+                     <div class="flex items-start gap-3">
+                        <div class="w-10 h-10 rounded-full bg-secondary/10 flex items-center justify-center text-secondary shrink-0 group-hover/item:bg-secondary group-hover/item:text-white transition-colors"><i class="ri-gift-line"></i></div>
+                        <div>
+                            <p class="text-xs font-bold text-gray-800">Süpriz İndirim Kodunuz</p>
+                            <p class="text-[10px] text-gray-500 mt-1 leading-snug">Özel %10 indirim kodunuz hesabınıza tanımlandı. Hemen kullanın!</p>
+                            <p class="text-[10px] text-gray-300 mt-1">2 saat önce</p>
+                        </div>
+                     </div>
+                 </div>
+                 <div class="p-3 hover:bg-gray-50 cursor-pointer transition-colors group/item">
+                     <div class="flex items-start gap-3">
+                        <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0 group-hover/item:bg-primary group-hover/item:text-white transition-colors"><i class="ri-star-smile-line"></i></div>
+                        <div>
+                            <p class="text-xs font-bold text-gray-800">Hoşgeldiniz!</p>
+                            <p class="text-[10px] text-gray-500 mt-1 leading-snug">Üçler Gül dünyasına katıldığınız için teşekkür ederiz.</p>
+                             <p class="text-[10px] text-gray-300 mt-1">1 gün önce</p>
+                        </div>
+                     </div>
+                 </div>
+             </div>
+             <div class="p-2 bg-gray-50 text-center border-t border-gray-100">
+                <a href="#" class="text-[10px] text-gray-500 hover:text-primary transition-colors font-medium">Tüm Mesajları Gör</a>
+             </div>
+         </div>
+      </div>
+
+      <button onclick="window.location.href='favoriler.html'" class="relative hover:text-primary transition-colors hover:scale-110 transform group" title="Favoriler">
+        <i class="ri-heart-line text-2xl"></i>
+        <span id="favCount" class="absolute -top-2 -right-2 bg-secondary text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full opacity-0 transition-opacity">0</span>
+      </button>
+      <div class="relative group cursor-pointer hover:scale-110 transform transition-transform" onclick="toggleCartDrawer()" title="Sepet">
+        <i class="ri-shopping-bag-line text-2xl hover:text-primary transition-colors"></i>
+        <span id="cartCount" class="absolute -top-2 -right-2 bg-primary text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full opacity-0 transition-opacity">0</span>
+      </div>
+      <button onclick="toggleMobileMenu()" class="md:hidden text-2xl text-primary focus:outline-none ml-2">
+        <i class="ri-menu-line"></i>
+      </button>
+    </div>
+  </div>
+
+  <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-white border-t border-gray-100 shadow-lg py-4 px-4 flex-col gap-4 animate-fade-in-down">
+      <a href="tekvenet.html" class="text-primary font-medium py-2 border-b border-gray-50 block">Ana Sayfa</a>
+      <a href="hakkimizda.html" class="text-gray-700 hover:text-primary font-medium py-2 border-b border-gray-50 block">Hakkımızda</a>
+      <a href="ürünler.html" class="text-gray-700 hover:text-primary font-medium py-2 border-b border-gray-50 block">Ürünler</a>
+      <a href="magazalarimiz.html" class="text-gray-700 hover:text-primary font-medium py-2 border-b border-gray-50 block">Mağazalarımız</a>
+      <a href="iletisim.html" class="text-gray-700 hover:text-primary font-medium py-2 block">İletişim</a>
+  </div>
+</nav>
+
+<div id="cartDrawerBackdrop" onclick="toggleCartDrawer()" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[90] hidden transition-opacity opacity-0"></div>
+<div id="cartDrawer" class="fixed top-0 right-0 h-full w-full max-w-sm bg-white shadow-2xl z-[100] transform translate-x-full transition-transform duration-300 flex flex-col font-inter">
+    <div class="p-5 border-b border-gray-100 flex items-center justify-between bg-gray-50/50">
+        <h2 class="font-bold text-lg text-gray-800 flex items-center gap-2">
+            <i class="ri-shopping-bag-3-line"></i> Sepetim
+        </h2>
+        <button onclick="toggleCartDrawer()" class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-white hover:shadow-sm text-gray-500 hover:text-red-500 transition-all">
+            <i class="ri-close-line text-xl"></i>
+        </button>
+    </div>
+    
+    <div id="cartItemsContainer" class="flex-1 overflow-y-auto p-5 space-y-4"></div>
+    
+    <div class="p-5 border-t border-gray-100 bg-gray-50/30">
+        <div class="flex justify-between items-center mb-4">
+            <span class="text-gray-500 text-sm">Toplam Tutar</span>
+            <span class="text-xl font-bold text-primary font-montserrat" id="cartTotal">0 ₺</span>
+        </div>
+        <button onclick="checkout()" class="w-full py-3 bg-gray-900 text-white rounded-xl font-bold hover:bg-black transition-colors shadow-lg shadow-gray-200 flex items-center justify-center gap-2">
+            Sepeti Onayla <i class="ri-arrow-right-line"></i>
+        </button>
+    </div>
+</div>
+
+<div id="toast" class="fixed top-5 right-5 z-[200] transform transition-all duration-300 translate-x-full opacity-0">
+    <div class="bg-white border-l-4 border-secondary shadow-2xl rounded-lg p-4 flex items-center gap-3">
+        <div class="bg-green-100 rounded-full p-2 text-green-600"><i class="ri-check-line"></i></div>
+        <div class="text-sm"><span class="font-bold block">Bilgi</span><span id="toastMsg"></span></div>
+    </div>
+</div>
+
+<script>
+  // Shared Logic for Cart & Badges
+  document.addEventListener('DOMContentLoaded', () => {
+       updateBadges(); 
+  });
+  
+  function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('hidden');
+      menu.classList.toggle('flex');
+  }
+
+  function updateBadges() {
+      const favsRaw = localStorage.getItem('favorites');
+      const cartRaw = localStorage.getItem('cart');
+      const favs = favsRaw ? JSON.parse(favsRaw) : [];
+      const cart = cartRaw ? JSON.parse(cartRaw) : [];
+      
+      const favCount = document.getElementById('favCount');
+      const cartCount = document.getElementById('cartCount');
+      
+      if(favCount) {
+          favCount.innerText = favs.length;
+          favCount.classList.toggle('opacity-0', favs.length === 0);
+      }
+      if(cartCount) {
+          cartCount.innerText = cart.length;
+          cartCount.classList.toggle('opacity-0', cart.length === 0);
+      }
+  }
+
+  function toggleCartDrawer() {
+      const drawer = document.getElementById('cartDrawer');
+      const backdrop = document.getElementById('cartDrawerBackdrop');
+      const isHidden = drawer.classList.contains('translate-x-full');
+      
+      if(isHidden) {
+          renderCartDrawer();
+          drawer.classList.remove('translate-x-full');
+          backdrop.classList.remove('hidden');
+          setTimeout(() => backdrop.classList.remove('opacity-0'), 10);
+          document.body.style.overflow = 'hidden';
+      } else {
+          drawer.classList.add('translate-x-full');
+          backdrop.classList.add('opacity-0');
+          setTimeout(() => backdrop.classList.add('hidden'), 300);
+          document.body.style.overflow = '';
+      }
+  }
+
+  function renderCartDrawer() {
+      let cart = [];
+      try { cart = JSON.parse(localStorage.getItem('cart')) || []; } catch(e){ cart = []; }
+
+      const container = document.getElementById('cartItemsContainer');
+      const totalEl = document.getElementById('cartTotal');
+
+      if(cart.length === 0) {
+          container.innerHTML = `
+              <div class="h-full flex flex-col items-center justify-center text-gray-400">
+                  <i class="ri-shopping-cart-line text-4xl mb-4 opacity-30"></i>
+                  <p class="text-sm font-medium">Sepetiniz boş</p>
+                  <a href="ürünler.html" class="mt-4 text-xs text-secondary underline hover:text-yellow-600">Alışverişe Başla</a>
+              </div>`;
+          totalEl.innerText = "0 ₺";
+          return;
+      }
+
+      let total = 0;
+      container.innerHTML = cart.map((item, index) => {
+          const price = item.price || 0;
+          total += price;
+          return `
+              <div class="flex gap-3 bg-white p-3 rounded-xl border border-gray-100 shadow-sm">
+                  <img src="${item.image}" class="w-16 h-16 rounded-lg object-cover bg-gray-50 border border-gray-100">
+                  <div class="flex-1 min-w-0 flex flex-col justify-center">
+                      <h4 class="font-bold text-sm text-gray-800 truncate">${item.title}</h4>
+                      <p class="text-xs text-gray-400">${item.category || ''}</p>
+                      <p class="text-sm font-bold text-secondary mt-1">${price} ₺</p>
+                  </div>
+                  <button onclick="removeFromCart(${index})" class="text-gray-300 hover:text-red-500 transition-colors px-2">
+                      <i class="ri-delete-bin-line"></i>
+                  </button>
+              </div>
+          `;
+      }).join('');
+
+      totalEl.innerText = total + " ₺";
+  }
+
+  function removeFromCart(index) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cart.splice(index, 1);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      renderCartDrawer();
+      updateBadges();
+  }
+
+  function checkout() {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      if(cart.length === 0) {
+          showToast('Sepetiniz boş!');
+          return;
+      }
+      if(confirm('Sepeti onaylıyor musunuz? (Demo)')) {
+          localStorage.setItem('cart', '[]');
+          renderCartDrawer();
+          updateBadges();
+          toggleCartDrawer();
+          showToast('Siparişiniz alındı!');
+      }
+  }
+
+  function showToast(msg) {
+      const toast = document.getElementById('toast');
+      if(!toast) return;
+      document.getElementById('toastMsg').innerText = msg;
+      toast.classList.remove('translate-x-full', 'opacity-0');
+      setTimeout(() => toast.classList.add('translate-x-full', 'opacity-0'), 2500);
+  }
+
+  window.addEventListener('scroll', function () {
+    const navbar = document.getElementById('main-navbar');
+    const logo = document.getElementById('navbar-logo');
+    const title = document.getElementById('navbar-title');
+    if (window.scrollY > 30) {
+      navbar.style.background = 'rgba(255,255,255,0.97)';
+      navbar.style.backdropFilter = 'blur(12px)';
+      navbar.classList.add('shadow-md');
+      navbar.classList.add('py-2');
+      navbar.classList.remove('py-4');
+      logo.classList.add('h-8', 'w-8');
+      logo.classList.remove('h-10', 'w-10');
+      title.classList.add('text-2xl');
+      title.classList.remove('text-3xl');
+    } else {
+      navbar.style.background = 'rgba(255,255,255,0)';
+      navbar.style.backdropFilter = 'blur(0px)';
+      navbar.classList.remove('shadow-md');
+      navbar.classList.remove('py-2');
+      navbar.classList.add('py-4');
+      logo.classList.remove('h-8', 'w-8');
+      logo.classList.add('h-10', 'w-10');
+      title.classList.remove('text-2xl');
+      title.classList.add('text-3xl');
+    }
+  });
+</script>
+<section class="relative">
+  <div class="relative h-[500px] overflow-hidden">
+    <img src="images/484803327_1158346105879922_507756642319204570_n.jpg" alt="Luxury Jewelry Store" class="absolute inset-0 w-full h-full object-cover">
+    <div class="absolute inset-0 bg-gradient-to-r from-white via-white/80 to-transparent"></div>
+    <div class="absolute inset-0 flex items-center">
+      <div class="container mx-auto px-4 md:px-8">
+        <div class="max-w-xl" data-aos="fade-right">
+          <h1 class="text-3xl md:text-5xl font-bold mb-4 text-primary">
+            Işıltının Zirvesi<br>
+            <span class="text-secondary">Güvenin Adresi</span>
+          </h1>
+          <p class="text-gray-700 mb-8 text-lg">
+            Üçler Gül Kuyumculuk, nesiller boyu güvenle taşınan mücevheratın adresi. Altının ve pırlantanın en özel halini 20 yılı aşkın tecrübemizle sunuyoruz. Her parça, zarafetin ve kalitenin simgesi olarak tasarlanıyor.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4">
+            <button onclick="window.location.href='urunler_yeni.html'" class="hero-btn bg-gradient-to-r from-primary to-gray-700 text-white px-10 py-4 font-medium whitespace-nowrap cursor-pointer flex items-center gap-2">
+              <span>Koleksiyonu Keşfet</span>
+              <i class="ri-arrow-right-line"></i>
+            </button>
+            <button onclick="window.location.href='iletisim.html'" class="hero-btn secondary text-gray-700 px-10 py-4 font-medium whitespace-nowrap cursor-pointer flex items-center gap-2">
+              <i class="ri-phone-line"></i>
+              <span>İletişim</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-4 bg-white">
+  <div class="container mx-auto px-4 md:px-8 overflow-hidden relative">
+      <div class="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-white to-transparent z-10"></div>
+      <div class="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-white to-transparent z-10"></div>
+
+      <div class="flex whitespace-nowrap overflow-hidden">
+        <div class="flex items-center gap-16 px-8 animate-marquee">
+          <div class="w-40 h-24 flex items-center justify-center grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all">
+            <img src="images/1.png" alt="Lizay" class="w-full h-full object-contain transition-transform duration-300 hover:scale-110" />
+          </div>
+          <div class="w-40 h-24 flex items-center justify-center grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all">
+            <img src="images/2.png" alt="Sina Pırlanta" class="w-full h-full object-contain transition-transform duration-300 hover:scale-110" />
+          </div>
+          <div class="w-40 h-24 flex items-center justify-center grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all">
+            <img src="images/3.png" alt="Google" class="w-full h-full object-contain transition-transform duration-300 hover:scale-110" />
+          </div>
+          <div class="w-40 h-24 flex items-center justify-center grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all">
+            <img src="images/4.png" alt="Microsoft" class="w-full h-full object-contain transition-transform duration-300 hover:scale-110" />
+          </div>
+          <div class="w-40 h-24 flex items-center justify-center grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all">
+            <img src="images/5.png" alt="Apple" class="w-full h-full object-contain transition-transform duration-300 hover:scale-110" />
+          </div>
+          <div class="w-40 h-24 flex items-center justify-center grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all">
+            <img src="images/6.png" alt="Instagram" class="w-full h-full object-contain transition-transform duration-300 hover:scale-110" />
+          </div>
+        </div>
+
+        <div class="flex items-center gap-16 px-8 animate-marquee" aria-hidden="true">
+          <div class="w-40 h-24 flex items-center justify-center grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all">
+            <img src="images/7.png" alt="Lizay" class="w-full h-full object-contain transition-transform duration-300 hover:scale-110" />
+          </div>
+          <div class="w-40 h-24 flex items-center justify-center grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all">
+            <img src="images/8.png" alt="Sina Pırlanta" class="w-full h-full object-contain transition-transform duration-300 hover:scale-110" />
+          </div>
+          <div class="w-40 h-24 flex items-center justify-center grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all">
+            <img src="images/1.png" alt="Google" class="w-full h-full object-contain transition-transform duration-300 hover:scale-110" />
+          </div>
+          <div class="w-40 h-24 flex items-center justify-center grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all">
+            <img src="images/2.png" alt="Microsoft" class="w-full h-full object-contain transition-transform duration-300 hover:scale-110" />
+          </div>
+          <div class="w-40 h-24 flex items-center justify-center grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all">
+            <img src="images/Ekran görüntüsü 2025-07-13 235435.png" alt="Apple" class="w-full h-full object-contain transition-transform duration-300 hover:scale-110" />
+          </div>
+          <div class="w-40 h-24 flex items-center justify-center grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all">
+            <img src="images/Ekran görüntüsü 2025-07-13 235356.png" alt="Instagram" class="w-full h-full object-contain transition-transform duration-300 hover:scale-110" />
+          </div>
+        </div>
+      </div>
+
+    <style>
+      .animate-marquee {
+        animation: marquee 30s linear infinite;
+        flex-shrink: 0;
+        min-width: 100%;
+        display: flex;
+        justify-content: space-around;
+      }
+      @keyframes marquee {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-100%); }
+      }
+    </style>
+  </div>
+</section>
+
+<div id="gold-ticker" class="relative w-full z-[40] bg-[#111] text-white font-medium py-2 px-4 overflow-hidden border-t border-b border-secondary shadow-sm">
+  <div class="relative w-full overflow-hidden" style="height: 24px;">
+    <div id="gold-track" class="absolute left-0 top-0 flex items-center" style="white-space:nowrap;">
+    </div>
+  </div>
+</div>
+<style>
+/* Gold Ticker Styles */
+#gold-ticker { font-family: 'Inter', sans-serif; font-size: 14px; letter-spacing: 0.5px; }
+.gold-item { display: inline-flex; align-items: center; gap: 8px; margin: 0 32px; }
+.gold-label { color: #aaa; font-weight: 500; font-size: 0.9em; text-transform: uppercase; }
+.gold-price { color: #fff !important; font-weight: 700; font-family: 'Montserrat', sans-serif; }
+.gold-change { font-size: 0.8em; font-weight: 600; display: inline-flex; align-items: center; gap: 3px; }
+.gold-up { color: #22c55e; }
+.gold-down { color: #ef4444; }
+.gold-neutral { color: #888; }
+</style>
+<script>
+// Gold Ticker Logic with CollectAPI
+(function() {
+  const track = document.getElementById('gold-track');
+  const COLLECTAPI_KEY = 'apikey 6HloMlh6GRJyf79OP6ZhSl:4NHhCMxdqFLdG2bx18VHEX'; // CollectAPI key
+  
+  // Fallback data
+  const fallbackData = [
+    { label: 'GRAM ALTIN', alis: 4150, satis: 4165, degisim: 0.5, unit: 'g' },
+    { label: 'ÇEYREK ALTIN', alis: 6800, satis: 6850, degisim: 0.3, unit: 'pcs' },
+    { label: 'YARIM ALTIN', alis: 13600, satis: 13700, degisim: 0.4, unit: 'pcs' },
+    { label: 'CUMHURİYET', alis: 27200, satis: 27400, degisim: 0.2, unit: 'pcs' },
+    { label: 'ONS ALTIN', alis: 2750, satis: 2760, degisim: -0.1, suffix: '$', unit: 'oz' },
+    { label: '22 AYAR BİLEZİK', alis: 3800, satis: 3850, degisim: 0.6, unit: 'g' },
+    { label: 'USD/TRY', alis: 38.50, satis: 38.60, degisim: 0.15, unit: 'fx' }
+  ];
+
+  let liveData = JSON.parse(JSON.stringify(fallbackData));
+  let previousPrices = {}; // Önceki fiyatları sakla
+
+  function formatMoney(amount) {
+    if (amount >= 1000) {
+      return amount.toLocaleString('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+    return amount.toFixed(2).replace('.', ',');
+  }
+
+  // CollectAPI'den fiyat çek
+  async function fetchLivePrices() {
+    try {
+      const response = await fetch('https://api.collectapi.com/economy/goldPrice', {
+        method: 'GET',
+        headers: { 
+          'Authorization': COLLECTAPI_KEY,
+          'Content-Type': 'application/json'
+        }
+      });
+      
+      if (response.ok) {
+        const result = await response.json();
+        
+        if (result.success && result.result) {
+          const apiData = result.result;
+          
+          // Debug: API'den gelen verileri konsola yaz
+          console.log('CollectAPI Raw Data:', apiData);
+          
+          // Sabit sıralama ile verileri al
+          const orderedItems = [
+            { searchTerms: ['gram', 'gr '], label: 'GRAM ALTIN', suffix: 'TL' },
+            { searchTerms: ['çeyrek', 'ceyrek'], label: 'ÇEYREK ALTIN', suffix: 'TL' },
+            { searchTerms: ['yarım', 'yarim'], label: 'YARIM ALTIN', suffix: 'TL' },
+            { searchTerms: ['tam', 'cumhuriyet', 'ata'], label: 'CUMHURİYET', suffix: 'TL' },
+            { searchTerms: ['ons', 'ounce'], label: 'ONS ALTIN', suffix: '$' },
+            { searchTerms: ['bilezik', '22 ayar', '22ayar'], label: '22 AYAR BİLEZİK', suffix: 'TL' }
+          ];
+          
+          liveData = [];
+          
+          orderedItems.forEach(orderItem => {
+            // API'den bu item'ı bul
+            const found = apiData.find(apiItem => {
+              const name = (apiItem.name || '').toLowerCase().replace(/ı/g, 'i').replace(/ğ/g, 'g').replace(/ü/g, 'u').replace(/ş/g, 's').replace(/ö/g, 'o').replace(/ç/g, 'c');
+              return orderItem.searchTerms.some(term => name.includes(term.toLowerCase()));
+            });
+            
+            if (found) {
+              const alis = parseFloat(found.buying) || 0;
+              const satis = parseFloat(found.selling) || 0;
+              const degisim = parseFloat((found.changeRate || '0').toString().replace('%', '').replace(',', '.')) || 0;
+              
+              liveData.push({
+                label: orderItem.label,
+                alis: alis,
+                satis: satis,
+                degisim: degisim,
+                suffix: orderItem.suffix
+              });
+              
+              console.log(`Matched: ${found.name} -> ${orderItem.label} (${alis}/${satis})`);
+            }
+          });
+          
+          // USD/TRY için ayrı istek
+          try {
+            const currencyRes = await fetch('https://api.collectapi.com/economy/currencyToAll?int=1&base=USD', {
+              method: 'GET',
+              headers: { 
+                'Authorization': COLLECTAPI_KEY,
+                'Content-Type': 'application/json'
+              }
+            });
+            if (currencyRes.ok) {
+              const currencyData = await currencyRes.json();
+              if (currencyData.success && currencyData.result && currencyData.result.data) {
+                const tryRate = currencyData.result.data.TRY;
+                if (tryRate) {
+                  const prevUsd = previousPrices['USD/TRY'] || tryRate;
+                  const usdDegisim = ((tryRate - prevUsd) / prevUsd * 100).toFixed(2);
+                  liveData.push({
+                    label: 'USD/TRY',
+                    alis: tryRate,
+                    satis: tryRate * 1.003,
+                    degisim: parseFloat(usdDegisim),
+                    unit: 'fx'
+                  });
+                  previousPrices['USD/TRY'] = tryRate;
+                }
+              }
+            }
+          } catch (e) {
+            console.log('USD kuru alınamadı:', e.message);
+          }
+          
+          console.log('✓ CollectAPI data loaded:', new Date().toLocaleTimeString('tr-TR'));
+          return liveData.length > 0 ? liveData : fallbackData;
+        }
+      }
+    } catch (error) {
+      console.log('CollectAPI hatası, fallback veriler kullanılıyor:', error.message);
+    }
+    return fallbackData;
+  }
+
+  // Load and render
+  function loadAndRender() {
+    fetchLivePrices().then(data => {
+      liveData = data;
+      renderTicker();
+    });
+  }
+
+  function renderTicker() {
+    let html = '';
+    for(let i=0; i<4; i++) {
+        liveData.forEach(item => {
+            const currentPrice = (item.alis + item.satis) / 2;
+            const degisim = item.degisim || 0;
+            
+            let changeClass = 'gold-neutral';
+            let changeIcon = '';
+            let changeText = '';
+            
+            if (degisim > 0) {
+              changeClass = 'gold-up';
+              changeIcon = '<i class="ri-arrow-up-s-fill"></i>';
+              changeText = `+${degisim.toFixed(2)}%`;
+            } else if (degisim < 0) {
+              changeClass = 'gold-down';
+              changeIcon = '<i class="ri-arrow-down-s-fill"></i>';
+              changeText = `${degisim.toFixed(2)}%`;
+            }
+            
+            html += `
+                <div class="gold-item">
+                    <span class="gold-label">${item.label}</span>
+                    <span class="gold-price">${formatMoney(currentPrice)} ${item.suffix || 'TL'}</span>
+                    ${degisim !== 0 ? `<span class="gold-change ${changeClass}">${changeIcon}${changeText}</span>` : ''}
+                </div>
+            `;
+        });
+    }
+    track.innerHTML = html;
+  }
+  
+  loadAndRender();
+  setInterval(loadAndRender, 60000); // Her 60 saniyede güncelle
+
+  // Infinite Scroll
+  let pos = 0;
+  function step() {
+    pos -= 0.5; 
+    if (Math.abs(pos) >= track.scrollWidth / 2) {
+        pos = 0;
+    }
+    track.style.transform = `translateX(${pos}px)`;
+    requestAnimationFrame(step);
+  }
+  step();
+})();
+</script>
+
+<section class="py-24 bg-white relative overflow-hidden">
+    <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+        <div class="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] bg-primary/5 rounded-full blur-3xl"></div>
+        <div class="absolute top-[20%] -right-[10%] w-[30%] h-[30%] bg-secondary/5 rounded-full blur-3xl"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="text-center mb-16" data-aos="fade-up">
+            <span class="text-secondary font-pacifico text-xl block mb-2">Sizin İçin Seçtiklerimiz</span>
+            <h2 class="text-4xl font-bold text-gray-900 mb-4 font-montserrat">Öne Çıkan <span class="text-secondary">Kategoriler</span></h2>
+            <p class="text-xl text-gray-500 font-light">Her anınız için mükemmel mücevheri bulun</p>
+        </div>
+
+        <div class="relative">
+            <div class="overflow-hidden" id="categoriesCarousel">
+                <div class="flex transition-transform duration-700 ease-in-out" id="categoriesTrack">
+                    <div class="min-w-full md:min-w-[calc(33.333%-1.5rem)] flex-shrink-0 px-3">
+                        <a href="ürünler.html?category=Yüzük" class="block group relative h-[500px] bg-gray-100 overflow-hidden cursor-pointer rounded-xl">
+                            <img src="images/Ücretsiz bakım, kusursuz ışıltı. Sadece ayın son çarşambası..png" 
+                                 alt="Pırlanta" 
+                                 class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent group-hover:from-black/80 transition-all duration-500"></div>
+                            
+                            <div class="absolute inset-0 flex flex-col justify-end p-8 text-center">
+                                <h3 class="text-3xl font-light text-white mb-2 font-montserrat uppercase tracking-[0.2em] translate-y-4 group-hover:translate-y-0 transition-transform duration-500">Yüzükler</h3>
+                                <div class="w-16 h-[2px] bg-secondary mx-auto mb-4 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 delay-100"></div>
+                                <span class="text-white/90 text-sm tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-200">Koleksiyonu Keşfet</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="min-w-full md:min-w-[calc(33.333%-1.5rem)] flex-shrink-0 px-3">
+                        <a href="ürünler.html?category=Kolye" class="block group relative h-[500px] bg-gray-100 overflow-hidden cursor-pointer rounded-xl">
+                            <img src="images/eve-maier-4HkaGQ7muvk-unsplash.jpg" 
+                                 alt="Yüzükler" 
+                                 class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent group-hover:from-black/80 transition-all duration-500"></div>
+                            
+                            <div class="absolute inset-0 flex flex-col justify-end p-8 text-center">
+                                <h3 class="text-3xl font-light text-white mb-2 font-montserrat uppercase tracking-[0.2em] translate-y-4 group-hover:translate-y-0 transition-transform duration-500">Kolyeler</h3>
+                                <div class="w-16 h-[2px] bg-secondary mx-auto mb-4 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 delay-100"></div>
+                                <span class="text-white/90 text-sm tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-200">Koleksiyonu Keşfet</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="min-w-full md:min-w-[calc(33.333%-1.5rem)] flex-shrink-0 px-3">
+                        <a href="ürünler.html?category=Küpe" class="block group relative h-[500px] bg-gray-100 overflow-hidden cursor-pointer rounded-xl">
+                            <img src="images/diego-castaneda-5S0IV03f0i8-unsplash.jpg" 
+                                 alt="Küpeler" 
+                                 class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent group-hover:from-black/80 transition-all duration-500"></div>
+                            
+                            <div class="absolute inset-0 flex flex-col justify-end p-8 text-center">
+                                <h3 class="text-3xl font-light text-white mb-2 font-montserrat uppercase tracking-[0.2em] translate-y-4 group-hover:translate-y-0 transition-transform duration-500">Küpeler</h3>
+                                <div class="w-16 h-[2px] bg-secondary mx-auto mb-4 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 delay-100"></div>
+                                <span class="text-white/90 text-sm tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-200">Koleksiyonu Keşfet</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="min-w-full md:min-w-[calc(33.333%-1.5rem)] flex-shrink-0 px-3">
+                        <a href="ürünler.html?category=Bilezik" class="block group relative h-[500px] bg-gray-100 overflow-hidden cursor-pointer rounded-xl">
+                            <img src="images/Adsız tasarım (9).png" 
+                                 alt="Bilezikler" 
+                                 class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent group-hover:from-black/80 transition-all duration-500"></div>
+                            
+                            <div class="absolute inset-0 flex flex-col justify-end p-8 text-center">
+                                <h3 class="text-3xl font-light text-white mb-2 font-montserrat uppercase tracking-[0.2em] translate-y-4 group-hover:translate-y-0 transition-transform duration-500">Bilezikler</h3>
+                                <div class="w-16 h-[2px] bg-secondary mx-auto mb-4 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 delay-100"></div>
+                                <span class="text-white/90 text-sm tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-200">Koleksiyonu Keşfet</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="min-w-full md:min-w-[calc(33.333%-1.5rem)] flex-shrink-0 px-3">
+                        <a href="ürünler.html?category=Saat" class="block group relative h-[500px] bg-gray-100 overflow-hidden cursor-pointer rounded-xl">
+                            <img src="images/Women's Watches _ Rosefield _ Official website.jpg" 
+                                 alt="Saatler" 
+                                 class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent group-hover:from-black/80 transition-all duration-500"></div>
+                            
+                            <div class="absolute inset-0 flex flex-col justify-end p-8 text-center">
+                                <h3 class="text-3xl font-light text-white mb-2 font-montserrat uppercase tracking-[0.2em] translate-y-4 group-hover:translate-y-0 transition-transform duration-500">Saatler</h3>
+                                <div class="w-16 h-[2px] bg-secondary mx-auto mb-4 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 delay-100"></div>
+                                <span class="text-white/90 text-sm tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-200">Koleksiyonu Keşfet</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="min-w-full md:min-w-[calc(33.333%-1.5rem)] flex-shrink-0 px-3">
+                        <a href="ürünler.html?category=Alyans" class="block group relative h-[500px] bg-gray-100 overflow-hidden cursor-pointer rounded-xl">
+                            <img src="images/Ekran görüntüsü 2026-01-17 130724.png" 
+                                 alt="Alyanslar" 
+                                 class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent group-hover:from-black/80 transition-all duration-500"></div>
+                            
+                            <div class="absolute inset-0 flex flex-col justify-end p-8 text-center">
+                                <h3 class="text-3xl font-light text-white mb-2 font-montserrat uppercase tracking-[0.2em] translate-y-4 group-hover:translate-y-0 transition-transform duration-500">Alyanslar</h3>
+                                <div class="w-16 h-[2px] bg-secondary mx-auto mb-4 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 delay-100"></div>
+                                <span class="text-white/90 text-sm tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-200">Koleksiyonu Keşfet</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <button onclick="prevCategory()" class="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-white/90 hover:bg-secondary rounded-full shadow-xl flex items-center justify-center text-gray-800 hover:text-white transition-all duration-300 group backdrop-blur-sm">
+                <i class="ri-arrow-left-s-line text-2xl transition-transform group-hover:-translate-x-1"></i>
+            </button>
+            <button onclick="nextCategory()" class="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-white/90 hover:bg-secondary rounded-full shadow-xl flex items-center justify-center text-gray-800 hover:text-white transition-all duration-300 group backdrop-blur-sm">
+                <i class="ri-arrow-right-s-line text-2xl transition-transform group-hover:translate-x-1"></i>
+            </button>
+
+            <div class="flex justify-center gap-2 mt-8">
+                <button onclick="goToCategory(0)" class="category-indicator w-3 h-3 rounded-full bg-secondary transition-all duration-300"></button>
+                <button onclick="goToCategory(1)" class="category-indicator w-3 h-3 rounded-full bg-gray-300 transition-all duration-300"></button>
+                <button onclick="goToCategory(2)" class="category-indicator w-3 h-3 rounded-full bg-gray-300 transition-all duration-300"></button>
+                <button onclick="goToCategory(3)" class="category-indicator w-3 h-3 rounded-full bg-gray-300 transition-all duration-300"></button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+// Categories Carousel
+let currentCategoryIndex = 0;
+let categoryAutoplayInterval;
+const categoryTrack = document.getElementById('categoriesTrack');
+const categoryIndicators = document.querySelectorAll('.category-indicator');
+const totalCategories = 6;
+
+function updateCategoryCarousel() {
+    const isMobile = window.innerWidth < 768;
+    const itemsPerView = isMobile ? 1 : 3;
+    const offset = -(currentCategoryIndex * (100 / itemsPerView));
+    categoryTrack.style.transform = `translateX(${offset}%)`;
+    
+    // Update indicators
+    categoryIndicators.forEach((indicator, index) => {
+        if (index === currentCategoryIndex) {
+            indicator.classList.remove('bg-gray-300', 'w-3');
+            indicator.classList.add('bg-secondary', 'w-8');
+        } else {
+            indicator.classList.remove('bg-secondary', 'w-8');
+            indicator.classList.add('bg-gray-300', 'w-3');
+        }
+    });
+}
+
+function nextCategory() {
+    const isMobile = window.innerWidth < 768;
+    const maxIndex = isMobile ? totalCategories - 1 : 3;
+    currentCategoryIndex = (currentCategoryIndex + 1) > maxIndex ? 0 : currentCategoryIndex + 1;
+    updateCategoryCarousel();
+    resetCategoryAutoplay();
+}
+
+function prevCategory() {
+    const isMobile = window.innerWidth < 768;
+    const maxIndex = isMobile ? totalCategories - 1 : 3;
+    currentCategoryIndex = (currentCategoryIndex - 1) < 0 ? maxIndex : currentCategoryIndex - 1;
+    updateCategoryCarousel();
+    resetCategoryAutoplay();
+}
+
+function goToCategory(index) {
+    currentCategoryIndex = index;
+    updateCategoryCarousel();
+    resetCategoryAutoplay();
+}
+
+function startCategoryAutoplay() {
+    categoryAutoplayInterval = setInterval(() => {
+        nextCategory();
+    }, 4000);
+}
+
+function resetCategoryAutoplay() {
+    clearInterval(categoryAutoplayInterval);
+    startCategoryAutoplay();
+}
+
+// Initialize carousel
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCategoryCarousel);
+} else {
+    initCategoryCarousel();
+}
+
+function initCategoryCarousel() {
+    updateCategoryCarousel();
+    startCategoryAutoplay();
+    
+    // Pause on hover
+    const carousel = document.getElementById('categoriesCarousel');
+    if (carousel) {
+        carousel.addEventListener('mouseenter', () => clearInterval(categoryAutoplayInterval));
+        carousel.addEventListener('mouseleave', () => startCategoryAutoplay());
+    }
+}
+</script>
+
+<section class="py-24 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16" data-aos="fade-up">
+            <span class="text-secondary font-pacifico text-xl block mb-2">En Popüler Ürünler</span>
+            <h2 class="text-4xl font-bold text-gray-900 mb-4 font-montserrat">Öne Çıkan <span class="text-secondary">Ürünlerimiz</span></h2>
+            <p class="text-xl text-gray-500 font-light">Müşterilerimizin en çok tercih ettiği mücevherler</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="0">
+                <div class="relative overflow-hidden aspect-square">
+                    <img src="images/cristina-pop-neNWkEGv5Aw-unsplash.jpg" alt="Pırlanta Yüzük" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 text-xs font-bold rounded-full">%25 İndirim</div>
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-500"></div>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-bold text-lg mb-2 text-gray-900 group-hover:text-secondary transition-colors">Pırlanta Tektaş Yüzük</h3>
+                    <p class="text-gray-500 text-sm mb-4">0.50 Karat - 18 Ayar Altın</p>
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <span class="text-gray-400 line-through text-sm">15.000 ₺</span>
+                            <span class="text-2xl font-bold text-gray-900 block">11.250 ₺</span>
+                        </div>
+                        <button class="w-10 h-10 bg-secondary/10 hover:bg-secondary rounded-full flex items-center justify-center text-secondary hover:text-white transition-all duration-300">
+                            <i class="ri-shopping-cart-line"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="100">
+                <div class="relative overflow-hidden aspect-square">
+                    <img src="images/mathilde-langevin-v3hCo9Jljfo-unsplash.jpg" alt="Altın Kolye" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute top-4 right-4 bg-secondary text-white px-3 py-1 text-xs font-bold rounded-full">Yeni</div>
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-500"></div>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-bold text-lg mb-2 text-gray-900 group-hover:text-secondary transition-colors">İnci Detaylı Kolye</h3>
+                    <p class="text-gray-500 text-sm mb-4">Doğal İnci - 14 Ayar Altın</p>
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <span class="text-2xl font-bold text-gray-900 block">8.500 ₺</span>
+                        </div>
+                        <button class="w-10 h-10 bg-secondary/10 hover:bg-secondary rounded-full flex items-center justify-center text-secondary hover:text-white transition-all duration-300">
+                            <i class="ri-shopping-cart-line"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="200">
+                <div class="relative overflow-hidden aspect-square">
+                    <img src="images/diego-castaneda-5S0IV03f0i8-unsplash.jpg" alt="Pırlanta Küpe" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-500"></div>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-bold text-lg mb-2 text-gray-900 group-hover:text-secondary transition-colors">Pırlanta Küpe</h3>
+                    <p class="text-gray-500 text-sm mb-4">0.30 Karat - 18 Ayar Beyaz Altın</p>
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <span class="text-2xl font-bold text-gray-900 block">12.750 ₺</span>
+                        </div>
+                        <button class="w-10 h-10 bg-secondary/10 hover:bg-secondary rounded-full flex items-center justify-center text-secondary hover:text-white transition-all duration-300">
+                            <i class="ri-shopping-cart-line"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="300">
+                <div class="relative overflow-hidden aspect-square">
+                    <img src="images/1.png" alt="Altın Bilezik" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 text-xs font-bold rounded-full">Popüler</div>
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-500"></div>
+                </div>
+                <div class="p-6">
+                    <h3 class="font-bold text-lg mb-2 text-gray-900 group-hover:text-secondary transition-colors">22 Ayar Altın Bilezik</h3>
+                    <p class="text-gray-500 text-sm mb-4">Klasik Tasarım - 15 gram</p>
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <span class="text-2xl font-bold text-gray-900 block">22.500 ₺</span>
+                        </div>
+                        <button class="w-10 h-10 bg-secondary/10 hover:bg-secondary rounded-full flex items-center justify-center text-secondary hover:text-white transition-all duration-300">
+                            <i class="ri-shopping-cart-line"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-12" data-aos="fade-up">
+            <button onclick="window.location.href='ürünler.html'" class="px-8 py-4 bg-gray-900 hover:bg-secondary text-white font-bold rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 inline-flex items-center gap-2">
+                Tüm Ürünleri Görüntüle
+                <i class="ri-arrow-right-line"></i>
+            </button>
+        </div>
+    </div>
+</section>
+
+<section class="py-24 bg-gray-50">
+    <div class="container mx-auto px-4 md:px-8">
+        <div class="text-center mb-16" data-aos="fade-up">
+            <span class="text-secondary font-pacifico text-xl block mb-2">Ayrıcalıklı Dünyamız</span>
+            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4 font-montserrat">Özel Koleksiyonlarımızı Keşfedin</h2>
+            <p class="text-gray-500 max-w-2xl mx-auto">Her biri birer sanat eseri olan mücevherlerimizle zarafetinizi taçlandırın.</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="group bg-white rounded-2xl p-8 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.03)] hover:shadow-[0_25px_50px_-12px_rgba(212,175,55,0.15)] transition-all duration-700 ease-out hover:-translate-y-2 border border-transparent hover:border-secondary/20 relative overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-secondary/5 rounded-bl-[100px] -mr-8 -mt-8 transition-transform duration-1000 group-hover:scale-150"></div>
+                <div class="w-16 h-16 bg-gray-50 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-secondary group-hover:text-white group-hover:shadow-[0_0_30px_rgba(212,175,55,0.4)] transition-all duration-500 relative z-10">
+                    <i class="ri-vip-diamond-line text-3xl text-gray-400 group-hover:text-white transition-colors duration-500"></i>
+                </div>
+                <h3 class="text-xl font-bold font-montserrat mb-3 text-gray-900 group-hover:text-secondary transition-colors duration-300">Pırlanta Aşkı</h3>
+                <p class="text-gray-500 text-sm leading-relaxed mb-6 font-inter">Sonsuzluğun simgesi pırlantalar, en saf ve parlak halleriyle aşkınızı anlatıyor.</p>
+                <a href="ürünler.html" class="inline-flex items-center text-gray-900 font-semibold text-sm transition-all duration-300 group-hover:text-secondary group/btn">
+                    İncele <i class="ri-arrow-right-line ml-2 transition-transform duration-300 group-hover/btn:translate-x-1.5"></i>
+                </a>
+            </div>
+
+            <div class="group bg-white rounded-2xl p-8 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.03)] hover:shadow-[0_25px_50px_-12px_rgba(212,175,55,0.15)] transition-all duration-700 ease-out hover:-translate-y-2 border border-transparent hover:border-secondary/20 relative overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-secondary/5 rounded-bl-[100px] -mr-8 -mt-8 transition-transform duration-1000 group-hover:scale-150"></div>
+                <div class="w-16 h-16 bg-gray-50 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-secondary group-hover:text-white group-hover:shadow-[0_0_30px_rgba(212,175,55,0.4)] transition-all duration-500 relative z-10">
+                    <i class="ri-time-line text-3xl text-gray-400 group-hover:text-white transition-colors duration-500"></i>
+                </div>
+                <h3 class="text-xl font-bold font-montserrat mb-3 text-gray-900 group-hover:text-secondary transition-colors duration-300">Lüks Saatler</h3>
+                <p class="text-gray-500 text-sm leading-relaxed mb-6 font-inter">Dünya markalarının prestijli saat koleksiyonları ile zamanı durdurun.</p>
+                <a href="ürünler.html" class="inline-flex items-center text-gray-900 font-semibold text-sm transition-all duration-300 group-hover:text-secondary group/btn">
+                    İncele <i class="ri-arrow-right-line ml-2 transition-transform duration-300 group-hover/btn:translate-x-1.5"></i>
+                </a>
+            </div>
+
+            <div class="group bg-white rounded-2xl p-8 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.03)] hover:shadow-[0_25px_50px_-12px_rgba(212,175,55,0.15)] transition-all duration-700 ease-out hover:-translate-y-2 border border-transparent hover:border-secondary/20 relative overflow-hidden" data-aos="fade-up" data-aos-delay="300">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-secondary/5 rounded-bl-[100px] -mr-8 -mt-8 transition-transform duration-1000 group-hover:scale-150"></div>
+                <div class="w-16 h-16 bg-gray-50 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-secondary group-hover:text-white group-hover:shadow-[0_0_30px_rgba(212,175,55,0.4)] transition-all duration-500 relative z-10">
+                    <i class="ri-heart-2-line text-3xl text-gray-400 group-hover:text-white transition-colors duration-500"></i>
+                </div>
+                <h3 class="text-xl font-bold font-montserrat mb-3 text-gray-900 group-hover:text-secondary transition-colors duration-300">Evlilik Dünyası</h3>
+                <p class="text-gray-500 text-sm leading-relaxed mb-6 font-inter">En özel gününüz için tasarlanan alyans ve tektaş modelleri.</p>
+                <a href="ürünler.html" class="inline-flex items-center text-gray-900 font-semibold text-sm transition-all duration-300 group-hover:text-secondary group/btn">
+                    İncele <i class="ri-arrow-right-line ml-2 transition-transform duration-300 group-hover/btn:translate-x-1.5"></i>
+                </a>
+            </div>
+
+            <div class="group bg-white rounded-2xl p-8 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.03)] hover:shadow-[0_25px_50px_-12px_rgba(212,175,55,0.15)] transition-all duration-700 ease-out hover:-translate-y-2 border border-transparent hover:border-secondary/20 relative overflow-hidden" data-aos="fade-up" data-aos-delay="400">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-secondary/5 rounded-bl-[100px] -mr-8 -mt-8 transition-transform duration-1000 group-hover:scale-150"></div>
+                <div class="w-16 h-16 bg-gray-50 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-secondary group-hover:text-white group-hover:shadow-[0_0_30px_rgba(212,175,55,0.4)] transition-all duration-500 relative z-10">
+                    <i class="ri-magic-line text-3xl text-gray-400 group-hover:text-white transition-colors duration-500"></i>
+                </div>
+                <h3 class="text-xl font-bold font-montserrat mb-3 text-gray-900 group-hover:text-secondary transition-colors duration-300">Özel Tasarım</h3>
+                <p class="text-gray-500 text-sm leading-relaxed mb-6 font-inter">Hayallerinizdeki mücevheri ustalarımızın ellerinde gerçeğe dönüştürüyoruz.</p>
+                <a href="ürünler.html" class="inline-flex items-center text-gray-900 font-semibold text-sm transition-all duration-300 group-hover:text-secondary group/btn">
+                    İncele <i class="ri-arrow-right-line ml-2 transition-transform duration-300 group-hover/btn:translate-x-1.5"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-20 bg-gray-900 text-white relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="flex flex-col lg:flex-row items-center gap-12">
+            <div class="w-full lg:w-1/2 relative group" data-aos="fade-right">
+                <div class="absolute inset-0 bg-secondary blur-3xl opacity-20 group-hover:opacity-30 transition-opacity duration-500 pointer-events-none"></div>
+                <img src="images/atul-mohan-1T69hhZvbag-unsplash.jpg" 
+                     alt="Günün Fırsatı" 
+                     class="relative w-full rounded-2xl shadow-2xl transform group-hover:scale-105 transition-transform duration-500 border border-white/10 object-cover aspect-4/3">
+                <div class="absolute top-6 left-6 bg-red-600 text-white px-4 py-2 font-bold rounded-lg shadow-lg z-20 flex items-center gap-2 animate-pulse">
+                    <i class="ri-fire-fill"></i> %40 İNDİRİM
+                </div>
+            </div>
+            
+            <div class="w-full lg:w-1/2 space-y-8" data-aos="fade-left">
+                <div>
+                    <h3 class="text-secondary font-pacifico text-2xl mb-2">Günün Fırsatı</h3>
+                    <h2 class="text-4xl md:text-5xl font-bold font-montserrat leading-tight">Zümrüt Kesim <br>Pırlanta Kolye</h2>
+                    <p class="text-gray-400 mt-6 text-lg leading-relaxed">
+                        Doğanın en saf halini boynunuzda taşıyın. 0.70 Karat H Color zümrüt kesim pırlanta ve 18 ayar altın zincir ile tasarlanan bu özel parça, sınırlı sayıda üretimle sadece bugün için özel fiyatta.
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-4 gap-4 max-w-sm">
+                    <div class="bg-white/10 backdrop-blur-sm rounded-xl p-3 text-center border border-white/10">
+                        <span class="block text-2xl md:text-3xl font-bold text-secondary" id="cd-hours">08</span>
+                        <span class="text-[10px] md:text-xs text-gray-400 uppercase tracking-widest">Saat</span>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm rounded-xl p-3 text-center border border-white/10">
+                        <span class="block text-2xl md:text-3xl font-bold text-secondary" id="cd-minutes">45</span>
+                        <span class="text-[10px] md:text-xs text-gray-400 uppercase tracking-widest">Dakika</span>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm rounded-xl p-3 text-center border border-white/10">
+                        <span class="block text-2xl md:text-3xl font-bold text-secondary" id="cd-seconds">12</span>
+                        <span class="text-[10px] md:text-xs text-gray-400 uppercase tracking-widest">Saniye</span>
+                    </div>
+                </div>
+                
+                <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6 pt-6 border-t border-white/10">
+                    <div>
+                        <span class="block text-gray-500 line-through text-lg font-medium">32.500 ₺</span>
+                        <span class="block text-4xl font-bold text-white tracking-tight">19.500 ₺</span>
+                    </div>
+                    <button onclick="window.location.href='ürünler.html'" class="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-secondary to-yellow-600 hover:from-yellow-500 hover:to-yellow-700 text-white font-bold rounded-xl transition-all shadow-lg hover:shadow-secondary/30 flex items-center justify-center gap-2 transform hover:-translate-y-1">
+                        Hemen Satın Al <i class="ri-shopping-bag-3-fill"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="relative py-28 bg-fixed bg-cover bg-center overflow-hidden" style="background-image: url('https://images.unsplash.com/photo-1617038220319-276d3cfab638?q=80&w=2670&auto=format&fit=crop');">
+    <div class="absolute inset-0 bg-black/80"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="text-center mb-20" data-aos="fade-up">
+            <h2 class="text-3xl md:text-5xl font-bold text-white mb-6 font-montserrat">Rakamlarla Başarımız</h2>
+            <div class="w-24 h-1 bg-secondary mx-auto mb-8 rounded-full"></div>
+            <p class="text-gray-300 text-lg max-w-2xl mx-auto leading-relaxed">Çeyrek asrı aşkın tecrübemiz ve binlerce mutlu müşterimizle, mücevher sektöründe güvenin simgesi olmaya devam ediyoruz.</p>
+        </div>
+        
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+            <div class="text-center group p-8 rounded-3xl bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 transition-all duration-500 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="100">
+                <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-secondary/20 to-secondary/5 flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-500 border border-secondary/20">
+                    <i class="ri-user-star-line text-4xl text-secondary"></i>
+                </div>
+                <div class="text-4xl md:text-5xl font-bold text-white mb-2 font-montserrat flex justify-center items-center">
+                    <span class="counter" data-target="15000">0</span>
+                    <span class="text-secondary ml-1">+</span>
+                </div>
+                <p class="text-gray-400 font-medium uppercase tracking-wider text-xs md:text-sm mt-3">Mutlu Müşteri</p>
+            </div>
+            
+             <div class="text-center group p-8 rounded-3xl bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 transition-all duration-500 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="200">
+                <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-secondary/20 to-secondary/5 flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-500 border border-secondary/20">
+                    <i class="ri-history-line text-4xl text-secondary"></i>
+                </div>
+                <div class="text-4xl md:text-5xl font-bold text-white mb-2 font-montserrat flex justify-center items-center">
+                    <span class="counter" data-target="25">0</span>
+                    <span class="text-secondary ml-1">+</span>
+                </div>
+                <p class="text-gray-400 font-medium uppercase tracking-wider text-xs md:text-sm mt-3">Yıllık Tecrübe</p>
+            </div>
+
+             <div class="text-center group p-8 rounded-3xl bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 transition-all duration-500 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="300">
+                <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-secondary/20 to-secondary/5 flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-500 border border-secondary/20">
+                    <i class="ri-diamond-ring-line text-4xl text-secondary"></i>
+                </div>
+                <div class="text-4xl md:text-5xl font-bold text-white mb-2 font-montserrat flex justify-center items-center">
+                    <span class="counter" data-target="5000">0</span>
+                    <span class="text-secondary ml-1">+</span>
+                </div>
+                <p class="text-gray-400 font-medium uppercase tracking-wider text-xs md:text-sm mt-3">Özel Tasarım</p>
+            </div>
+
+            <div class="text-center group p-8 rounded-3xl bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 transition-all duration-500 hover:-translate-y-2" data-aos="fade-up" data-aos-delay="400">
+                <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-secondary/20 to-secondary/5 flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-500 border border-secondary/20">
+                    <i class="ri-store-2-line text-4xl text-secondary"></i>
+                </div>
+                <div class="text-4xl md:text-5xl font-bold text-white mb-2 font-montserrat flex justify-center items-center">
+                    <span class="counter" data-target="12">0</span>
+                    <span class="text-secondary ml-1">+</span>
+                </div>
+                <p class="text-gray-400 font-medium uppercase tracking-wider text-xs md:text-sm mt-3">Şube</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+  // Advanced Counter Animation
+  document.addEventListener('DOMContentLoaded', function () {
+    const counters = document.querySelectorAll('.counter');
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const counter = entry.target;
+          const target = +counter.getAttribute('data-target');
+          const duration = 2500;
+          let start = 0;
+          let startTimestamp = null;
+
+          function step(timestamp) {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+            // Easing function for smooth stop
+            const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+            
+            counter.textContent = Math.floor(easeOutQuart * (target - start) + start).toLocaleString('tr-TR');
+            
+            if (progress < 1) {
+              requestAnimationFrame(step);
+            } else {
+              counter.textContent = target.toLocaleString('tr-TR');
+            }
+          }
+
+          requestAnimationFrame(step);
+          counterObserver.unobserve(counter);
+        }
+      });
+    }, { threshold: 0.5 }); // Trigger when 50% visible
+
+    counters.forEach((counter) => counterObserver.observe(counter));
+  });
+</script>
+
+<section class="py-24 bg-gray-50">
+    <div class="container mx-auto px-4 md:px-8">
+        <div class="text-center mb-16" data-aos="fade-up">
+            <span class="text-secondary font-pacifico text-xl block mb-2">Müşteri Yorumları</span>
+            <h2 class="text-3xl md:text-5xl font-bold text-gray-900 mb-4 font-montserrat">Sizden Gelenler</h2>
+            <div class="w-20 h-1 bg-secondary mx-auto rounded-full"></div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-secondary relative" data-aos="fade-up" data-aos-delay="0">
+                <i class="ri-double-quotes-l text-4xl text-gray-200 absolute top-4 right-4"></i>
+                <div class="flex text-yellow-500 mb-4">
+                    <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i>
+                </div>
+                <p class="text-gray-600 mb-6 italic leading-relaxed">"Nişan yüzüğümüzü buradan aldık. İlgi ve alakaları harikaydı. Ürün kalitesi zaten tartışılmaz. Herkese tavsiye ediyorum."</p>
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center text-gray-500 font-bold">A</div>
+                    <div>
+                        <h4 class="font-bold text-gray-900 text-sm">Ayşe Yılmaz</h4>
+                        <span class="text-xs text-gray-400">Ankara</span>
+                    </div>
+                </div>
+            </div>
+             <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-secondary relative" data-aos="fade-up" data-aos-delay="100">
+                <i class="ri-double-quotes-l text-4xl text-gray-200 absolute top-4 right-4"></i>
+                <div class="flex text-yellow-500 mb-4">
+                    <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i>
+                </div>
+                <p class="text-gray-600 mb-6 italic leading-relaxed">"Özel tasarım kolye siparişim tam istediğim gibi geldi. İşçilik muazzam. Emeği geçen herkese teşekkürler."</p>
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center text-gray-500 font-bold">M</div>
+                    <div>
+                        <h4 class="font-bold text-gray-900 text-sm">Mehmet Demir</h4>
+                        <span class="text-xs text-gray-400">İstanbul</span>
+                    </div>
+                </div>
+            </div>
+             <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-secondary relative" data-aos="fade-up" data-aos-delay="200">
+                <i class="ri-double-quotes-l text-4xl text-gray-200 absolute top-4 right-4"></i>
+                <div class="flex text-yellow-500 mb-4">
+                    <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-half-fill"></i>
+                </div>
+                <p class="text-gray-600 mb-6 italic leading-relaxed">"Mağaza atmosferi çok şık, personel çok bilgili. Pırlanta sertifikaları ve garantileri güven veriyor."</p>
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center text-gray-500 font-bold">S</div>
+                    <div>
+                        <h4 class="font-bold text-gray-900 text-sm">Selin Kaya</h4>
+                        <span class="text-xs text-gray-400">İzmir</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-24 bg-surface">
+    <div class="max-w-4xl mx-auto px-4">
+        <div class="text-center mb-12">
+            <span class="text-secondary text-sm uppercase tracking-widest font-semibold">Merak Ettikleriniz</span>
+            <h2 class="text-3xl font-montserrat font-light mt-2 text-primary">Sıkça Sorulan Sorular</h2>
+        </div>
+
+        <div class="space-y-4">
+            <div class="bg-white border border-gray-200 hover:border-secondary/30 transition-colors duration-300">
+                <button class="w-full px-6 py-4 text-left flex items-center justify-between focus:outline-none" onclick="toggleAccordion('faq1')">
+                    <span class="font-medium text-gray-800">Ürünleriniz garantili mi?</span>
+                    <i id="icon-faq1" class="ri-add-line text-gray-400 transition-transform duration-300"></i>
+                </button>
+                <div id="faq1" class="hidden px-6 pb-6 text-gray-500 text-sm leading-relaxed border-t border-gray-100 mt-2 pt-4">
+                    Tüm mücevherlerimiz uluslararası standartlarda sertifikalıdır ve firmamızın ömür boyu bakım garantisi altındadır. Satın aldığınız her ürün, orijinallik sertifikası ile birlikte teslim edilir.
+                </div>
+            </div>
+
+             <div class="bg-white border border-gray-200 hover:border-secondary/30 transition-colors duration-300">
+                <button class="w-full px-6 py-4 text-left flex items-center justify-between focus:outline-none" onclick="toggleAccordion('faq2')">
+                    <span class="font-medium text-gray-800">Özel tasarım yapıyor musunuz?</span>
+                    <i id="icon-faq2" class="ri-add-line text-gray-400 transition-transform duration-300"></i>
+                </button>
+                <div id="faq2" class="hidden px-6 pb-6 text-gray-500 text-sm leading-relaxed border-t border-gray-100 mt-2 pt-4">
+                    Evet, hayalinizdeki mücevheri gerçeğe dönüştürüyoruz. Atölyemizde uzman tasarımcılarımızla birlikte, size özel ve benzersiz takılar tasarlayıp üretebiliyoruz.
+                </div>
+            </div>
+
+             <div class="bg-white border border-gray-200 hover:border-secondary/30 transition-colors duration-300">
+                <button class="w-full px-6 py-4 text-left flex items-center justify-between focus:outline-none" onclick="toggleAccordion('faq3')">
+                    <span class="font-medium text-gray-800">İade ve değişim koşulları nelerdir?</span>
+                    <i id="icon-faq3" class="ri-add-line text-gray-400 transition-transform duration-300"></i>
+                </button>
+                <div id="faq3" class="hidden px-6 pb-6 text-gray-500 text-sm leading-relaxed border-t border-gray-100 mt-2 pt-4">
+                     Standart ürünlerde 14 gün içinde değişim hakkınız saklıdır. Kişiye özel üretilen veya ölçülendirilen ürünlerde iade kabul edilmemektedir, ancak değişim konusunda yardımcı olunmaktadır.
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+function toggleAccordion(id) {
+    const el = document.getElementById(id);
+    const icon = document.getElementById('icon-' + id);
+    if (el.classList.contains('hidden')) {
+        el.classList.remove('hidden');
+        icon.classList.remove('ri-add-line');
+        icon.classList.add('ri-subtract-line');
+        // Close others logic could go here
+    } else {
+        el.classList.add('hidden');
+        icon.classList.remove('ri-subtract-line');
+        icon.classList.add('ri-add-line');
+    }
+}
+</script>
+
+<section class="py-20 bg-accent text-white">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <div class="w-16 h-16 flex items-center justify-center mx-auto mb-6 bg-white/20 rounded-full sparkle">
+      <i class="ri-mail-line text-white ri-2x"></i>
+    </div>
+    <h2 class="text-3xl font-bold text-white mb-4">Özel Fırsatları Kaçırmayın</h2>
+    <p class="text-xl text-white/90 mb-8">
+      Yeni koleksiyonlar ve özel indirimlerden ilk siz haberdar olun
+    </p>
+    <form action="https://formspree.io/f/xojjvrwa" method="POST" class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+      <input type="email" name="email" placeholder="E-posta adresiniz" class="flex-1 px-6 py-4 border-none rounded-full text-gray-900 focus:outline-none focus:ring-2 focus:ring-white/50" required>
+      <button type="submit" class="px-8 py-4 bg-white text-primary font-semibold !rounded-button hover:bg-gray-100 transition-colors whitespace-nowrap">
+        Abone Ol
+      </button>
+    </form>
+  </div>
+</section>
+
+<section id="hakkimizda" class="py-20 bg-gray-50">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-16">
+<h2 class="text-4xl font-bold text-gray-900 mb-4">Biz Kimiz</h2>
+<p class="text-xl text-gray-600 max-w-2xl mx-auto">
+ÜÇLER GÜL ailesi olarak, kuyumculuk sanatındaki tutkumuzla sizlere hizmet veriyoruz
+</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+<div>
+<div class="space-y-8">
+<div class="flex items-start space-x-4">
+<div class="text-6xl font-bold acrostic-letter">Ü</div>
+<div>
+<h3 class="text-2xl font-semibold text-gray-900 mb-2">Üstün Kalite</h3>
+<p class="text-gray-600">Her ürünümüzde en yüksek kalite standartlarını uygulayarak, size sadece en iyisini sunuyoruz.</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="text-6xl font-bold acrostic-letter">Ç</div>
+<div>
+<h3 class="text-2xl font-semibold text-gray-900 mb-2">Çağdaş Tasarım</h3>
+<p class="text-gray-600">Geleneksel işçiliği modern tasarımla birleştirerek, zamansız güzellikte eserler yaratıyoruz.</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="text-6xl font-bold acrostic-letter">L</div>
+<div>
+<h3 class="text-2xl font-semibold text-gray-900 mb-2">Lüks Deneyim</h3>
+<p class="text-gray-600">Her müşterimize özel, kişiselleştirilmiş hizmet anlayışıyla lüks bir alışveriş deneyimi yaşatıyoruz.</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="text-6xl font-bold acrostic-letter">E</div>
+<div>
+<h3 class="text-2xl font-semibold text-gray-900 mb-2">Eşsiz Koleksiyon</h3>
+<p class="text-gray-600">Özenle seçilmiş değerli taşlar ve özgün tasarımlarla, benzersiz mücevherler sunuyoruz.</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="text-6xl font-bold acrostic-letter">R</div>
+<div>
+<h3 class="text-2xl font-semibold text-gray-900 mb-2">Ruhlu Sanat</h3>
+<p class="text-gray-600">Her parçamız, ustalarımızın ruhunu ve sanat anlayışını yansıtan özel bir hikaye anlatır.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="space-y-6">
+<div class="aspect-video rounded-2xl overflow-hidden shadow-lg">
+<img src="https://readdy.ai/api/search-image?query=Professional%20jewelry%20craftsman%20working%20on%20intricate%20gold%20jewelry%20piece%2C%20traditional%20jewelry%20making%20workshop%20with%20specialized%20tools%2C%20master%20artisan%20concentrating%20on%20detailed%20metalwork%2C%20warm%20lighting%20in%20authentic%20jewelry%20atelier%20setting&width=600&height=400&seq=workshop1&orientation=landscape"
+alt="Atölye Çalışması" class="w-full h-full object-cover object-top">
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="aspect-square rounded-xl overflow-hidden shadow-lg">
+<img src="https://readdy.ai/api/search-image?query=Close-up%20of%20skilled%20hands%20polishing%20precious%20gemstone%2C%20jewelry%20crafting%20process%20with%20traditional%20tools%2C%20detailed%20view%20of%20artisan%20working%20on%20diamond%20setting%2C%20professional%20jewelry%20workshop%20environment&width=300&height=300&seq=craft1&orientation=squarish"
+alt="El İşçiliği" class="w-full h-full object-cover object-top">
+</div>
+<div class="aspect-square rounded-xl overflow-hidden shadow-lg">
+<img src="https://readdy.ai/api/search-image?query=Elegant%20jewelry%20store%20interior%20showcasing%20luxury%20display%20cases%2C%20premium%20lighting%20highlighting%20gold%20and%20diamond%20collections%2C%20sophisticated%20boutique%20atmosphere%20with%20marble%20and%20crystal%20elements%2C%20high-end%20retail%20environment&width=300&height=300&seq=store1&orientation=squarish"
+alt="Mağaza İçi" class="w-full h-full object-cover object-top">
+</div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+<div class="space-y-6">
+<div class="grid grid-cols-2 gap-4">
+<div class="aspect-square rounded-xl overflow-hidden shadow-lg">
+<img src="https://readdy.ai/api/search-image?query=Beautiful%20collection%20of%20Turkish%20traditional%20gold%20jewelry%20arranged%20on%20velvet%20display%2C%20ornate%20necklaces%20and%20bracelets%20with%20cultural%20motifs%2C%20luxury%20jewelry%20photography%20with%20warm%20golden%20lighting%20heritage%20craftsmanship%20showcase&width=300&height=300&seq=heritage1&orientation=squarish"
+alt="Geleneksel Koleksiyon" class="w-full h-full object-cover object-top">
+</div>
+<div class="aspect-square rounded-xl overflow-hidden shadow-lg">
+<img src="https://readdy.ai/api/search-image?query=Modern%20diamond%20and%20precious%20stone%20jewelry%20display%2C%20contemporary%20design%20pieces%20with%20clean%20lines%2C%20luxury%20boutique%20presentation%20on%20white%20marble%2C%20professional%20jewelry%20photography%20with%20crystal%20clear%20lighting&width=300&height=300&seq=modern1&orientation=squarish"
+alt="Modern Tasarım" class="w-full h-full object-cover object-top">
+</div>
+</div>
+<div class="aspect-video rounded-2xl overflow-hidden shadow-lg">
+<img src="https://readdy.ai/api/search-image?query=Happy%20customers%20trying%20on%20jewelry%20in%20elegant%20boutique%20setting%2C%20professional%20jewelry%20consultation%20with%20expert%20staff%2C%20luxury%20shopping%20experience%20in%20premium%20jewelry%20store%2C%20satisfied%20clients%20examining%20beautiful%20pieces&width=600&height=400&seq=customers1&orientation=landscape"
+alt="Müşteri Memnuniyeti" class="w-full h-full object-cover object-top">
+</div>
+</div>
+<div>
+<div class="space-y-8">
+<div class="flex items-start space-x-4">
+<div class="text-6xl font-bold acrostic-letter">G</div>
+<div>
+<h3 class="text-2xl font-semibold text-gray-900 mb-2">Güvenilir Hizmet</h3>
+<p class="text-gray-600">20 yıllık deneyimimiz ve binlerce mutlu müşterimizle güvenilirliğimizi kanıtladık.</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="text-6xl font-bold acrostic-letter">Ü</div>
+<div>
+<h3 class="text-2xl font-semibold text-gray-900 mb-2">Üretimden Satışa</h3>
+<p class="text-gray-600">Kendi atölyemizde ürettiğimiz özel tasarımlarla, kaliteli ve uygun fiyatlı hizmet sunuyoruz.</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="text-6xl font-bold acrostic-letter">L</div>
+<div>
+<h3 class="text-2xl font-semibold text-gray-900 mb-2">Lifetime Garanti</h3>
+<p class="text-gray-600">Ürünlerimize verdiğimiz yaşam boyu garanti ile, yatırımınızı güvence altına alıyoruz.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="py-20 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+        <span class="text-secondary text-sm uppercase tracking-widest font-semibold">Sosyal Medya</span>
+        <h2 class="text-3xl font-bold text-gray-900 mt-2 font-montserrat">Bizi Instagram'da Takip Edin</h2>
+        <a href="https://www.instagram.com/uclergulkym/" target="_blank" class="inline-flex items-center gap-2 text-secondary hover:text-secondary/80 mt-4 transition-colors">
+            <i class="ri-instagram-line text-xl"></i>
+            <span class="font-medium">@uclergulkuyumculuk</span>
+        </a>
+    </div>
+    
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <a href="https://www.instagram.com/uclergulkym/" target="_blank" class="group relative overflow-hidden aspect-square rounded-xl cursor-pointer block">
+            <img src="images/Ekran görüntüsü 2026-01-17 130759.png" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Instagram 1">
+            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <i class="ri-instagram-line text-white text-4xl"></i>
+            </div>
+        </a>
+        <a href="https://www.instagram.com/uclergulkym/" target="_blank" class="group relative overflow-hidden aspect-square rounded-xl cursor-pointer block">
+             <img src="images/Ekran görüntüsü 2026-01-17 130741.png" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Instagram 2">
+            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <i class="ri-instagram-line text-white text-4xl"></i>
+            </div>
+        </a>
+        <a href="https://www.instagram.com/uclergulkym/" target="_blank" class="group relative overflow-hidden aspect-square rounded-xl cursor-pointer block">
+             <img src="images/Ekran görüntüsü 2026-01-17 130713.png" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Instagram 3">
+            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <i class="ri-instagram-line text-white text-4xl"></i>
+            </div>
+        </a>
+        <a href="https://www.instagram.com/uclergulkym/" target="_blank" class="group relative overflow-hidden aspect-square rounded-xl cursor-pointer block">
+             <img src="images/Ekran görüntüsü 2026-01-17 130724.png" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Instagram 4">
+            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <i class="ri-instagram-line text-white text-4xl"></i>
+            </div>
+        </a>
+    </div>
+    
+    <div class="mt-16">
+      <div class="w-full overflow-hidden rounded-2xl shadow-2xl">
+        <img src="images/Adsız tasarım (8).png" alt="Footer Görseli" class="w-full h-auto object-cover">
+      </div>
+    </div>
+    
+  </div>
+</section>
+
+<footer class="bg-gray-900 text-white py-16" style="z-index:-5;">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div class="space-y-4">
+        <div class="flex items-center space-x-2">
+          <img src="images/image-removebg-preview.png" alt="Üçler Gül Logo" class="h-10 w-auto" />
+          <span class="font-['Pacifico'] text-2xl" style="color:#919ea4;">Üçler Gül</span>
+        </div>
+        <p class="text-gray-400 text-sm leading-relaxed">
+          25 yıldır lüks mücevher sektöründe güvenilir adres. Kalite ve zarafeti bir araya getiren özel tasarımlar.
+        </p>
+        <div class="flex space-x-4">
+          <a href="https://www.facebook.com" target="_blank" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-[#919ea4] transition-all duration-300 cursor-pointer transform hover:scale-110">
+            <i class="ri-facebook-fill text-lg"></i>
+          </a>
+          <a href="https://www.instagram.com" target="_blank" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-[#919ea4] transition-all duration-300 cursor-pointer transform hover:scale-110">
+            <i class="ri-instagram-line text-lg"></i>
+          </a>
+          <a href="https://www.twitter.com" target="_blank" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-[#919ea4] transition-all duration-300 cursor-pointer transform hover:scale-110">
+            <i class="ri-twitter-fill text-lg"></i>
+          </a>
+        </div>
+      </div>
+      <div>
+<h3 class="text-lg font-semibold mb-4">Kategoriler</h3>
+<ul class="space-y-2 text-gray-400">
+<li><a href="#" class="hover:text-primary transition-colors">Yüzükler</a></li>
+<li><a href="#" class="hover:text-primary transition-colors">Kolyeler</a></li>
+<li><a href="#" class="hover:text-primary transition-colors">Küpeler</a></li>
+<li><a href="#" class="hover:text-primary transition-colors">Bilezikler</a></li>
+<li><a href="#" class="hover:text-primary transition-colors">Özel Tasarım</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-lg font-semibold mb-4" id="footer-stores">Hizmetler</h3>
+<ul class="space-y-2 text-gray-400">
+<li><a href="iletisim.html" class="hover:text-primary transition-colors">Özel Tasarım</a></li>
+<li><a href="iletisim.html" class="hover:text-primary transition-colors">Onarım Hizmeti</a></li>
+<li><a href="iletisim.html" class="hover:text-primary transition-colors">Değerlendirme</a></li>
+<li><a href="iletisim.html" class="hover:text-primary transition-colors">Sigorta</a></li>
+<li><a href="iletisim.html" class="hover:text-primary transition-colors">Garanti</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-lg font-semibold mb-4" id="footer-contact">İletişim</h3>
+<ul class="space-y-2 text-gray-400">
+<li class="flex items-center space-x-2">
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-map-pin-line"></i>
+</div>
+<span>
+Gökçek, 250.Cd. No: 15/c,Sincan/Ankara </span>
+
+</li>
+<li class="flex items-center space-x-2">
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-phone-line"></i>
+</div>
+<span><a href="tel:+905510984917" class="hover:text-primary transition-colors">+90 551 098 49 17</a></span>
+</li>
+<li class="flex items-center space-x-2">
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-mail-line"></i>
+</div>
+<span><a href="mailto:info@uclergukuyumculuk.com" class="hover:text-primary transition-colors">info@uclergukuyumculuk.com</a></span>
+</li>
+<li class="flex items-center space-x-2">
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-time-line"></i>
+</div>
+<span>09:00 - 19:00</span>
+</li>
+</ul>
+</div>
+</div>
+
+<div class="border-t border-gray-800 mt-16 pt-8">
+  <div class="flex flex-col md:flex-row justify-between items-center text-gray-400 text-sm space-y-4 md:space-y-0">
+    <p>&copy; 2025 <span class="font-semibold text-white">ÜÇLER GÜL KUYUMCULUK</span>. Tüm hakları saklıdır.</p>
+    <div class="flex items-center space-x-6">
+      <a href="#" class="hover:text-[#919ea4] transition-colors">Gizlilik Politikası</a>
+      <span class="text-gray-600">|</span>
+      <a href="#" class="hover:text-[#919ea4] transition-colors">Kullanım Koşulları</a>
+      <span class="text-gray-600">|</span>
+      <a href="#" class="hover:text-[#919ea4] transition-colors">KVKK</a>
+    </div>
+    <p class="flex items-center space-x-2">
+      <span>Designed by</span>
+      <span class="text-[#919ea4] font-bold">BKtasar</span>
+      <i class="ri-palette-line text-[#919ea4]"></i>
+    </p>
+  </div>
+</div>
+</div>
+
+</footer>
+
+<script id="smooth-scrolling">
+document.addEventListener('DOMContentLoaded', function() {
+  const links = document.querySelectorAll('a[href^="#"]');
+  links.forEach(link => {
+    link.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
+      if (!href || href === '#') return;
+      e.preventDefault();
+      const target = document.querySelector(href);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+});
+</script>
+<script id="product-interactions">
+document.addEventListener('DOMContentLoaded', function() {
+    // Event delegation for heart icons
+    document.body.addEventListener('click', function(e) {
+        if(e.target.classList.contains('ri-heart-line')) {
+            e.target.classList.remove('ri-heart-line');
+            e.target.classList.add('ri-heart-fill');
+            e.target.style.color = '#ef4444';
+            
+            // Add to favorites logic could go here
+            let favs = JSON.parse(localStorage.getItem('favorites')) || [];
+            // ... strict logic requires product ID, for visual only:
+            
+            showToast('Favorilere eklendi');
+        } else if(e.target.classList.contains('ri-heart-fill')) {
+            e.target.classList.remove('ri-heart-fill');
+            e.target.classList.add('ri-heart-line');
+            e.target.style.color = '';
+            showToast('Favorilerden çıkarıldı');
+        }
+    });
+});
+</script>
+<script id="newsletter-form">
+document.addEventListener('DOMContentLoaded', function() {
+  const newsletterForm = document.querySelector('#newsletter-form'); 
+  if (!newsletterForm) return;
+
+  const emailInput = document.querySelector('#newsletter-email');
+  const subscribeBtn = newsletterForm.querySelector('button');
+
+  if(subscribeBtn && emailInput) {
+      subscribeBtn.addEventListener('click', function(e) {
+        e.preventDefault(); 
+        const email = emailInput.value.trim();
+        if (email && email.includes('@')) {
+          // Activated Email Logic
+          subscribeBtn.disabled = true;
+          const originalText = subscribeBtn.innerHTML;
+          subscribeBtn.innerHTML = '<i class="ri-loader-4-line animate-spin"></i> Gönderiliyor...';
+          
+          setTimeout(() => {
+             subscribeBtn.innerHTML = '<i class="ri-check-line"></i> Başarılı';
+             subscribeBtn.classList.replace('bg-white', 'bg-green-500');
+             subscribeBtn.classList.replace('text-primary', 'text-white');
+             
+             // Trigger global simulation if available
+             if(typeof simulateWelcomeEmail === 'function') {
+                 simulateWelcomeEmail(email, 'Misafir');
+             } else {
+                 alert('Bülten üyeliğiniz başarıyla oluşturuldu. Teşekkürler.');
+             }
+
+             setTimeout(() => {
+                 subscribeBtn.disabled = false;
+                 subscribeBtn.innerHTML = originalText;
+                 emailInput.value = '';
+                 subscribeBtn.classList.replace('bg-green-500', 'bg-white');
+                 subscribeBtn.classList.replace('text-white', 'text-primary');
+             }, 3000);
+
+          }, 1500);
+          
+        } else {
+          // Fallback to alert if showToast not ready
+          if(typeof showToast === 'function') showToast('Lütfen geçerli bir e-posta adresi girin.');
+          else alert('Lütfen geçerli bir e-posta adresi girin.');
+        }
+      });
+  }
+});
+</script>
+
+<a href="https://wa.me/903121234567" target="_blank" class="fixed bottom-6 right-6 z-[90] group flex items-center justify-center w-14 h-14 bg-[#25D366] hover:bg-[#128C7E] text-white rounded-full shadow-[0_4px_14px_0_rgba(37,211,102,0.39)] transition-all duration-300 hover:scale-110 animate-bounce cursor-pointer" title="WhatsApp ile İletişime Geç">
+    <i class="ri-whatsapp-line text-3xl"></i>
+    <span class="absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-gray-800 text-white text-xs font-bold px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-xl">
+        Bize Yazın!
+    </span>
+</a>
+
+<div id="authModal" class="fixed inset-0 z-[200] hidden">
+    <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="toggleAuthModal()"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-md bg-white rounded-2xl shadow-2xl overflow-hidden transform transition-all scale-100 animate-fade-in-up">
+        <div class="flex border-b">
+            <button onclick="switchAuthTab('login')" id="tab-login" class="flex-1 py-4 text-center font-bold text-gray-700 bg-white transition-colors">Giriş Yap</button>
+            <button onclick="switchAuthTab('register')" id="tab-register" class="flex-1 py-4 text-center font-bold text-gray-400 bg-gray-50 hover:bg-white transition-colors">Üye Ol</button>
+        </div>
+        
+        <div class="p-8">
+            <form id="loginForm" class="space-y-4">
+                <h3 class="text-2xl font-bold text-gray-800 text-center mb-6 font-montserrat">Hoşgeldiniz</h3>
+                <div>
+                    <label class="block text-sm font-medium text-gray-500 mb-1">E-posta</label>
+                    <input type="email" required class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-500 mb-1">Şifre</label>
+                    <input type="password" required class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all">
+                </div>
+                <button type="submit" class="w-full py-3 bg-primary text-white font-bold rounded-lg hover:bg-gray-700 transition-colors shadow-lg">Giriş Yap</button>
+            </form>
+
+            <form id="registerForm" class="space-y-4 hidden">
+                <h3 class="text-2xl font-bold text-gray-800 text-center mb-6 font-montserrat">Kayıt Ol & İndirim Kazan</h3>
+                <div>
+                    <label class="block text-sm font-medium text-gray-500 mb-1">Ad Soyad</label>
+                    <input type="text" id="regName" required class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-500 mb-1">E-posta</label>
+                    <input type="email" id="regEmail" required class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-500 mb-1">Şifre</label>
+                    <input type="password" required class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all">
+                </div>
+                <button type="submit" class="w-full py-3 bg-secondary text-white font-bold rounded-lg hover:bg-yellow-600 transition-colors shadow-lg">Üye Ol</button>
+            </form>
+        </div>
+        <button onclick="toggleAuthModal()" class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 text-gray-500 text-xl"><i class="ri-close-line"></i></button>
+    </div>
+</div>
+
+<div id="welcomePopup" class="fixed inset-0 z-[210] hidden flex items-center justify-center px-4">
+    <div class="absolute inset-0 bg-black/70 backdrop-blur-sm transition-opacity" onclick="closeWelcomePopup()"></div>
+    <div class="relative w-full max-w-3xl bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row" data-aos="zoom-in">
+        <div class="w-full md:w-1/2 relative min-h-[200px] md:min-h-[400px]">
+            <img src="https://images.unsplash.com/photo-1573408301185-9146fe634ad0?q=80&w=1000&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-8">
+                <div class="text-white">
+                    <p class="font-pacifico text-secondary text-2xl mb-2">Hoşgeldiniz</p>
+                    <h3 class="text-3xl font-bold font-montserrat">İlk Siparişinize Özel</h3>
+                    <p class="text-4xl font-extrabold text-secondary mt-2">%10 İNDİRİM</p>
+                </div>
+            </div>
+        </div>
+        <div class="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center bg-white relative">
+            <button onclick="closeWelcomePopup()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-800"><i class="ri-close-line text-2xl"></i></button>
+            
+            <div id="popupContent">
+                <h4 class="text-2xl font-bold text-gray-800 mb-2 font-montserrat">Aramıza Katılın</h4>
+                <p class="text-gray-500 mb-8 text-sm">Üye olun, size özel tanımlanacak %10 indirim kodunu anında kazanın.</p>
+                
+                <form onsubmit="handlePopupRegister(event)" class="space-y-3">
+                    <input type="text" placeholder="Adınız Soyadınız" required class="w-full px-4 py-3 bg-gray-50 rounded-xl border border-gray-200 focus:bg-white focus:border-secondary transition-all outline-none">
+                    <input type="email" placeholder="E-posta Adresiniz" required class="w-full px-4 py-3 bg-gray-50 rounded-xl border border-gray-200 focus:bg-white focus:border-secondary transition-all outline-none">
+                    <button type="submit" class="w-full py-3 bg-gray-900 text-white font-bold rounded-xl hover:bg-black transition-colors shadow-lg shadow-gray-200 flex items-center justify-center gap-2">
+                        Kodu Kap & Üye Ol <i class="ri-gift-line"></i>
+                    </button>
+                </form>
+                <button onclick="closeWelcomePopup()" class="w-full mt-4 text-xs text-gray-400 underline hover:text-gray-600 block text-center">Hayır, indirimi istemiyorum</button>
+            </div>
+
+            <div id="popupSuccess" class="hidden text-center fade-in-visible">
+                <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4 text-green-500 shadow-sm"><i class="ri-check-line text-3xl"></i></div>
+                <h4 class="text-2xl font-bold text-gray-800 mb-2 font-montserrat">Tebrikler!</h4>
+                <p class="text-gray-500 mb-6 text-sm">Aramıza hoşgeldiniz. İşte kodunuz:</p>
+                <div class="p-4 bg-secondary/10 border border-secondary/20 rounded-xl mb-2 relative group cursor-pointer hover:bg-secondary/20 transition-colors" onclick="copyCode(this)">
+                    <span id="generatedCode" class="text-2xl font-mono font-bold text-secondary tracking-widest select-all"></span>
+                    <i class="ri-file-copy-line absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 group-hover:text-secondary"></i>
+                </div>
+                <p class="text-xs text-red-500 font-semibold mb-6 animate-pulse">* Bu kod sadece fiziksel mağazalarımızda geçerlidir.</p>
+                <button onclick="closeWelcomePopup()" class="w-full py-3 bg-gray-900 text-white font-bold rounded-xl hover:bg-black shadow-lg">Alışverişe Başla</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="profileModal" class="fixed inset-0 z-[200] hidden">
+    <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="toggleProfileModal()"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-2xl bg-white rounded-2xl shadow-2xl overflow-hidden transform transition-all scale-100 animate-fade-in-up flex flex-col md:flex-row h-[70vh] md:h-auto">
+        <div class="w-full md:w-1/3 bg-gray-50 border-r border-gray-100 p-6 flex flex-col">
+            <div class="text-center mb-8">
+                <div class="w-20 h-20 bg-secondary/10 text-secondary rounded-full flex items-center justify-center text-3xl font-bold mx-auto mb-3">
+                    <i class="ri-user-smile-line"></i>
+                </div>
+                <h3 class="font-bold text-gray-900" id="profileSidebarName">Kullanıcı</h3>
+                <p class="text-xs text-gray-500">Üye</p>
+            </div>
+            <nav class="space-y-2 flex-1">
+                <button onclick="switchProfileTab('info')" id="btn-tab-info" class="w-full text-left px-4 py-3 rounded-xl bg-white text-secondary font-medium shadow-sm transition-all flex items-center gap-2"><i class="ri-user-settings-line"></i> Bilgilerim</button>
+                <button onclick="switchProfileTab('codes')" id="btn-tab-codes" class="w-full text-left px-4 py-3 rounded-xl hover:bg-white text-gray-600 hover:text-gray-900 font-medium transition-all flex items-center gap-2"><i class="ri-coupon-3-line"></i> İndirimlerim</button>
+            </nav>
+            <button onclick="logoutUser()" class="w-full text-left px-4 py-3 rounded-xl text-red-500 hover:bg-red-50 font-medium transition-all flex items-center gap-2 mt-4"><i class="ri-logout-box-line"></i> Çıkış Yap</button>
+        </div>
+        
+        <div class="w-full md:w-2/3 p-8 overflow-y-auto">
+            <button onclick="toggleProfileModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600"><i class="ri-close-line text-2xl"></i></button>
+            
+            <div id="profile-tab-info" class="space-y-6">
+                <h3 class="text-2xl font-bold text-gray-900 border-b pb-4">Üyelik Bilgileri</h3>
+                <div class="grid grid-cols-1 gap-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-500 mb-1">Ad Soyad</label>
+                        <div class="p-3 bg-gray-50 rounded-lg border border-gray-100 text-gray-800 font-medium" id="displayProfileName">-</div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-500 mb-1">E-posta Adresi</label>
+                        <div class="p-3 bg-gray-50 rounded-lg border border-gray-100 text-gray-800 font-medium" id="displayProfileEmail">-</div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-500 mb-1">Üyelik Tarihi</label>
+                        <div class="p-3 bg-gray-50 rounded-lg border border-gray-100 text-gray-800 font-medium" id="displayJoinDate">Bugün</div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="profile-tab-codes" class="hidden space-y-6">
+                <h3 class="text-2xl font-bold text-gray-900 border-b pb-4">Kazanılan İndirimler</h3>
+                <div id="codesListContainer" class="space-y-3">
+                    <div class="p-4 border border-dashed border-gray-300 rounded-xl text-center text-gray-400">
+                        Henüz indirim kodunuz bulunmuyor.
+                    </div>
+                </div>
+                <p class="text-xs text-gray-400 pt-4">* İndirim kodları sadece mağaza içi alışverişlerde geçerlidir.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // --- Logic for New Features ---
+
+    // 1. Scroll To Section Logic with improved positioning
+    function scrollToSection(id) {
+        const el = document.getElementById(id);
+        if(el) {
+            // Adjust for navbar height (approx 80px)
+            const navbarHeight = 100;
+            const elementPosition = el.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+            
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: "smooth"
+            });
+        }
+    }
+
+    // 2. Auth & Popup Logic
+    const userIcon = document.getElementById('userIconBtn');
+    const statusDot = document.getElementById('loginStatusDot');
+    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
+    // Init state
+    updateUserState();
+
+    // Check popup on load (with delay)
+    setTimeout(() => {
+        // Show ad if user is not logged in (Active)
+        if(!currentUser) {
+            document.getElementById('welcomePopup').classList.remove('hidden');
+        }
+    }, 1500);
+
+    // 3. Notification Logic
+    function toggleNotificationDropdown() {
+        const dropdown = document.getElementById('msgDropdown');
+        if(dropdown) {
+            dropdown.classList.toggle('hidden');
+        }
+    }
+    document.addEventListener('click', function(e) {
+        const dropdown = document.getElementById('msgDropdown');
+        const trigger = e.target.closest('[onclick="toggleNotificationDropdown()"]');
+        if(dropdown && !trigger && !dropdown.classList.contains('hidden') && !e.target.closest('#msgDropdown')) {
+            dropdown.classList.add('hidden');
+        }
+    });
+
+    function closeWelcomePopup() {
+        document.getElementById('welcomePopup').classList.add('hidden');
+        localStorage.setItem('hasSeenDiscountPopup', 'true');
+    }
+
+    function toggleAuthModal() {
+        if(currentUser) {
+            // If logged in, Show Profile Modal instead of Auth
+            toggleProfileModal();
+        } else {
+            const modal = document.getElementById('authModal');
+            modal.classList.toggle('hidden');
+            if(!modal.classList.contains('hidden')) {
+                switchAuthTab('login');
+            }
+        }
+    }
+
+    function toggleProfileModal() {
+        const modal = document.getElementById('profileModal');
+        modal.classList.toggle('hidden');
+        if(!modal.classList.contains('hidden')) {
+            renderProfileData();
+        }
+    }
+
+    function switchProfileTab(tabName) {
+        const infoTab = document.getElementById('profile-tab-info');
+        const codesTab = document.getElementById('profile-tab-codes');
+        const btnInfo = document.getElementById('btn-tab-info');
+        const btnCodes = document.getElementById('btn-tab-codes');
+
+        if(tabName === 'info') {
+            infoTab.classList.remove('hidden');
+            codesTab.classList.add('hidden');
+            btnInfo.classList.add('bg-white', 'text-secondary', 'shadow-sm');
+            btnInfo.classList.remove('hover:bg-white', 'text-gray-600');
+            btnCodes.classList.remove('bg-white', 'text-secondary', 'shadow-sm');
+            btnCodes.classList.add('text-gray-600');
+        } else {
+            infoTab.classList.add('hidden');
+            codesTab.classList.remove('hidden');
+            btnCodes.classList.add('bg-white', 'text-secondary', 'shadow-sm');
+            btnCodes.classList.remove('hover:bg-white', 'text-gray-600');
+            btnInfo.classList.remove('bg-white', 'text-secondary', 'shadow-sm');
+            btnInfo.classList.add('text-gray-600');
+        }
+    }
+
+    function renderProfileData() {
+        if(!currentUser) return;
+        document.getElementById('profileSidebarName').innerText = currentUser.name;
+        document.getElementById('displayProfileName').innerText = currentUser.name;
+        document.getElementById('displayProfileEmail').innerText = currentUser.email;
+        
+        // Render Codes
+        const container = document.getElementById('codesListContainer');
+        if(currentUser.codes && currentUser.codes.length > 0) {
+            container.innerHTML = currentUser.codes.map(codeData => `
+                <div class="flex items-center justify-between p-4 bg-orange-50 border border-orange-100 rounded-xl">
+                    <div>
+                        <span class="block text-secondary font-mono font-bold text-lg tracking-wider">${codeData.code}</span>
+                        <span class="text-xs text-orange-600 font-medium">${codeData.desc || 'Mağaza İçi İndirim'}</span>
+                    </div>
+                    <button onclick="navigator.clipboard.writeText('${codeData.code}'); showToast('Kopyalandı')" class="text-gray-400 hover:text-secondary"><i class="ri-file-copy-line text-xl"></i></button>
+                </div>
+            `).join('');
+        } else {
+            container.innerHTML = '<div class="p-4 border border-dashed border-gray-300 rounded-xl text-center text-gray-400">Henüz indirim kodunuz bulunmuyor.</div>';
+        }
+    }
+
+    function logoutUser() {
+        if(confirm('Çıkış yapmak istediğinize emin misiniz?')) {
+            currentUser = null;
+            localStorage.removeItem('currentUser');
+            updateUserState();
+            toggleProfileModal();
+            showToast('Başarıyla çıkış yapıldı.');
+        }
+    }
+
+    function switchAuthTab(tab) {
+        const loginForm = document.getElementById('loginForm');
+        const regForm = document.getElementById('registerForm');
+        const loginBtn = document.getElementById('tab-login');
+        const regBtn = document.getElementById('tab-register');
+
+        if(tab === 'login') {
+            loginForm.classList.remove('hidden');
+            regForm.classList.add('hidden');
+            loginBtn.classList.remove('bg-gray-50', 'text-gray-400');
+            loginBtn.classList.add('bg-white', 'text-gray-700');
+            regBtn.classList.remove('bg-white', 'text-gray-700');
+            regBtn.classList.add('bg-gray-50', 'text-gray-400');
+        } else {
+            loginForm.classList.add('hidden');
+            regForm.classList.remove('hidden');
+            regBtn.classList.remove('bg-gray-50', 'text-gray-400');
+            regBtn.classList.add('bg-white', 'text-gray-700');
+            loginBtn.classList.remove('bg-white', 'text-gray-700');
+            loginBtn.classList.add('bg-gray-50', 'text-gray-400');
+        }
+    }
+
+    // Handle Forms
+    const loginForm = document.getElementById('loginForm');
+    if(loginForm) {
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Mock Login
+            currentUser = { 
+                name: "Demo User", 
+                email: "demo@example.com",
+                codes: [{ code: 'DEMO10', desc: 'Hoşgeldin İndirimi (Mağaza)' }]
+            };
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            updateUserState();
+            document.getElementById('authModal').classList.add('hidden');
+            showToast('Başarıyla giriş yapıldı!');
+        });
+    }
+
+    const registerForm = document.getElementById('registerForm');
+    if(registerForm) {
+        registerForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('regName').value;
+            const email = document.getElementById('regEmail').value;
+            registerUser(name, email);
+            document.getElementById('authModal').classList.add('hidden');
+        });
+    }
+});
+
+    function handlePopupRegister(e) {
+        e.preventDefault();
+        const inputs = e.target.querySelectorAll('input');
+        const name = inputs[0].value;
+        const email = inputs[1].value;
+        
+        const code = registerUser(name, email, true); // true = suppress default toast
+        
+        // Switch popup content
+        document.getElementById('popupContent').classList.add('hidden');
+        document.getElementById('popupSuccess').classList.remove('hidden');
+        document.getElementById('generatedCode').innerText = code;
+    }
+
+    function registerUser(name, email, suppressToast = false) {
+        // Mock Registration Logic with Random Code
+        const rawCode = 'GÜL' + Math.floor(1000 + Math.random() * 9000); 
+        const codeObj = { 
+            code: rawCode, 
+            desc: '%10 İndirim - Sadece Mağazada Geçerli' 
+        };
+        
+        currentUser = { name: name, email: email, codes: [codeObj] };
+        
+        localStorage.setItem('currentUser', JSON.stringify(currentUser));
+        localStorage.setItem('hasSeenDiscountPopup', 'true');
+        
+        updateUserState();
+        
+        // --- NEW: Simulate Welcome Email ---
+        simulateWelcomeEmail(email, name);
+        // -----------------------------------
+
+        if(!suppressToast) {
+             showToast(`Üyelik Oluşturuldu! Kodunuz: ${rawCode}`);
+        }
+        return rawCode;
+    }
+
+    function simulateWelcomeEmail(email, name) {
+        // First notification
+        setTimeout(() => {
+            showToast('📧 Hoşgeldin maili hazırlanıyor...');
+        }, 1000);
+
+        // Simulated sending delay
+        setTimeout(() => {
+            // In a real app, this would be an API call
+            console.log(`Sending email to ${email}...`);
+            alert(`📨 Hoşgeldiniz Sayın ${name}!\n\nEmail adresinize (${email}) özel indirim kodunuz ve üyelik detaylarınız otomatik olarak gönderilmiştir.\n\nLütfen gelen/spam kutunuzu kontrol ediniz.`);
+        }, 3500);
+    }
+
+    function updateUserState() {
+        if(currentUser) {
+            statusDot.classList.replace('bg-gray-300', 'bg-green-500');
+            statusDot.classList.replace('border-white', 'border-green-100');
+            userIcon.classList.replace('ri-user-line', 'ri-user-fill');
+            userIcon.classList.add('text-secondary');
+        } else {
+            statusDot.classList.replace('bg-green-500', 'bg-gray-300');
+            statusDot.classList.replace('border-green-100', 'border-white');
+            userIcon.classList.replace('ri-user-fill', 'ri-user-line');
+            userIcon.classList.remove('text-secondary');
+        }
+    }
+
+    function copyCode(el) {
+        const code = document.getElementById('generatedCode').innerText;
+        navigator.clipboard.writeText(code).then(() => {
+            showToast('Kod kopyalandı!');
+            const originalBg = el.className;
+            el.classList.add('bg-green-50', 'border-green-300');
+            setTimeout(() => {
+               el.classList.remove('bg-green-50', 'border-green-300');
+            }, 300);
+        });
+    }
+
+    // Scroll to Top Button
+    const scrollTopBtn = document.createElement('button');
+    scrollTopBtn.innerHTML = '<i class="ri-arrow-up-line text-2xl"></i>';
+    scrollTopBtn.className = 'fixed bottom-8 right-8 w-12 h-12 bg-[#919ea4] text-white rounded-full shadow-2xl hover:bg-[#7a8590] transition-all duration-300 transform hover:scale-110 z-50 hidden items-center justify-center';
+    scrollTopBtn.id = 'scrollTopBtn';
+    document.body.appendChild(scrollTopBtn);
+
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            scrollTopBtn.classList.remove('hidden');
+            scrollTopBtn.classList.add('flex');
+        } else {
+            scrollTopBtn.classList.add('hidden');
+            scrollTopBtn.classList.remove('flex');
+        }
+    });
+
+    scrollTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Professional Loading Animation
+    window.addEventListener('load', () => {
+        document.body.style.opacity = '0';
+        setTimeout(() => {
+            document.body.style.transition = 'opacity 0.5s ease';
+            document.body.style.opacity = '1';
+        }, 100);
+    });
+
+    // Smooth hover effects for images
+    document.querySelectorAll('img').forEach(img => {
+        img.style.transition = 'transform 0.3s ease, filter 0.3s ease';
+        img.addEventListener('mouseenter', () => {
+            img.style.transform = 'scale(1.02)';
+        });
+        img.addEventListener('mouseleave', () => {
+            img.style.transform = 'scale(1)';
+        });
+    });
+</script>
+
+</body>
+</html>
+
