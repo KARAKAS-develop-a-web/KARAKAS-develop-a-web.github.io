@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Üçler Gül Kuyumculuk</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#fff;
+}
+
+header{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:white;
+    padding:18px;
+    text-align:center;
+    border-bottom:1px solid #eee;
+}
+
+header h1{
+    font-size:22px;
+    font-weight:600;
+    letter-spacing:2px;
+}
+
+.categories{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    padding-top:15px;
+    overflow:auto;
+}
+
+.categories button{
+    background:none;
+    border:none;
+    font-size:14px;
+    cursor:pointer;
+    color:#444;
+    white-space:nowrap;
+}
+
+.categories button:hover{
+    color:#c9a227;
+}
+
+.catalog{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:8px;
+    padding:8px;
+    background:#1b1b1b;
+}
+
+.card{
+    background:white;
+    cursor:pointer;
+    overflow:hidden;
+}
+
+.card img{
+    width:100%;
+    aspect-ratio:1/1;
+    object-fit:cover;
+    display:block;
+    transition:.35s;
+}
+
+.card:hover img{
+    transform:scale(1.03);
+}
+
+/* Popup */
+
+.popup{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.95);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+}
+
+.popup.active{
+    display:flex;
+}
+
+.popup img{
+    max-width:95%;
+    max-height:90%;
+}
+
+.close{
+    position:absolute;
+    top:20px;
+    right:25px;
+    color:white;
+    font-size:35px;
+    cursor:pointer;
+}
+
+@media(min-width:768px){
+
+.catalog{
+
+grid-template-columns:repeat(4,1fr);
+
+}
+
+}
+
+</style>
+
+</head>
+<body>
+
+<header>
+
+<h1>ÜÇLER GÜL</h1>
+
+<div class="categories">
+
+<button>Tümü</button>
+<button>Yüzük</button>
+<button>Kolye</button>
+<button>Bileklik</button>
+<button>Küpe</button>
+<button>Bilezik</button>
+
+</div>
+
+</header>
+
+<section class="catalog" id="catalog"></section>
+
+<div class="popup" id="popup">
+
+<div class="close">&times;</div>
+
+<img id="popupImage">
+
+</div>
+
+<script>
+
+const products=[
+
+{
+image:"linkac/1.jpg"
+},
+{
+image:"linkac/2.jpg"
+},
+{
+image:"linkac/3.jpg"
+},
+{
+image:"linkac/4.jpg"
+},
+{
+image:"linkac/5.jpg"
+},
+{
+image:"linkac/6.jpg"
+},
+{
+image:"linkac/7.jpg"
+},
+{
+image:"linkac/8.jpg"
+},
+{
+image:"linkac/9.jpg"
+},
+{
+image:"linkac/10.jpg"
+},
+{
+image:"linkac/11.jpg"
+},
+{
+image:"linkac/12.jpg"
+}
+
+];
+
+const catalog=document.getElementById("catalog");
+
+products.forEach(product=>{
+
+catalog.innerHTML+=`
+
+<div class="card">
+
+<img src="${product.image}" loading="lazy">
+
+</div>
+
+`;
+
+});
+
+const popup=document.getElementById("popup");
+const popupImage=document.getElementById("popupImage");
+
+document.querySelectorAll(".card img").forEach(img=>{
+
+img.onclick=()=>{
+
+popup.classList.add("active");
+
+popupImage.src=img.src;
+
+}
+
+})
+
+popup.onclick=()=>{
+
+popup.classList.remove("active");
+
+}
+
+</script>
+
+</body>
+</html>
