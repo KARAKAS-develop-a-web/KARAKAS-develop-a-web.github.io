@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Üçler Gül Kuyumculuk</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Fontlar -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- İkonlar -->
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+
+<body>
+<!-- Loading Screen -->
+<div id="loader">
+    <div class="loader-logo">
+        <img src="images/Adsız tasarım (5).png" alt="Logo">
+    </div>
+
+    <div class="loader-line"></div>
+
+    <h2>ÜÇLER GÜL KUYUMCULUK</h2>
+
+    <p>1948'den Beri Güvenin Adresi</p>
+</div>
+
+<!-- Mouse Glow -->
+<div id="cursor-light"></div>
+<!-- Arka Plan Video -->
+<video class="background-video" autoplay muted loop playsinline>
+    <source src="img/ÜÇLER GÜL KUYUMCULUK OLARAK (1).mp4" type="video/mp4">
+</video>
+
+<div class="overlay"></div>
+
+<!-- Altın Parçacıkları -->
+<div id="particles"></div>
+
+<div class="container">
+
+    <img src="images/Adsız tasarım (5).png" class="logo">
+
+    <h1>ÜÇLER GÜL KUYUMCULUK</h1>
+
+    <p>1948'den Beri Güvenin Adresi</p>
+
+    <div class="links">
+
+        <a href="#" class="card">
+            <i class="fab fa-whatsapp"></i>
+            <span>WhatsApp Sipariş</span>
+            <i class="fa-solid fa-chevron-right"></i>
+        </a>
+
+        <a href="#" class="card">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span>Güvenli Alışveriş</span>
+            <i class="fa-solid fa-chevron-right"></i>
+        </a>
+
+        <a href="#" class="card">
+            <i class="fa-solid fa-gem"></i>
+            <span>Online Katalog</span>
+            <i class="fa-solid fa-chevron-right"></i>
+        </a>
+
+        <a href="#" class="card">
+            <i class="fa-solid fa-location-dot"></i>
+            <span>Forum AVM Şubesi</span>
+            <i class="fa-solid fa-chevron-right"></i>
+        </a>
+
+        <a href="#" class="card">
+            <i class="fa-solid fa-location-dot"></i>
+            <span>Sincan Şubesi</span>
+            <i class="fa-solid fa-chevron-right"></i>
+        </a>
+
+        <a href="#" class="card">
+            <i class="fa-solid fa-phone"></i>
+            <span>Forum Telefon</span>
+            <i class="fa-solid fa-chevron-right"></i>
+        </a>
+
+        <a href="#" class="card">
+            <i class="fa-solid fa-phone"></i>
+            <span>Sincan Telefon</span>
+            <i class="fa-solid fa-chevron-right"></i>
+        </a>
+
+        <a href="#" class="card">
+            <i class="fa-brands fa-google"></i>
+            <span>Google Yorumları</span>
+            <i class="fa-solid fa-chevron-right"></i>
+        </a>
+
+        <a href="#" class="card">
+            <i class="fa-solid fa-building-columns"></i>
+            <span>IBAN Bilgileri</span>
+            <i class="fa-solid fa-chevron-right"></i>
+        </a>
+
+        <a href="#" class="card">
+            <i class="fa-solid fa-globe"></i>
+            <span>Web Sitesi</span>
+            <i class="fa-solid fa-chevron-right"></i>
+        </a>
+
+        <a href="#" class="card">
+            <i class="fa-brands fa-instagram"></i>
+            <span>Instagram</span>
+            <i class="fa-solid fa-chevron-right"></i>
+        </a>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+<style>/* ===============================
+   RESET
+=================================*/
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    overflow-x:hidden;
+    background:#000;
+    color:#fff;
+}
+
+/* ===============================
+   BACKGROUND VIDEO
+=================================*/
+
+.background-video{
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    z-index:-3;
+    filter:brightness(.45);
+}
+
+.overlay{
+    position:fixed;
+    inset:0;
+    background:
+    radial-gradient(circle at top,rgba(212,175,55,.12),transparent 40%),
+    rgba(0,0,0,.55);
+    backdrop-filter:blur(4px);
+    z-index:-2;
+}
+
+/* ===============================
+   CONTAINER
+=================================*/
+
+.container{
+    width:min(92%,480px);
+    margin:auto;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:60px 0;
+}
+
+/* ===============================
+   LOGO
+=================================*/
+
+.logo{
+
+    width:130px;
+    height:130px;
+    object-fit:contain;
+
+    animation:float 4s ease-in-out infinite;
+
+}
+
+@keyframes float{
+
+0%,100%{
+transform:translateY(0);
+}
+
+50%{
+transform:translateY(-8px);
+}
+
+}
+
+/* ===============================
+   TEXT
+=================================*/
+
+h1{
+
+font-family:'Cinzel',serif;
+margin-top:25px;
+font-size:31px;
+letter-spacing:3px;
+text-align:center;
+
+}
+
+p{
+
+margin-top:10px;
+color:#d8d8d8;
+font-size:15px;
+letter-spacing:1px;
+
+}
+
+/* ===============================
+   LINKS
+=================================*/
+
+.links{
+
+width:100%;
+margin-top:45px;
+
+display:flex;
+flex-direction:column;
+gap:18px;
+
+}
+
+/* ===============================
+   CARD
+=================================*/
+
+.card{
+
+position:relative;
+
+display:flex;
+align-items:center;
+justify-content:space-between;
+
+padding:18px 22px;
+
+border-radius:22px;
+
+text-decoration:none;
+
+color:white;
+
+overflow:hidden;
+
+background:rgba(255,255,255,.08);
+
+backdrop-filter:blur(15px);
+
+border:1px solid rgba(255,255,255,.12);
+
+transition:.35s;
+
+}
+
+/* ışık efekti */
+
+.card::before{
+
+content:"";
+
+position:absolute;
+
+left:-130%;
+
+top:0;
+
+height:100%;
+
+width:60%;
+
+background:linear-gradient(
+
+90deg,
+
+transparent,
+
+rgba(255,255,255,.35),
+
+transparent
+
+);
+
+transform:skewX(-20deg);
+
+transition:.8s;
+
+}
+
+.card:hover::before{
+
+left:160%;
+
+}
+
+/* hover */
+
+.card:hover{
+
+transform:translateY(-5px);
+
+border-color:#D4AF37;
+
+box-shadow:
+
+0 10px 35px rgba(212,175,55,.25);
+
+}
+
+/* ikon */
+
+.card i:first-child{
+
+width:42px;
+height:42px;
+
+border-radius:50%;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+background:rgba(212,175,55,.15);
+
+color:#D4AF37;
+
+font-size:18px;
+
+}
+
+/* yazı */
+
+.card span{
+
+flex:1;
+margin-left:16px;
+font-size:17px;
+font-weight:500;
+
+}
+
+/* ok */
+
+.card i:last-child{
+
+transition:.35s;
+
+}
+
+.card:hover i:last-child{
+
+transform:translateX(6px);
+
+}
+
+/* ===============================
+   SCROLLBAR
+=================================*/
+
+::-webkit-scrollbar{
+
+width:8px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+background:#D4AF37;
+border-radius:50px;
+
+}
+
+::-webkit-scrollbar-track{
+
+background:#111;
+
+}
+
+/* ===============================
+   RESPONSIVE
+=================================*/
+
+@media(max-width:480px){
+
+.logo{
+
+width:110px;
+height:110px;
+
+}
+
+h1{
+
+font-size:25px;
+
+}
+
+.card{
+
+padding:16px;
+
+}
+
+.card span{
+
+font-size:15px;
+
+}
+
+}
+/* ===========================
+   LOADING SCREEN
+=========================== */
+
+#loader{
+    position:fixed;
+    inset:0;
+    background:#050505;
+    z-index:99999;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    transition:1s;
+}
+
+#loader.hide{
+
+    opacity:0;
+    visibility:hidden;
+
+}
+
+.loader-logo img{
+
+    width:110px;
+
+    animation:pulse 2s infinite;
+
+}
+
+.loader-line{
+
+    margin:30px 0;
+
+    width:0;
+
+    height:2px;
+
+    background:#D4AF37;
+
+    animation:lineGrow 2s forwards;
+
+}
+
+#loader h2{
+
+    font-family:"Cinzel",serif;
+
+    letter-spacing:5px;
+
+    color:white;
+
+}
+
+#loader p{
+
+    margin-top:15px;
+
+    color:#cfcfcf;
+
+}
+
+@keyframes lineGrow{
+
+    to{
+
+        width:220px;
+
+    }
+
+}
+
+@keyframes pulse{
+
+0%,100%{
+
+transform:scale(1);
+
+}
+
+50%{
+
+transform:scale(1.08);
+
+}
+
+}
+
+
+/* ===========================
+   CURSOR LIGHT
+=========================== */
+
+#cursor-light{
+
+position:fixed;
+
+width:280px;
+
+height:280px;
+
+border-radius:50%;
+
+pointer-events:none;
+
+background:radial-gradient(circle,
+rgba(212,175,55,.28),
+transparent 70%);
+
+transform:translate(-50%,-50%);
+
+z-index:0;
+
+filter:blur(25px);
+
+}
+
+
+/* ===========================
+   PARTICLES
+=========================== */
+
+.gold-particle{
+
+position:fixed;
+
+width:4px;
+
+height:4px;
+
+background:#D4AF37;
+
+border-radius:50%;
+
+pointer-events:none;
+
+opacity:.8;
+
+animation:floatParticle linear forwards;
+
+}
+
+@keyframes floatParticle{
+
+0%{
+
+transform:translateY(0) scale(1);
+
+opacity:1;
+
+}
+
+100%{
+
+transform:translateY(-110vh) scale(0);
+
+opacity:0;
+
+}
+
+}</style>
+<script>// ===============================
+// SAYFA YÜKLENDİ
+// ===============================
+
+window.addEventListener("load", () => {
+
+    const cards = document.querySelectorAll(".card");
+
+    cards.forEach((card, index) => {
+
+        card.style.opacity = "0";
+        card.style.transform = "translateY(40px)";
+
+        setTimeout(() => {
+
+            card.style.transition =
+                "all .7s cubic-bezier(.22,.61,.36,1)";
+
+            card.style.opacity = "1";
+            card.style.transform = "translateY(0)";
+
+        }, 250 + index * 120);
+
+    });
+
+});
+
+
+// ===============================
+// RIPPLE EFFECT
+// ===============================
+
+document.querySelectorAll(".card").forEach(card => {
+
+    card.addEventListener("click", function(e){
+
+        const circle = document.createElement("span");
+
+        const rect = this.getBoundingClientRect();
+
+        const size = Math.max(rect.width, rect.height);
+
+        circle.style.width = size + "px";
+        circle.style.height = size + "px";
+
+        circle.style.left = e.clientX - rect.left - size/2 + "px";
+        circle.style.top = e.clientY - rect.top - size/2 + "px";
+
+        circle.classList.add("ripple");
+
+        this.appendChild(circle);
+
+        setTimeout(()=>{
+            circle.remove();
+        },700);
+
+        if(navigator.vibrate){
+            navigator.vibrate(18);
+        }
+
+    });
+
+});
+
+
+// ===============================
+// MOUSE IŞIK EFEKTİ
+// ===============================
+
+document.querySelectorAll(".card").forEach(card=>{
+
+    card.addEventListener("mousemove",(e)=>{
+
+        const rect = card.getBoundingClientRect();
+
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        card.style.background =
+        `radial-gradient(circle at ${x}px ${y}px,
+        rgba(212,175,55,.22),
+        rgba(255,255,255,.07) 55%)`;
+
+    });
+
+    card.addEventListener("mouseleave",()=>{
+
+        card.style.background="rgba(255,255,255,.08)";
+
+    });
+
+});
+
+
+// ===============================
+// SCROLL REVEAL
+// ===============================
+
+const observer = new IntersectionObserver(entries=>{
+
+    entries.forEach(entry=>{
+
+        if(entry.isIntersecting){
+
+            entry.target.classList.add("visible");
+
+        }
+
+    });
+
+},{
+    threshold:.2
+});
+
+document.querySelectorAll(".card").forEach(card=>{
+
+    observer.observe(card);
+
+});
+
+
+// ===============================
+// LOGO PARILTISI
+// ===============================
+
+const logo = document.querySelector(".logo");
+
+setInterval(()=>{
+
+    logo.animate([
+
+        {
+            filter:"drop-shadow(0 0 0px gold)"
+        },
+
+        {
+            filter:"drop-shadow(0 0 18px gold)"
+        },
+
+        {
+            filter:"drop-shadow(0 0 0px gold)"
+        }
+
+    ],{
+
+        duration:1800
+
+    });
+
+},3500);
+
+
+// ===============================
+// MOUSE PARALLAX
+// ===============================
+
+document.addEventListener("mousemove",(e)=>{
+
+    let x=(window.innerWidth/2-e.clientX)/35;
+
+    let y=(window.innerHeight/2-e.clientY)/35;
+
+    logo.style.transform=
+    `translate(${x}px,${y}px)`;
+
+});
+
+
+// ===============================
+// CARD HOVER SOUND (İSTEĞE BAĞLI)
+// ===============================
+
+// const audio=new Audio("assets/click.mp3");
+
+// document.querySelectorAll(".card").forEach(card=>{
+
+// card.addEventListener("mouseenter",()=>{
+
+// audio.currentTime=0;
+
+// audio.play();
+
+// });
+
+// });
+
+
+// ===============================
+// SAĞ TIK KAPAT
+// ===============================
+
+document.addEventListener("contextmenu",e=>{
+
+    e.preventDefault();
+
+});
+
+
+// ===============================
+// F12 ENGELİ
+// ===============================
+
+//==============================
+// LOADING SCREEN
+//==============================
+
+window.addEventListener("load",()=>{
+
+    setTimeout(()=>{
+
+        document
+        .getElementById("loader")
+        .classList.add("hide");
+
+    },2500);
+
+});
+
+
+//==============================
+// CURSOR LIGHT
+//==============================
+
+const light=document.getElementById("cursor-light");
+
+document.addEventListener("mousemove",(e)=>{
+
+    light.style.left=e.clientX+"px";
+
+    light.style.top=e.clientY+"px";
+
+});
+
+
+//==============================
+// GOLD PARTICLES
+//==============================
+
+function createParticle(){
+
+    const particle=document.createElement("div");
+
+    particle.className="gold-particle";
+
+    particle.style.left=Math.random()*100+"vw";
+
+    particle.style.bottom="-20px";
+
+    particle.style.animationDuration=
+
+    (5+Math.random()*6)+"s";
+
+    particle.style.opacity=
+
+    Math.random();
+
+    document.body.appendChild(particle);
+
+    setTimeout(()=>{
+
+        particle.remove();
+
+    },12000);
+
+}
+
+setInterval(createParticle,180);</script>
+</body>
+</html>
