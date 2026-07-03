@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Üçler Gül Kuyumculuk - Özel tasarım koleksiyonlarımız ve zarafetin adresi.">
+    <meta name="theme-color" content="#827255">
+    <title>Ürünlerimiz | Üçler Gül Kuyumculuk</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="c:/Users/karak/Downloads/Adsız tasarım (5).png" />
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+        tailwind.config={
+            theme:{
+                extend:{
+                    colors:{
+                        primary:'#95815c',
+                        secondary:'#D4AF37',
+                        accent:'#3a5ba0',
+                        dark:'#1a1a1a',
+                    },
+                    borderRadius:{
+                        'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'
+                    },
+                    fontFamily: {
+                        pacifico: ['Pacifico', 'cursive'],
+                        inter: ['Inter', 'sans-serif'],
+                        poppins: ['Poppins', 'sans-serif'],
+                        montserrat: ['Montserrat', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'premium': '0 10px 30px rgba(145, 158, 164, 0.15)',
+                        'premium-hover': '0 20px 40px rgba(145, 158, 164, 0.2)',
+                        'glow': '0 0 20px rgba(212, 175, 55, 0.3)',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Libraries -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* Custom Select Styles */
+        .premium-select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 0.5rem center;
+            background-repeat: no-repeat;
+            background-size: 1.5em 1.5em;
+        }
+
+        /* Skeleton Loading Animation */
+        .skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #f8f8f8 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+    </style>
+<style>
+.topbar-small { font-size:12px; letter-spacing:0.01em; }
+.nav-item { position:relative; color:#555; padding:6px 0; transition:color .25s ease; }
+.nav-item:hover { color:#95815c; }
+.nav-item::after { content:''; position:absolute; width:0; height:1px; bottom:0; left:0; background-color:#95815c; transition:width 0.3s ease; }
+.nav-item:hover::after, .nav-item.active::after { width:100%; }
+::selection { background-color:#95815c; color:#fff; }
+::-moz-selection { background-color:#95815c; color:#fff; }
+body { user-select:none; -webkit-user-select:none; }
+p, li, address, input, textarea, [contenteditable] { user-select:text; -webkit-user-select:text; }
+::-webkit-scrollbar { display:none; }
+html { scrollbar-width:none; -ms-overflow-style:none; }
+</style>
+</head>
+<body class="bg-gray-50 font-inter text-gray-800" onload="window.initApp()">
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed top-5 right-5 z-[200] transform transition-all duration-300 translate-x-full opacity-0">
+        <div class="bg-white border-l-4 border-secondary shadow-2xl rounded-lg p-4 flex items-center gap-3 min-w-[300px]">
+            <div class="bg-green-100 rounded-full p-2 text-green-600">
+                <i class="ri-check-line text-xl"></i>
+            </div>
+            <div>
+                <h4 class="font-bold text-gray-800 text-sm">Başarılı</h4>
+                <p class="text-xs text-gray-500" id="toastMessage">İşlem tamamlandı.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header & Navigation -->
+    <header class="bg-[#827255] text-white">
+      <div class="flex items-center justify-between px-4 py-1 topbar-small">
+        <div class="flex items-center flex-1 min-w-0 mr-2">
+          <div class="w-4 h-4 flex items-center justify-center mr-1 flex-shrink-0"><i class="ri-map-pin-line text-xs"></i></div>
+          <span class="truncate block">Gökçek, 250.Cd. No: 15/c,Sincan/Ankara--- / ---Ulubatlı Hasan, Mehmet Akif Ersoy Cd.,Sincan/Ankara</span>
+        </div>
+        <div class="flex items-center flex-shrink-0">
+          <i class="ri-phone-line mr-2"></i><span class="mr-2"> (0312) 272 22 61 / 273 23 53</span>
+        </div>
+      </div>
+    </header>
+
+    <nav id="main-navbar" class="py-4 px-4 md:px-8 border-b shadow-sm sticky top-0 z-50 transition-all duration-300 bg-white/95 backdrop-blur-md">
+        <div class="container mx-auto flex items-center justify-between">
+          <div class="flex items-center flex-shrink-0 mr-2 md:mr-8">
+            <a href="index.html" class="flex items-center">
+              <div id="navbar-logo-container" class="mr-5" style="height:48px;display:flex;align-items:center;justify-content:center;overflow:visible;transition:height 0.3s ease;">
+                <img id="navbar-logo" src="images/üçler gül (24).png" alt="Üçler Gül Logo" style="height:100%;width:auto;max-width:120px;object-fit:contain;display:block;transform:scale(1.4);transform-origin:center center;" class="transition-all duration-300" />
+              </div>
+              <span id="navbar-title" class="text-xl md:text-3xl font-montserrat text-primary font-semibold tracking-tight transition-all duration-300">Üçler Gül</span>
+              <span style="font-family:'Pacifico',cursive;font-size:1rem;margin-left:12px;" class="text-primary align-middle hidden md:inline-block">Yüzünüz hep <span style="color:#d4af37;">gül</span>sün diye</span>
+            </a>
+          </div>
+          <div class="flex-1 flex justify-center hidden md:flex">
+            <div class="flex space-x-12">
+              <a href="index.html" class="nav-item text-gray-700 font-medium">Ana Sayfa</a>
+              <a href="hakkimizda.html" class="nav-item text-gray-700 font-medium">Hakkımızda</a>
+              <a href="ürünler.html" class="nav-item text-gray-700 font-medium">Ürünler</a>
+              <a href="magazalarimiz.html" class="nav-item text-gray-700 font-medium">Mağazalarımız</a>
+              <a href="iletisim.html" class="nav-item text-gray-700 font-medium">İletişim</a>
+            </div>
+          </div>
+          <div class="flex items-center space-x-2 md:space-x-4">
+            <button onclick="window.location.href='favoriler.html'" class="relative hover:text-primary transition-colors hover:scale-110 transform" title="Favoriler">
+              <i class="ri-heart-line text-2xl"></i>
+              <span id="favCount" class="absolute -top-2 -right-2 bg-primary text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full opacity-0 transition-opacity">0</span>
+            </button>
+            <div class="relative cursor-pointer hover:scale-110 transform transition-transform" onclick="toggleCartDrawer()" title="Sepet">
+              <i class="ri-shopping-bag-line text-2xl hover:text-primary transition-colors"></i>
+              <span id="cartCount" class="absolute -top-2 -right-2 bg-primary text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full opacity-0 transition-opacity">0</span>
+            </div>
+            <button onclick="toggleMobileMenu()" class="md:hidden text-2xl text-primary focus:outline-none ml-2"><i class="ri-menu-line"></i></button>
+          </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-white border-t border-gray-100 shadow-lg py-4 px-4 flex-col gap-4">
+          <a href="index.html" class="nav-item text-gray-700 font-medium py-2 border-b border-gray-50 block">Ana Sayfa</a>
+          <a href="hakkimizda.html" class="nav-item text-gray-700 font-medium py-2 border-b border-gray-50 block">Hakkımızda</a>
+          <a href="ürünler.html" class="nav-item text-gray-700 font-medium py-2 border-b border-gray-50 block">Ürünler</a>
+          <a href="magazalarimiz.html" class="nav-item text-gray-700 font-medium py-2 border-b border-gray-50 block">Mağazalarımız</a>
+          <a href="iletisim.html" class="nav-item text-gray-700 font-medium py-2 block">İletişim</a>
+        </div>
+    </nav>
+    
+    <script>
+    function toggleMobileMenu(){var m=document.getElementById('mobile-menu');if(m){m.classList.toggle('hidden');m.classList.toggle('flex');}}
+    window.addEventListener('scroll',function(){var nb=document.getElementById('main-navbar'),lc=document.getElementById('navbar-logo-container'),nt=document.getElementById('navbar-title');if(!nb)return;if(window.scrollY>30){nb.style.background='rgba(255,255,255,0.97)';nb.style.backdropFilter='blur(12px)';nb.classList.add('shadow-md','py-2');nb.classList.remove('py-4');if(lc)lc.style.height='34px';if(nt){nt.classList.add('text-xl');nt.classList.remove('text-3xl');}}else{nb.style.background='rgba(255,255,255,0.95)';nb.style.backdropFilter='blur(8px)';nb.classList.remove('shadow-md','py-2');nb.classList.add('py-4');if(lc)lc.style.height='48px';if(nt){nt.classList.remove('text-xl');nt.classList.add('text-3xl');}}});
+    (function(){var page=decodeURIComponent(window.location.pathname.split('/').pop()||'index.html');document.querySelectorAll('.nav-item').forEach(function(a){var h=decodeURIComponent((a.getAttribute('href')||'').split('/').pop().split('?')[0]);if(h===page){a.classList.add('active');a.style.color='#95815c';}});})();
+    </script>
+    
+    <!-- Cart Drawer -->
+    <div id="cartDrawerBackdrop" onclick="toggleCartDrawer()" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[90] hidden transition-opacity opacity-0"></div>
+    <div id="cartDrawer" class="fixed top-0 right-0 h-full w-full max-w-sm bg-white shadow-2xl z-[100] transform translate-x-full transition-transform duration-300 flex flex-col font-inter">
+        <div class="p-5 border-b border-gray-100 flex items-center justify-between bg-gray-50/50">
+            <h2 class="font-bold text-lg text-gray-800 flex items-center gap-2">
+                <i class="ri-shopping-bag-3-line"></i> Sepetim
+            </h2>
+            <button onclick="toggleCartDrawer()" class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-white hover:shadow-sm text-gray-500 hover:text-red-500 transition-all">
+                <i class="ri-close-line text-xl"></i>
+            </button>
+        </div>
+        
+        <div id="cartItemsContainer" class="flex-1 overflow-y-auto p-5 space-y-4">
+            <!-- Items injected via JS -->
+        </div>
+        
+        <div class="p-5 border-t border-gray-100 bg-gray-50/30">
+            <div class="flex justify-between items-center mb-4">
+                <span class="text-gray-500 text-sm">Toplam Tutar</span>
+                <span class="text-xl font-bold text-primary font-montserrat" id="cartTotal">0 ₺</span>
+            </div>
+            <button onclick="checkout()" class="w-full py-3 bg-dark text-white rounded-xl font-bold hover:bg-black transition-colors shadow-lg shadow-gray-200 flex items-center justify-center gap-2">
+                Sepeti Onayla <i class="ri-arrow-right-line"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Page Header -->
+    <div class="relative bg-gray-900 text-white min-h-[40vh] flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-black/55 z-10"></div>
+            <img src="img/Adsız tasarım (14).png" class="w-full h-full object-cover transform scale-105" alt="Ürünler Koleksiyonu">
+        </div>
+        <div class="absolute inset-0 z-0 opacity-20 pointer-events-none" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+
+        <div class="container mx-auto px-4 relative z-20 text-center" data-aos="fade-up">
+            <div class="w-16 h-1 bg-primary mx-auto mb-6"></div>
+            <h1 class="text-4xl md:text-5xl font-bold font-montserrat tracking-wider uppercase mb-4 text-white drop-shadow-lg">Ürünler</h1>
+            <p class="text-gray-200 text-lg font-light tracking-wide max-w-xl mx-auto">
+                Yüzükten kolyeye, günlük şıklık ve özel anlar için seçilmiş koleksiyonumuzu keşfedin.
+            </p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <section class="py-10 bg-white min-h-screen" id="productFilters">
+        <div class="container mx-auto px-4 md:px-8">
+            
+            <div class="mb-10 border-b border-gray-100 pb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+               <div>
+                   <div class="text-[10px] uppercase tracking-widest text-gray-400 font-medium">Anasayfa / Koleksiyon</div>
+                   <p class="mt-3 text-sm md:text-base text-gray-500 max-w-2xl">Gerçek ürün fotoğraflarıyla hazırlanan koleksiyon içinde kategorilere göre hızlıca filtreleme yapabilirsiniz.</p>
+               </div>
+            </div>
+
+            <!-- Toolbar (Non-Sticky, Clean) -->
+            <div class="flex flex-col-reverse md:flex-row items-center justify-between mb-8 gap-6">
+                <!-- Categories (Pills - Horizontal Scroll) -->
+                <div class="w-full md:w-auto overflow-x-auto pb-2 md:pb-0 scrollbar-hide">
+                    <div class="flex items-center gap-2" id="categoryPills">
+                        <!-- JS Will Populate -->
+                        <button onclick="setCategory(this, '')" class="cat-pill active px-5 py-2 rounded-full border border-black bg-black text-white text-xs font-bold uppercase transition-all whitespace-nowrap">Tümü</button>
+                    </div>
+                </div>
+
+                <!-- Right Tools -->
+                <div class="w-full md:w-auto flex items-center justify-between md:justify-end gap-6 border-b border-gray-100 md:border-none pb-4 md:pb-0">
+                    <div class="flex items-center gap-2">
+                        <span class="text-xs text-gray-400 font-medium hidden sm:block">GÖRÜNÜM:</span>
+                        <button class="text-gray-400 hover:text-black transition-colors" onclick="setGrid(3)"><i class="ri-layout-grid-line text-xl"></i></button>
+                        <button class="text-gray-900" onclick="setGrid(4)"><i class="ri-layout-4-line text-xl"></i></button>
+                    </div>
+                    
+                    <div class="relative group">
+                         <select id="sortSelect" onchange="applyFilters()" class="appearance-none bg-transparent text-xs font-bold uppercase tracking-wider text-gray-700 pr-8 py-2 focus:outline-none cursor-pointer">
+                            <option value="featured">Sıralama Seçiniz</option>
+                            <option value="price-asc">Fiyat: Artan</option>
+                            <option value="price-desc">Fiyat: Azalan</option>
+                            <option value="newest">Yeniler</option>
+                        </select>
+                        <i class="ri-expand-up-down-line absolute right-0 top-1.5 text-gray-400 text-xs pointer-events-none"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Grid -->
+            <div id="productGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-12">
+                 <!-- JS Populated -->
+            </div>
+            
+            <!-- Pagination -->
+            <div class="mt-16 flex justify-center gap-2" id="pagination"></div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#95815c] text-white py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div class="space-y-4">
+            <div class="flex items-center space-x-2">
+              <img src="images/Adsız tasarım (5).png" alt="Üçler Gül Logo" class="h-10 w-auto" />
+              <span class="font-['Pacifico'] text-2xl" style="color:#ffffff;">Üçler Gül</span>
+            </div>
+            <p class="text-white text-sm leading-relaxed">25 yıldır lüks mücevher sektöründe güvenilir adres. Kalite ve zarafeti bir araya getiren özel tasarımlar.</p>
+            <div class="flex space-x-4">
+              <a href="https://www.facebook.com" target="_blank" class="w-11 h-11 flex items-center justify-center rounded-full border border-white/20 bg-white/5 text-white transition-all duration-300 transform hover:scale-110 hover:bg-[#d4b36b] hover:border-[#d4b36b]"><i class="ri-facebook-fill text-lg"></i></a>
+              <a href="https://www.instagram.com" target="_blank" class="w-11 h-11 flex items-center justify-center rounded-full border border-white/20 bg-white/5 text-white transition-all duration-300 transform hover:scale-110 hover:bg-[#d4b36b] hover:border-[#d4b36b]"><i class="ri-instagram-line text-lg"></i></a>
+              <a href="https://www.twitter.com" target="_blank" class="w-11 h-11 flex items-center justify-center rounded-full border border-white/20 bg-white/5 text-white transition-all duration-300 transform hover:scale-110 hover:bg-[#d4b36b] hover:border-[#d4b36b]"><i class="ri-twitter-fill text-lg"></i></a>
+            </div>
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold mb-4">Kategoriler</h3>
+            <ul class="space-y-2 text-white">
+            <li><a href="ürünler.html?category=Yüzük" class="group relative inline-block hover:text-white"><span class="relative z-10">Yüzükler</span><span class="absolute left-0 bottom-0 w-0 h-px bg-white transition-all duration-300 group-hover:w-full"></span></a></li>
+            <li><a href="ürünler.html?category=Kolye" class="group relative inline-block hover:text-white"><span class="relative z-10">Kolyeler</span><span class="absolute left-0 bottom-0 w-0 h-px bg-white transition-all duration-300 group-hover:w-full"></span></a></li>
+            <li><a href="ürünler.html?category=Küpe" class="group relative inline-block hover:text-white"><span class="relative z-10">Küpeler</span><span class="absolute left-0 bottom-0 w-0 h-px bg-white transition-all duration-300 group-hover:w-full"></span></a></li>
+            <li><a href="ürünler.html?category=Bilezik" class="group relative inline-block hover:text-white"><span class="relative z-10">Bilezikler</span><span class="absolute left-0 bottom-0 w-0 h-px bg-white transition-all duration-300 group-hover:w-full"></span></a></li>
+            <li><a href="ürünler.html?category=Özel+Tasarım" class="group relative inline-block hover:text-white"><span class="relative z-10">Özel Tasarım</span><span class="absolute left-0 bottom-0 w-0 h-px bg-white transition-all duration-300 group-hover:w-full"></span></a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold mb-4">Hizmetler</h3>
+            <ul class="space-y-2 text-white">
+            <li><a href="iletisim.html" class="group relative inline-block hover:text-white"><span class="relative z-10">Özel Tasarım</span><span class="absolute left-0 bottom-0 w-0 h-px bg-white transition-all duration-300 group-hover:w-full"></span></a></li>
+            <li><a href="iletisim.html" class="group relative inline-block hover:text-white"><span class="relative z-10">Onarım Hizmeti</span><span class="absolute left-0 bottom-0 w-0 h-px bg-white transition-all duration-300 group-hover:w-full"></span></a></li>
+            <li><a href="iletisim.html" class="group relative inline-block hover:text-white"><span class="relative z-10">Değlendirme</span><span class="absolute left-0 bottom-0 w-0 h-px bg-white transition-all duration-300 group-hover:w-full"></span></a></li>
+            <li><a href="iletisim.html" class="group relative inline-block hover:text-white"><span class="relative z-10">Sigorta</span><span class="absolute left-0 bottom-0 w-0 h-px bg-white transition-all duration-300 group-hover:w-full"></span></a></li>
+            <li><a href="iletisim.html" class="group relative inline-block hover:text-white"><span class="relative z-10">Garanti</span><span class="absolute left-0 bottom-0 w-0 h-px bg-white transition-all duration-300 group-hover:w-full"></span></a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-lg font-semibold mb-4">İletişim</h3>
+            <ul class="space-y-2 text-white">
+            <li class="flex items-center space-x-2"><div class="w-4 h-4 flex items-center justify-center"><i class="ri-map-pin-line"></i></div><span>Gökçek, 250.Cd. No: 15/c,Sincan/Ankara</span></li>
+            <li class="flex items-center space-x-2"><div class="w-4 h-4 flex items-center justify-center"><i class="ri-phone-line"></i></div><span> (0312) 272 22 61  </span></li>
+             <li class="flex items-center space-x-2"><div class="w-4 h-4 flex items-center justify-center"><i class="ri-phone-line"></i></div><span> (0312) 273 23 53  </span></li>
+            <li class="flex items-center space-x-2"><div class="w-4 h-4 flex items-center justify-center"><i class="ri-mail-line"></i></div><span>info@uclergukuyumculuk.com</span></li>
+            <li class="flex items-center space-x-2"><div class="w-4 h-4 flex items-center justify-center"><i class="ri-time-line"></i></div><span>09:00 - 19:00</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="relative mt-16 pt-8">
+          <div class="absolute top-0 left-0 h-px w-full" style="background:linear-gradient(90deg,transparent,#d4b36b,transparent);"></div>
+          <div class="flex flex-col md:flex-row justify-between items-center text-white text-sm space-y-4 md:space-y-0">
+            <p>&copy; 2025 <span class="font-semibold">ÜCLER GÜL KUYUMCULUK</span>. Tüm hakları saklıdır.</p>
+            <div class="flex items-center space-x-6">
+              <a href="kvkk.html#gizlilik" class="group relative inline-block hover:text-white"><span class="relative z-10">Gizlilik Politikası</span><span class="absolute left-0 bottom-0 w-0 h-px bg-white transition-all duration-300 group-hover:w-full"></span></a>
+              <span class="text-white/50">|</span>
+              <a href="kvkk.html" class="group relative inline-block hover:text-white"><span class="relative z-10">Kullanım Koşulları</span><span class="absolute left-0 bottom-0 w-0 h-px bg-white transition-all duration-300 group-hover:w-full"></span></a>
+              <span class="text-white/50">|</span>
+              <a href="kvkk.html#aydinlatma" class="group relative inline-block hover:text-white"><span class="relative z-10">KVKK</span><span class="absolute left-0 bottom-0 w-0 h-px bg-white transition-all duration-300 group-hover:w-full"></span></a>
+            </div>
+            <p class="flex items-center space-x-2"><span>Designed by</span><span class="font-bold">BKtasar</span><i class="ri-palette-line"></i></p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Quick View Modal -->
+    <div id="productModal" class="fixed inset-0 z-[100] hidden">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm transition-opacity" onclick="closeModal()"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col md:flex-row max-h-[90vh]">
+            
+            <!-- Image -->
+            <div class="w-full md:w-1/2 bg-gray-50 p-8 flex items-center justify-center relative">
+                <img id="modalImg" src="" class="max-h-[60vh] object-contain drop-shadow-xl" />
+                <button onclick="closeModal()" class="absolute top-4 left-4 md:hidden w-8 h-8 bg-white rounded-full shadow flex items-center justify-center"><i class="ri-close-line"></i></button>
+            </div>
+
+            <!-- Content -->
+            <div class="w-full md:w-1/2 p-8 overflow-y-auto custom-scrollbar">
+                <button onclick="closeModal()" class="absolute top-4 right-4 hidden md:flex w-8 h-8 bg-gray-100 hover:bg-gray-200 rounded-full items-center justify-center transition-colors"><i class="ri-close-line"></i></button>
+                
+                <div id="modalBadges" class="flex gap-2 mb-3"></div>
+                <h2 id="modalTitle" class="text-2xl font-montserrat font-bold text-gray-900 mb-2"></h2>
+                <div class="text-secondary text-sm mb-6 flex items-center gap-2">
+                    <i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i><i class="ri-star-fill"></i>
+                    <span class="text-gray-400 text-xs">(Mükemmel)</span>
+                </div>
+
+                <p class="text-gray-600 leading-relaxed mb-6 border-b border-gray-100 pb-6">
+                    Üçler Gül kalitesiyle tasarlanmış, şıklığınıza şıklık katacak özel bir parça. Sertifikalı ve garantili ürün.
+                </p>
+
+                <div class="flex gap-3 mb-8">
+                    <button onclick="addProductToCart()" class="flex-1 bg-primary hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-xl shadow-lg shadow-primary/30 transition-all hover:-translate-y-1 flex items-center justify-center gap-2">
+                        <i class="ri-shopping-basket-2-fill"></i> Sepete Ekle
+                    </button>
+                    <button id="modalFavBtn" onclick="toggleModalFav()" class="w-14 h-14 border border-gray-200 rounded-xl flex items-center justify-center text-gray-400 hover:text-red-500 hover:bg-red-50 transition-colors">
+                        <i class="ri-heart-line text-xl"></i>
+                    </button>
+                </div>
+
+                <!-- Reviews Section -->
+                <div>
+                    <h3 class="font-bold text-gray-800 mb-4 flex items-center gap-2">
+                        <i class="ri-chat-1-line text-primary"></i> Değerlendirmeler
+                    </h3>
+                    <div id="modalReviews" class="space-y-4">
+                        <!-- Reviews injected here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Backend Logic -->
+    <script>
+        // --- DATA MANAGEMENT ---
+        const PRODUCT_MEDIA = {
+            'Yüzük': [
+                { image: 'images/cristina-pop-neNWkEGv5Aw-unsplash.jpg', hoverImage: 'images/eve-maier-4HkaGQ7muvk-unsplash.jpg' },
+                { image: 'images/eve-maier-4HkaGQ7muvk-unsplash.jpg', hoverImage: 'images/cristina-pop-neNWkEGv5Aw-unsplash.jpg' }
+            ],
+            'Kolye': [
+                { image: 'images/mathilde-langevin-v3hCo9Jljfo-unsplash.jpg', hoverImage: 'images/eve-maier-7uQQHORcTpc-unsplash.jpg' },
+                { image: 'images/eve-maier-7uQQHORcTpc-unsplash.jpg', hoverImage: 'images/mathilde-langevin-v3hCo9Jljfo-unsplash.jpg' }
+            ],
+            'Küpe': [
+                { image: 'images/diego-castaneda-5S0IV03f0i8-unsplash.jpg', hoverImage: 'images/diego-castaneda-5S0IV03f0i8-unsplash.jpg' },
+                { image: 'images/diego-castaneda-5S0IV03f0i8-unsplash.jpg', hoverImage: 'images/diego-castaneda-5S0IV03f0i8-unsplash.jpg' }
+            ],
+            'Bileklik': [
+                { image: 'images/atul-mohan-F6iIkMkqEMk-unsplash.jpg', hoverImage: 'images/atul-mohan-F6iIkMkqEMk-unsplash.jpg' },
+                { image: 'images/atul-mohan-F6iIkMkqEMk-unsplash.jpg', hoverImage: 'images/atul-mohan-F6iIkMkqEMk-unsplash.jpg' }
+            ],
+            'Set': [
+                { image: "images/Women's Watches _ Rosefield _ Official website.jpg", hoverImage: 'images/mathilde-langevin-v3hCo9Jljfo-unsplash.jpg' },
+                { image: 'images/mathilde-langevin-v3hCo9Jljfo-unsplash.jpg', hoverImage: "images/Women's Watches _ Rosefield _ Official website.jpg" }
+            ]
+        };
+
+        function getProductMedia(category, seed) {
+            const pool = PRODUCT_MEDIA[category] || PRODUCT_MEDIA['Yüzük'];
+            return pool[Math.abs(seed) % pool.length];
+        }
+
+        const MOCK_REVIEWS = [
+            { user: "Ayşe Y.", text: "Bayıldım, görselden daha güzel.", star: 5, date: "2 gün önce" },
+            { user: "Mehmet K.", text: "Hediye paketi çok şıktı, teşekkürler.", star: 5, date: "1 hafta önce" },
+            { user: "Zeynep S.", text: "Zarif ve kibar bir model.", star: 4, date: "3 hafta önce" },
+            { user: "Elif D.", text: "Üçler Gül kalitesi şaşırtmadı.", star: 5, date: "1 ay önce" }
+        ];
+
+        function initData() {
+            if(!localStorage.getItem('products_v2')) {
+                const categories = ['Yüzük', 'Kolye', 'Küpe', 'Bileklik', 'Set'];
+                const materials = ['Altın', 'Pırlanta', 'Gümüş'];
+                
+                const products = Array.from({length: 48}, (_, i) => {
+                    const category = categories[i % categories.length];
+                    const media = getProductMedia(category, i);
+                    return {
+                        id: i + 1,
+                        title: `${category} Model ${i+1}`,
+                        category,
+                        material: materials[i % materials.length],
+                        price: Math.floor(Math.random() * 20000) + 5000,
+                        image: media.image,
+                        hoverImage: media.hoverImage,
+                        isNew: Math.random() > 0.8,
+                        isRecommended: Math.random() > 0.9,
+                        reviews: MOCK_REVIEWS.sort(() => 0.5 - Math.random()).slice(0, Math.floor(Math.random() * 3) + 1)
+                    };
+                });
+                localStorage.setItem('products_v2', JSON.stringify(products));
+            }
+        }
+
+        // --- APP STATE ---
+        let allProducts = [];
+        let filteredProducts = [];
+        let currentPage = 1;
+        let ITEMS_PER_PAGE = 12; 
+        let currentGridCols = 4;
+        let activeCategory = ''; 
+        let activeModalProduct = null;
+        
+        // --- CORE FUNCTIONS ---
+        window.initApp = () => {
+             // Init AOS
+             if(window.AOS) AOS.init({duration: 800, once: true});
+             
+             initData(); 
+             renderSkeleton();
+
+             setTimeout(() => {
+                loadProducts(); 
+                renderFilters();
+                
+                // Parse URL Query Params
+                const urlParams = new URLSearchParams(window.location.search);
+                const catParam = urlParams.get('category');
+                if(catParam) {
+                    activeCategory = catParam;
+                }
+
+                applyFilters();
+                updateBadges();
+             }, 300);
+        };
+
+        function renderSkeleton() {
+            const grid = document.getElementById('productGrid');
+            const colClass = currentGridCols === 4 ? 'grid-cols-2 md:grid-cols-3 lg:grid-cols-4' : 'grid-cols-2 md:grid-cols-3';
+            grid.className = `grid ${colClass} gap-x-6 gap-y-12`;
+            
+            grid.innerHTML = Array(8).fill(0).map(() => `
+                <div class="space-y-3">
+                    <div class="skeleton w-full aspect-[4/5] rounded-xl"></div>
+                    <div class="skeleton h-4 w-3/4 rounded mx-auto"></div>
+                    <div class="skeleton h-4 w-1/2 rounded mx-auto"></div>
+                </div>
+            `).join('');
+        }
+
+        function loadProducts() {
+            try {
+                const raw = localStorage.getItem('products_v2');
+                allProducts = raw ? JSON.parse(raw) : [];
+                allProducts = allProducts.map((p, index) => {
+                    const safeId = Number(p.id) || index + 1;
+                    const media = getProductMedia(p.category, safeId - 1);
+                    return {
+                        ...p,
+                        id: safeId,
+                        reviews: Array.isArray(p.reviews) ? p.reviews : [],
+                        image: media.image,
+                        hoverImage: media.hoverImage
+                    };
+                });
+            } catch (e) {
+                console.error("Data Load Error", e);
+                allProducts = [];
+            }
+            filteredProducts = [...allProducts];
+        }
+
+        function renderFilters() {
+            const cats = [...new Set(allProducts.map(p => p.category))];
+            
+            const container = document.getElementById('categoryPills');
+            if(!container) return;
+
+            // "All" button
+            let html = `<button onclick="setCategory(this, '')" class="cat-pill ${activeCategory === '' ? 'active bg-black text-white border-black' : 'bg-transparent text-gray-500 border-gray-200 hover:border-black hover:text-black'} px-5 py-2 rounded-full border text-xs font-bold uppercase transition-all whitespace-nowrap">Tümü</button>`;
+            
+            html += cats.map(c => `
+                <button onclick="setCategory(this, '${c}')" class="cat-pill ${activeCategory === c ? 'active bg-black text-white border-black' : 'bg-transparent text-gray-500 border-gray-200 hover:border-black hover:text-black'} px-5 py-2 rounded-full border text-xs font-bold uppercase transition-all whitespace-nowrap">${c}</button>
+            `).join('');
+            
+            container.innerHTML = html;
+        }
+
+        function setCategory(btn, cat) {
+            activeCategory = cat;
+            
+            // Visual update
+            document.querySelectorAll('.cat-pill').forEach(b => {
+                b.className = 'cat-pill bg-transparent text-gray-500 border border-gray-200 hover:border-black hover:text-black px-5 py-2 rounded-full text-xs font-bold uppercase transition-all whitespace-nowrap';
+            });
+            btn.className = 'cat-pill active bg-black text-white border border-black px-5 py-2 rounded-full text-xs font-bold uppercase transition-all whitespace-nowrap';
+            
+            applyFilters();
+        }
+        
+        function setGrid(cols) {
+            currentGridCols = cols;
+            renderGrid();
+        }
+
+        function applyFilters() {
+            const sortMode = document.getElementById('sortSelect').value;
+
+            filteredProducts = allProducts.filter(p => {
+                if(activeCategory && p.category !== activeCategory) return false;
+                return true;
+            });
+
+            // Sorting
+            if(sortMode === 'price-asc') filteredProducts.sort((a,b) => a.price - b.price);
+            else if(sortMode === 'price-desc') filteredProducts.sort((a,b) => b.price - a.price);
+            else if(sortMode === 'newest') filteredProducts.sort((a,b) => b.isNew - a.isNew);
+
+            currentPage = 1;
+            renderGrid();
+        }
+
+        function renderGrid() {
+            const grid = document.getElementById('productGrid');
+            
+            // Update Grid Classes for column toggle
+            const colClass = currentGridCols === 4 ? 'grid-cols-2 md:grid-cols-3 lg:grid-cols-4' : 'grid-cols-2 md:grid-cols-3';
+            grid.className = `grid ${colClass} gap-x-6 gap-y-12`;
+
+            const start = (currentPage-1)*ITEMS_PER_PAGE;
+            const pageItems = filteredProducts.slice(start, start+ITEMS_PER_PAGE);
+
+            if(pageItems.length === 0) {
+                grid.innerHTML = `
+                <div class="col-span-full py-20 text-center flex flex-col items-center justify-center text-gray-400">
+                    <p class="text-sm">Bu kategoride ürün bulunamadı.</p>
+                    <button onclick="setCategory(document.querySelector('.cat-pill'), '')" class="mt-4 text-black underline text-xs font-bold uppercase">Tümünü Göster</button>
+                </div>`;
+            } else {
+                const favorites = (JSON.parse(localStorage.getItem('favorites')) || []).map(f => f.id);
+                
+                grid.innerHTML = pageItems.map((p, idx) => {
+                    const isFav = favorites.includes(p.id);
+                    return `
+                    <div class="group flex flex-col" data-aos="fade-up" data-aos-delay="${idx * 50}">
+                        
+                        <!-- Image Container (Square, No Radius, Image Swap on Hover) -->
+                        <div class="relative mb-3 group-hover:shadow-lg transition-all duration-300">
+                            <!-- Discount Badge -->
+                            <div class="absolute top-2 left-2 z-20">
+                                <span class="bg-[#E63946] text-white text-[10px] font-bold px-2 py-1 uppercase tracking-wider shadow-sm">
+                                    -%30
+                                </span>
+                            </div>
+
+                            <a href="urun-detay.html?id=${p.id}" class="block aspect-square bg-white overflow-hidden relative border border-gray-50 group-hover:border-gray-200 transition-colors">
+                                <!-- Main Image (Visible default, Fades out on hover) -->
+                                <img src="${p.image}" alt="${p.title}" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-0 z-10">
+                                <!-- Hover Image (Visible on hover) -->
+                                <img src="${p.hoverImage}" alt="${p.title}" class="absolute inset-0 w-full h-full object-cover z-0">
+                            </a>
+                        </div>
+
+                        <!-- Info Area -->
+                        <div class="mt-3 px-1">
+                            <h3 class="font-montserrat text-[15px] font-semibold text-gray-900 uppercase tracking-wide leading-snug mb-3 min-h-[44px]">
+                                <a href="urun-detay.html?id=${p.id}" class="hover:text-black transition-colors line-clamp-2">
+                                    ${p.title}
+                                </a>
+                            </h3>
+                            
+                            <div class="flex items-center justify-end border-t border-gray-100 pt-3">
+                                <button onclick="toggleFav(${p.id})" class="w-8 h-8 flex items-center justify-end text-gray-400 hover:text-[#E63946] transition-colors" title="Favorilere Ekle">
+                                    <i class="${isFav ? 'ri-heart-fill text-[#E63946]' : 'ri-heart-line'} text-xl"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `}).join('');
+            }
+            renderPagination();
+        }
+
+        function clearAllFilters() {
+            activeCategory = '';
+            document.getElementById('sortSelect').value = 'featured';
+            renderFilters();
+            applyFilters();
+        }
+
+        function renderPagination() {
+            const pages = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE);
+            const el = document.getElementById('pagination');
+            if(pages <= 1) { el.innerHTML = ''; return; }
+            
+            let html = '';
+            for(let i=1; i<=pages; i++) {
+                html += `<button onclick="currentPage=${i}; renderGrid(); document.getElementById('productGrid').scrollIntoView({behavior:'smooth'})" class="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-semibold transition-all ${currentPage===i ? 'bg-primary text-white shadow-md scale-105' : 'bg-white border border-gray-100 text-gray-600 hover:bg-gray-50'}">${i}</button>`;
+            }
+            el.innerHTML = html;
+        }
+
+        // --- GLOBAL UI HELPERS ---
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            if(toast) {
+                document.getElementById('toastMessage').innerText = msg;
+                toast.classList.remove('translate-x-full', 'opacity-0');
+                setTimeout(() => toast.classList.add('translate-x-full', 'opacity-0'), 2500);
+            }
+        }
+
+        function updateBadges() {
+            const favs = JSON.parse(localStorage.getItem('favorites') || '[]');
+            const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            
+            const favCount = document.getElementById('favCount');
+            if(favCount) {
+                favCount.innerText = favs.length;
+                favCount.classList.toggle('opacity-0', favs.length === 0);
+            }
+            
+            const cartCount = document.getElementById('cartCount');
+            if(cartCount) {
+                cartCount.innerText = cart.length;
+                cartCount.classList.toggle('opacity-0', cart.length === 0);
+            }
+        }
+
+        // --- FAV & CART ACTIONS ---
+        function toggleFav(id) {
+            let favs = JSON.parse(localStorage.getItem('favorites') || '[]');
+            const safeId = Number(id);
+            const exists = favs.find(f => f.id === safeId);
+            
+            if(exists) {
+                favs = favs.filter(f => f.id !== safeId);
+                showToast('Favorilerden çıkarıldı');
+            } else {
+                const p = allProducts.find(x => x.id === safeId);
+                if(p) {
+                    favs.push(p);
+                    showToast('Favorilere eklendi');
+                }
+            }
+            
+            localStorage.setItem('favorites', JSON.stringify(favs));
+            updateBadges();
+            renderGrid();
+        }
+
+        function addProductToCart() {
+            if(!activeModalProduct) return;
+            let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            
+            // Allow duplicates as per simple logic, or check exists
+            cart.push(activeModalProduct); 
+            
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateBadges();
+            showToast('Sepete eklendi!');
+            
+            // If modal is open
+            if(document.getElementById('productModal') && !document.getElementById('productModal').classList.contains('hidden')) {
+                  closeModal();
+            }
+            
+            // Auto open cart
+            setTimeout(toggleCartDrawer, 300); 
+        }
+
+        // --- CART DRAWER LOGIC ---
+        function toggleCartDrawer() {
+            const drawer = document.getElementById('cartDrawer');
+            const backdrop = document.getElementById('cartDrawerBackdrop');
+            if(!drawer) return; // Guard
+            
+            const isHidden = drawer.classList.contains('translate-x-full');
+            
+            if(isHidden) {
+                renderCartDrawer();
+                drawer.classList.remove('translate-x-full');
+                backdrop.classList.remove('hidden');
+                // Force Reflow
+                void drawer.offsetWidth;
+                backdrop.classList.remove('opacity-0');
+                document.body.style.overflow = 'hidden';
+            } else {
+                drawer.classList.add('translate-x-full');
+                backdrop.classList.add('opacity-0');
+                setTimeout(() => backdrop.classList.add('hidden'), 300);
+                document.body.style.overflow = '';
+            }
+        }
+
+        function renderCartDrawer() {
+            const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            const container = document.getElementById('cartItemsContainer');
+            const totalEl = document.getElementById('cartTotal');
+            if(!container) return;
+
+            if(cart.length === 0) {
+                container.innerHTML = `
+                    <div class="h-full flex flex-col items-center justify-center text-gray-400">
+                        <i class="ri-shopping-cart-line text-4xl mb-4 opacity-30"></i>
+                        <p class="text-xs">Sepetiniz boş</p>
+                    </div>`;
+                if(totalEl) totalEl.innerText = "0 ₺";
+                return;
+            }
+
+            let total = 0;
+            container.innerHTML = cart.map((item, index) => {
+                const price = item.price || 0;
+                total += price;
+                return `
+                    <div class="flex gap-3 bg-white p-3 rounded-xl border border-gray-100 shadow-sm transition-all hover:bg-gray-50">
+                        <img src="${item.image}" class="w-14 h-14 rounded-lg object-cover bg-gray-100">
+                        <div class="flex-1 min-w-0 flex flex-col justify-center">
+                            <h4 class="font-bold text-xs text-gray-800 truncate">${item.title}</h4>
+                            <p class="text-[10px] text-gray-400">${item.category || 'Takı'}</p>
+                            <p class="text-xs font-bold text-secondary mt-1">${price.toLocaleString('tr-TR')} ₺</p>
+                        </div>
+                        <button onclick="removeFromCart(${index})" class="w-8 h-8 flex items-center justify-center text-gray-300 hover:text-red-500 hover:bg-red-50 rounded-full transition-colors">
+                            <i class="ri-delete-bin-line"></i>
+                        </button>
+                    </div>
+                `;
+            }).join('');
+
+            if(totalEl) totalEl.innerText = total.toLocaleString('tr-TR') + " ₺";
+        }
+
+        function removeFromCart(index) {
+            let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            renderCartDrawer();
+            updateBadges();
+        }
+
+        function checkout() {
+            let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            if(cart.length === 0) { showToast('Sepet boş!'); return; }
+            if(confirm('Sipariş oluşturulsun mu?')) {
+                localStorage.setItem('cart', '[]');
+                renderCartDrawer();
+                updateBadges();
+                toggleCartDrawer();
+                showToast('Siparişiniz alındı! Teşekkürler.');
+            }
+        }
+
+        // --- MODAL LOGIC (Simplified for List Page, directs to detail usually but if used) ---
+        // (Note: We link to detailed page mostly, but if 'Quick View' is needed, here it is)
+        // Keeping it minimal as user clicks usually go to urun-detay.html directly now.
+    </script>
+<script src="js/ecommerce-pause.js"></script>
+</body>
+</html>
+
+
+
